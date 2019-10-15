@@ -1,0 +1,46 @@
+{% extends "homes.html" %}
+{% block content %}
+ <center>
+    <section class="content">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h1 class="box-title"> Details des informations de la type_agent  </h1>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            {% for type_agent in read_type_agent %}
+            <div class="box-body">
+                <table class="table table-bordered table-striped">
+                    <tbody>
+
+            <tr>
+                <th>Libellé</th>
+                <td>{{ type_agent['libelle_type_agent']}}</td>
+            </tr>
+            <tr>
+                <th>Action</th>
+                <td>{{ type_agent['action_type_agent'] }}</td>
+            <tr>
+            <tr>
+                <th>Libellé Unique</th>
+                <td>{{ type_agent['libelle_unique_type_agent'] }}</td>
+            <tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ type_agent['descrption_type_agent'] }}</td>
+            <tr>
+                <th>Date de Création</th>
+                <td>{{ type_agent['created_at'] }}</td>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+        </div>
+        </div>
+    </section>
+ </center>
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends "homes.html" %}
+{% block content %}
+<center><h1>Liste des destinations </h1></center>
+<section class="content">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+
+            <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body">
+            <table id="lstdestination" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Libelle</th>
+                    <th>Déléguation</th>
+                    <th>Délégué</th>
+                    <th>Responsable</th>
+                    <th>Visa Responsable</th>
+                    <th>Action</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for destination in list_destinations %}
+                <tr>
+
+                    <td class="table-active">{{ destination['code_destination'] }}</td>
+                    <td class="table-primary">{{ destination['libelle_destination'] }}</td>
+                    <td class="table-secondary">{{ destination['delegation_destination'] }}</td>
+                    <td class="table-success">{{ destination['delegue_destination'] }}</td>
+                    <td class="table-danger">{{ destination['responsable_destination'] }}</td>
+                    <td class="table-warning">{{ destination['visa_responsable_destination'] }}</td>
+                    <td class="table-info">{{ destination['action_destination'] }}</td>
+                    <td class="table-light">
+                        <div class="input-group btn">
+                            <a class="icon" href="destination/code1"
+                               title="Voir le détail de destination ">
+                                <button class="btn btn-info small" onclick="test()">
+                                    <i class="fa fa-info" aria-hidden="true"></i>
+                                </button>&nbsp;&nbsp;
+
+                            </a>
+                            <a class="icon" href="update_destination/code1"
+                               title=" Modifier la destination">
+                                <button class="btn btn-warning small" onclick="">
+                                    <i class="fa fa-pencil glyphicon glyphicon-pencil"></i>
+                                </button>&nbsp;&nbsp;
+
+                            </a>
+                            <form class="icon" method="GET" action="/delete_destination/code3">
+                                <a class="icon" href="list_destination"
+                                   title=" Supprimer la destination">
+                                    <button class="btn btn-danger small" onclick="">
+                                        <i class="fa fa-times glyphicon glyphicon-remove"></i>
+                                    </button>
+                                </a>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h1 class="box-title">Nouvelle destination</h1>
+            <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body">
+            <div align="right">
+                <a href="destinations">
+                    <button type="button" class="btn btn-success">Ajouter une Nouvelle destination</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+    <script type="text/javascript">
+
+      document.addEventListener("DOMContentLoaded",  function(e) {
+            alert("txt")
+            var txt = $(e.target).text();
+            console.log(txt);
+            alert(txt)
+         } false);
+
+
+</script>
+
+
+{% endblock %}

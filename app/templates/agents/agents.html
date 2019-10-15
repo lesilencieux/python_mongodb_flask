@@ -1,0 +1,258 @@
+{% extends "homes.html" %}
+{% block content %}
+
+<center><h1>Creation de agents</h1></center>
+
+<span>&nbsp;</span>
+
+<center>
+    <form action="/agent" method="POST" autocomplete="on" name="form">
+
+        <div class="col-sm-offset-3 col-sm-6" id="first-part">
+
+            <span>&nbsp;</span>
+            <div class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa  fa-code-fork" aria-hidden="true"></i></span>
+                <input name="prenom_agent" required="required" class="form-control" type="text" placeholder="Prenoms">
+            </div>
+            <span>&nbsp;</span>
+            <div class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa fa-tag" aria-hidden="true"></i></span>
+                <input name="nom_agent" required="required" class="form-control" type="text" placeholder="Nom">
+            </div>
+            <span>&nbsp;</span>
+            <div class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa fa-users" aria-hidden="true"></i></span>
+                <input name="matricule_agent" required="required" class="form-control" type="text"
+                       placeholder="Matricule">
+            </div>
+            <span>&nbsp;</span>
+            <div class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                <input name="ifu_agent" required="required" class="form-control" type="text" placeholder="IFU">
+            </div>
+            <span>&nbsp;</span>
+
+            <div class="input-group margin-bottom-sm">
+
+                <div class="input-group select2-bootstrap-prepend">
+                    <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+
+                    <select name="structure_agent" class="form-control select2-single" tabindex="-1" aria-hidden="true" required>
+                        <option value="" disabled selected>Selectionner la structure de l'agent</option>
+
+                        {% for structure in list_structure %}
+                        <option name="structure_agent" value="{{ structure['code_structure'] }}">{{
+                            structure['code_structure'] }}
+                        </option>
+
+                        {% endfor %}
+                    </select>
+
+                </div>
+            </div>
+            <span>&nbsp;</span>
+
+            <div>
+                <a href="#">
+                    <button type="button" id="first-reset" class="btn btn-primary btn-sm pull-left">
+                        <span class="visible-xs"><i class="fa fa-refresh fa-2x"></i></span>
+                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-refresh"></i> Annuler</span>
+                    </button>
+                </a>
+
+                <span class="btn btn-primary btn-sm  " id="btn-next">
+                    <span class="visible-xs"><i class="fa fa-arrow-circle-right fa-2x"></i></span>
+                    <span class="visible-sm visible-md visible-lg">Suivant <i
+                            class="fa fa-arrow-circle-right"></i></span>
+                </span>
+            </div>
+
+        </div>
+        <span>&nbsp;</span>
+        <div class="col-sm-offset-3 col-sm-6" id="second-part">
+            <div class="input-group margin-bottom-sm">
+
+                <div class="input-group select2-bootstrap-prepend">
+                    <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+
+                    <select name="corps_agent" class="form-control select2-single" tabindex="-1" aria-hidden="true" required>
+                        <option value="" disabled selected>Selectionner le corps de l'agent</option>
+
+                        {% for corps in list_corps %}
+                        <option name="corps_agent" value="{{ corps['libelle_corps'] }}">{{ corps['libelle_corps'] }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <span>&nbsp;</span>
+
+            <div class="input-group margin-bottom-sm">
+
+                <div class="input-group select2-bootstrap-prepend">
+                    <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+
+                    <select name="grade_agent" class="form-control select2-single" tabindex="-1" aria-hidden="true" required>
+                        <option value="" disabled selected>Selectionner le grade de l'agent</option>
+
+                        {% for grade in list_grade %}
+                        <option name="grade_agent" value="{{ grade['libelle_grade'] }}">{{ grade['libelle_grade'] }}
+                        </option>
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+            </div>
+            <span>&nbsp;</span>
+
+            <div class="input-group margin-bottom-sm">
+                <div class="input-group select2-bootstrap-prepend">
+                    <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                    <select name="qualite_agent" class="form-control select2-single" tabindex="-1" aria-hidden="true" required>
+                        <option value="" disabled selected>Selectionner la qualité de l'agent</option>
+                        {% for qualite in list_qualite %}
+                        <option name="qualite_agent" value="{{ qualite['libelle_qualite'] }}">{{
+                            qualite['libelle_qualite'] }}
+                        </option>
+
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+             <span>&nbsp;</span>
+            <div class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                <input name="action_agent" required="required" class="form-control" type="text" placeholder="Action">
+            </div>
+            <span>&nbsp;</span>
+
+
+            <div class="row">
+
+                <div class="col-xs-4 col-sm-offset-3 col-sm-3">
+                    <span class="btn btn-primary btn-sm pull-left" id="btn-back">
+                        <span class="visible-xs"><i class="fa fa-arrow-circle-left fa-2x"></i></span>
+                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-arrow-circle-left"></i> Précedent</span>
+                    </span>
+                </div>
+                <div class="col-xs-4 col-sm-3">
+                    <a href="#">
+                        <button type="button" id="second-reset" class="btn btn-primary btn-sm ">
+                            <span class="visible-xs"><i class="fa fa-refresh fa-2x"></i></span>
+                            <span class="visible-sm visible-md visible-lg"><i class="fa fa-refresh"></i> Annuler</span>
+                        </button>
+                    </a>
+                    </span>
+                </div>
+                <div class="col-xs-4 col-sm-3">
+                    <button type="submit" class="btn btn-primary btn-sm pull-right">
+                        <span class="visible-xs"><i class="fa fa-save fa-2x"></i></span>
+                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-save"></i> {{'Valider'}}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </form>
+</center>
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h1 class="box-title">Liste agent</h1>
+        <div class="box-tools pull-right">
+            <button class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="box-body">
+        <div align="right">
+            <a href="list_agent">
+                <button type="button" class="btn btn-success">Aller à liste des agents</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.7/select2-bootstrap.min.css"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
+<script type="text/javascript">
+
+      document.addEventListener("DOMContentLoaded", function () {
+                        var heightFirst = $('#first-part').css("height");
+                        var heightSecond = $('#second-part').css("height");
+                        $('#first-part').css({
+                            "overflow": "hidden",
+                            "height": heightFirst,
+                            "transiton": 'all 1s',
+                            "-webkit-transition": 'all 1s ease',
+                            "-moz-transition": 'all 1s ease',
+                            "-o-transition": 'all 1s ease'
+
+                        });
+                        $('#second-part').css({
+                            "overflow": "hidden",
+                            "height": "0px",
+                            "transiton": 'all 1s ease',
+                            "-webkit-transition": 'all 1s ease',
+                            "-moz-transition": 'all 1s ease',
+                            "-o-transition": 'all 1s ease'
+                        });
+
+                        $("#btn-next").click(function () {
+                            $('#first-part').css({
+                                'height': '0px',
+                                "visibility": 'hidden'
+                            });
+                            $('#second-part').css({
+                                'height': heightSecond,
+                                'visibility': 'visible'
+                            });
+                        });
+
+                        $("#btn-back").click(function () {
+                            $('#first-part').css({
+                                'height': heightFirst,
+                                'visibility': 'visible'
+                            });
+                            $('#second-part').css({
+                                'height': '0px',
+                                "visibility": 'hidden'
+                            });
+                        });
+
+                        // @see github.com/select2/select2-bootstrap-theme/issues/62
+
+                        $.fn.select2.defaults.set( "theme", "bootstrap" );
+
+                        $( ".select2-single" ).select2({
+                          placeholder: 'Select a State…',
+                          width: null
+});
+
+                    }, false);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+{% endblock %}

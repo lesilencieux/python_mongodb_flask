@@ -1,0 +1,98 @@
+{% extends "homes.html" %}
+{% block content %}
+<center><h1>Liste des type_budgets </h1></center>
+<section class="content">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+
+            <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body">
+            <table id="lsttype_budget" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Libelle</th>
+                    <th>Type Budget</th>
+                    <th>Action</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for type_budget in list_type_budgets %}
+                <tr>
+
+                    <td class="table-primary">{{ type_budget['libelle_type_budget'] }}</td>
+                    <td class="table-primary">{{ type_budget['libelle_unique_type_agent'] }}</td>
+                    <td class="table-info">{{ type_budget['description_type_budget'] }}</td>
+                    <td class="table-info">{{ type_budget['created_at'] }}</td>
+                    <td class="table-light">
+                        <div class="input-group btn">
+                            <a class="icon" href="type_budget/code1"
+                               title="Voir le détail de type_budget ">
+                                <button class="btn btn-info small" onclick="test()">
+                                    <i class="fa fa-info" aria-hidden="true"></i>
+                                </button>&nbsp;&nbsp;
+
+                            </a>
+                            <a class="icon" href="update_type_budget/code1"
+                               title=" Modifier la type_budget">
+                                <button class="btn btn-warning small" onclick="">
+                                    <i class="fa fa-pencil glyphicon glyphicon-pencil"></i>
+                                </button>&nbsp;&nbsp;
+
+                            </a>
+                            <form class="icon" method="GET" action="/delete_type_budget/code3">
+                                <a class="icon" href="list_type_budget"
+                                   title=" Supprimer la type_budget">
+                                    <button class="btn btn-danger small" onclick="">
+                                        <i class="fa fa-times glyphicon glyphicon-remove"></i>
+                                    </button>
+                                </a>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h1 class="box-title">Nouveau Budget</h1>
+            <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body">
+            <div align="right">
+                <a href="type_budget">
+                    <button type="button" class="btn btn-success">Ajouter un Nouveau Type de Budget</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+    <script type="text/javascript">
+
+      document.addEventListener("DOMContentLoaded",  function(e) {
+            alert("txt")
+            var txt = $(e.target).text();
+            console.log(txt);
+            alert(txt)
+         } false);
+
+
+</script>
+
+
+{% endblock %}

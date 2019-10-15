@@ -1,0 +1,167 @@
+{% extends "homes.html" %}
+{% block content %}
+
+<center><h1>Modification de destinations</h1></center>
+
+<span>&nbsp;</span>
+
+<center>
+    <form action="/destination" method="POST" autocomplete="on" name="form">
+        {% for destination in read_destination %}
+
+        <div class="col-sm-offset-3 col-sm-6" id="first-part">
+
+            <span>&nbsp;</span>
+            <div class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa fa-tag" aria-hidden="true"></i></span>
+                <input name="libelle_destination" required="required" class="form-control" type="text"
+                       placeholder="Libellé" value={{destination["libelle_destination"]}}>
+            </div>
+            <span>&nbsp;</span>
+            <div class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa fa-users" aria-hidden="true"></i></span>
+                <input name="delegation_destination" required="required" class="form-control" type="text"
+                       placeholder="Délégations" value={{destination["delegation_destination"]}}>
+            </div>
+            <span>&nbsp;</span>
+            <div class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                <input name="delegue_destination" required="required" class="form-control" type="text"
+                       placeholder="Délégué" value={{destination["delegue_destination"]}}>
+            </div>
+            <span>&nbsp;</span>
+            <div>
+                <a href="#">
+                    <button type="button" id="first-reset" class="btn btn-primary btn-sm pull-left">
+                        <span class="visible-xs"><i class="fa fa-refresh fa-2x"></i></span>
+                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-refresh"></i> Annuler</span>
+                    </button>
+                </a>
+
+                <span class="btn btn-primary btn-sm  " id="btn-next">
+                    <span class="visible-xs"><i class="fa fa-arrow-circle-right fa-2x"></i></span>
+                    <span class="visible-sm visible-md visible-lg">Suivant <i
+                            class="fa fa-arrow-circle-right"></i></span>
+                </span>
+            </div>
+        </div>
+        <span>&nbsp;</span>
+        <div class="col-sm-offset-3 col-sm-6" id="second-part">
+            <div class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
+                <input name="responsable_destination" required="required" class="form-control" type="text"
+                       placeholder="Responsable" value={{destination["responsable_destination"]}}>
+            </div>
+            <span>&nbsp;</span>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa  fa-cc-visa" aria-hidden="true"></i></span>
+                <input name="visa_responsable_destination" required="required" class="form-control" type="text"
+                       placeholder="Visa Responsable" value={{destination["visa_responsable_destination"]}}>
+            </div>
+            <span>&nbsp;</span>
+            <div class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
+                <input name="action_destination" required="required" class="form-control" type="text" placeholder="Action"
+                       value={{destination["action_destination"]}}>
+            </div>
+            <span>&nbsp;</span>
+
+            <div class="row">
+
+                <div class="col-xs-4 col-sm-offset-3 col-sm-3">
+                    <span class="btn btn-primary btn-sm pull-left" id="btn-back">
+                        <span class="visible-xs"><i class="fa fa-arrow-circle-left fa-2x"></i></span>
+                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-arrow-circle-left"></i> Précedent</span>
+                    </span>
+                </div>
+                <div class="col-xs-4 col-sm-3">
+                    <a href="#">
+                        <button type="button" id="second-reset" class="btn btn-primary btn-sm ">
+                            <span class="visible-xs"><i class="fa fa-refresh fa-2x"></i></span>
+                            <span class="visible-sm visible-md visible-lg"><i class="fa fa-refresh"></i> Annuler</span>
+                        </button>
+                    </a>
+                    </span>
+                </div>
+                <div class="col-xs-4 col-sm-3">
+                    <button type="submit" class="btn btn-primary btn-sm pull-right">
+                        <span class="visible-xs"><i class="fa fa-save fa-2x"></i></span>
+                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-save"></i> {{'Valider'}}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        </div>
+        {% endfor %}
+    </form>
+</center>
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h1 class="box-title">Liste destination</h1>
+        <div class="box-tools pull-right">
+            <button class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="box-body">
+        <div align="right">
+            <a href="lplist_destination">
+                <button type="button" class="btn btn-success">Aller à liste des destinations</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+      document.addEventListener("DOMContentLoaded", function () {
+                        var heightFirst = $('#first-part').css("height");
+                        var heightSecond = $('#second-part').css("height");
+                        $('#first-part').css({
+                            "overflow": "hidden",
+                            "height": heightFirst,
+                            "transiton": 'all 1s',
+                            "-webkit-transition": 'all 1s ease',
+                            "-moz-transition": 'all 1s ease',
+                            "-o-transition": 'all 1s ease'
+
+                        });
+                        $('#second-part').css({
+                            "overflow": "hidden",
+                            "height": "0px",
+                            "transiton": 'all 1s ease',
+                            "-webkit-transition": 'all 1s ease',
+                            "-moz-transition": 'all 1s ease',
+                            "-o-transition": 'all 1s ease'
+                        });
+
+                        $("#btn-next").click(function () {
+                            $('#first-part').css({
+                                'height': '0px',
+                                "visibility": 'hidden'
+                            });
+                            $('#second-part').css({
+                                'height': heightSecond,
+                                'visibility': 'visible'
+                            });
+                        });
+
+                        $("#btn-back").click(function () {
+                            $('#first-part').css({
+                                'height': heightFirst,
+                                'visibility': 'visible'
+                            });
+                            $('#second-part').css({
+                                'height': '0px',
+                                "visibility": 'hidden'
+                            });
+                        });
+
+                    }, false);
+
+
+
+</script>
+
+{% endblock %}

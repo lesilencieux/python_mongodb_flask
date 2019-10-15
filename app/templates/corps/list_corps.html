@@ -1,0 +1,95 @@
+{% extends "homes.html" %}
+{% block content %}
+<center><h1>Liste des corpss </h1></center>
+<section class="content">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+
+            <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body">
+            <table id="lstcorps" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Libelle</th>
+                    <th>Action</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for corps in list_corps %}
+                <tr>
+
+                    <td class="table-primary">{{ corps['libelle_corps'] }}</td>
+                    <td class="table-info">{{ corps['action_corps'] }}</td>
+                    <td class="table-light">
+                        <div class="input-group btn">
+                            <a class="icon" href="corps/code1"
+                               title="Voir le détail de corps ">
+                                <button class="btn btn-info small" onclick="test()">
+                                    <i class="fa fa-info" aria-hidden="true"></i>
+                                </button>&nbsp;&nbsp;
+
+                            </a>
+                            <a class="icon" href="update_corps/code1"
+                               title=" Modifier la corps">
+                                <button class="btn btn-warning small" onclick="">
+                                    <i class="fa fa-pencil glyphicon glyphicon-pencil"></i>
+                                </button>&nbsp;&nbsp;
+
+                            </a>
+                            <form class="icon" method="GET" action="/delete_corps/code3">
+                                <a class="icon" href="list_corps"
+                                   title=" Supprimer la corps">
+                                    <button class="btn btn-danger small" onclick="">
+                                        <i class="fa fa-times glyphicon glyphicon-remove"></i>
+                                    </button>
+                                </a>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h1 class="box-title">Nouveau corps</h1>
+            <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body">
+            <div align="right">
+                <a href="corps">
+                    <button type="button" class="btn btn-success">Ajouter une Nouveau Corps</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+    <script type="text/javascript">
+
+      document.addEventListener("DOMContentLoaded",  function(e) {
+            alert("txt")
+            var txt = $(e.target).text();
+            console.log(txt);
+            alert(txt)
+         } false);
+
+
+</script>
+
+
+{% endblock %}

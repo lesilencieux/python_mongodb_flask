@@ -1,0 +1,299 @@
+{% extends "homes.html" %}
+{% block content %}
+
+<center><h1>Creation de structures</h1></center>
+
+<span>&nbsp;</span>
+
+<center>
+    <form action="/structure" method="POST" autocomplete="on" name="form">
+
+        <div class="col-sm-offset-3 col-sm-6" id="first-part">
+
+            <div class="input-group margin-bottom-sm">
+                <div class="form-group">
+                    <div class='input-group date' id='datetimepicker6'>
+                        <input type='text' placeholder="Date debut " class="form-control"/>
+                        <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class='input-group date' id='datetimepicker7'>
+                        <input type='text' placeholder="Date Fin" class="form-control"/>
+                        <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
+                <input name="responsable_structure" required="required" class="form-control" type="text"
+                       placeholder="Reference de la lettre de mission ">
+            </div>
+            <span>&nbsp;</span>
+
+            <div class="md-form">
+                <i class="fas fa-pencil-alt prefix"></i>
+                <textarea id="form10" class="md-textarea form-control" rows="4"></textarea>
+            </div>
+            <span>&nbsp;</span>
+            <div class="input-group margin-bottom-sm">
+                <div class="form-group">
+                    <label class="radio-inline"><input type="radio" name="optradio" checked> Mission Interieur </label>
+                </div>
+                <span>&nbsp;</span>
+                <div class="form-group">
+                    <label class="radio-inline"><input type="radio" name="optradio">Mission Exterieur</label>
+                </div>
+            </div>
+
+            <div>
+                <a href="#">
+                    <button type="button" id="first-reset" class="btn btn-primary btn-sm pull-left">
+                        <span class="visible-xs"><i class="fa fa-refresh fa-2x"></i></span>
+                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-refresh"></i> Annuler</span>
+                    </button>
+                </a>
+
+                <span class="btn btn-primary btn-sm  " id="btn-next-1">
+                    <span class="visible-xs"><i class="fa fa-arrow-circle-right fa-2x"></i></span>
+                    <span class="visible-sm visible-md visible-lg">Suivant <i
+                            class="fa fa-arrow-circle-right"></i></span>
+                </span>
+            </div>
+
+        </div>
+        <span>&nbsp;</span>
+        <div class="col-sm-offset-3 col-sm-6" id="second-part">
+
+            <div class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
+                <input name="reference_ordre_mission" required="required" class="form-control" type="text"
+                       placeholder="Reference de l'ordre de la mission">
+            </div>
+
+            <div class="input-group margin-bottom-sm">
+                <div class="form-group">
+
+
+                    <div class='input-group date' id='datetimepicker8'>
+                        <input type='text' placeholder="Date Fin" class="form-control"/>
+                        <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+                    </div>
+                </div>
+            </div>
+
+            <span>&nbsp;</span>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa  fa-cc-visa" aria-hidden="true"></i></span>
+                <input name="visa_responsable_structure" required="required" class="form-control" type="text"
+                       placeholder="Visa Responsable">
+            </div>
+            <span>&nbsp;</span>
+            <div class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
+                <input name="action_structure" required="required" class="form-control" type="text"
+                       placeholder="Action">
+            </div>
+            <span>&nbsp;</span>
+
+            <div class="row">
+
+                <div class="col-xs-4 col-sm-offset-3 col-sm-3">
+                    <span class="btn btn-primary btn-sm pull-left" id="btn-back-1">
+                        <span class="visible-xs"><i class="fa fa-arrow-circle-left fa-2x"></i></span>
+                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-arrow-circle-left"></i> Précedent</span>
+                    </span>
+                </div>
+                <div class="col-xs-4 col-sm-3">
+                    <a href="#">
+                        <button type="button" id="second-reset-1" class="btn btn-primary btn-sm ">
+                            <span class="visible-xs"><i class="fa fa-refresh fa-2x"></i></span>
+                            <span class="visible-sm visible-md visible-lg"><i class="fa fa-refresh"></i> Annuler</span>
+                        </button>
+                    </a>
+                    </span>
+                </div>
+
+                <span class="btn btn-primary btn-sm  " id="btn-next">
+                    <span class="visible-xs"><i class="fa fa-arrow-circle-right fa-2x"></i></span>
+                    <span class="visible-sm visible-md visible-lg">Suivant <i
+                            class="fa fa-arrow-circle-right"></i></span>
+                </span>
+            </div>
+        </div>
+        <span></span>
+        <div class="col-sm-offset-3 col-sm-6" id="third-part">
+
+            <div class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
+                <input name="responsable_structure" required="required" class="form-control" type="text"
+                       placeholder="Responsable">
+            </div>
+            <span>&nbsp;</span>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa  fa-cc-visa" aria-hidden="true"></i></span>
+                <input name="visa_responsable_structure" required="required" class="form-control" type="text"
+                       placeholder="Visa Responsable">
+            </div>
+            <span>&nbsp;</span>
+            <div class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
+                <input name="action_structure" required="required" class="form-control" type="text"
+                       placeholder="Action">
+            </div>
+            <span>&nbsp;</span>
+
+            <div class="row">
+
+                <div class="col-xs-4 col-sm-offset-3 col-sm-3">
+                    <span class="btn btn-primary btn-sm pull-left" id="btn-back">
+                        <span class="visible-xs"><i class="fa fa-arrow-circle-left fa-2x"></i></span>
+                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-arrow-circle-left"></i> Précedent</span>
+                    </span>
+                </div>
+                <div class="col-xs-4 col-sm-3">
+                    <a href="#">
+                        <button type="button" id="second-reset" class="btn btn-primary btn-sm ">
+                            <span class="visible-xs"><i class="fa fa-refresh fa-2x"></i></span>
+                            <span class="visible-sm visible-md visible-lg"><i class="fa fa-refresh"></i> Annuler</span>
+                        </button>
+                    </a>
+                    </span>
+                </div>
+                <div class="col-xs-4 col-sm-3">
+                    <button type="submit" class="btn btn-primary btn-sm pull-right">
+                        <span class="visible-xs"><i class="fa fa-save fa-2x"></i></span>
+                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-save"></i> {{'Valider'}}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</center>
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h1 class="box-title">Liste Structure</h1>
+        <div class="box-tools pull-right">
+            <button class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="box-body">
+        <div align="right">
+            <a href="list_structure">
+                <button type="button" class="btn btn-success">Aller à liste des structures</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+      document.addEventListener("DOMContentLoaded", function () {
+                        var heightFirst = $('#first-part').css("height");
+                        var heightSecond = $('#second-part').css("height");
+                        var heightThird = $('#third-part').css("height");
+                        $('#first-part').css({
+                            "overflow": "hidden",
+                            "height": heightFirst,
+                            "transiton": 'all 1s',
+                            "-webkit-transition": 'all 1s ease',
+                            "-moz-transition": 'all 1s ease',
+                            "-o-transition": 'all 1s ease'
+
+                        });
+                        $('#second-part').css({
+                            "overflow": "hidden",
+                            "height": "0px",
+                            "transiton": 'all 1s ease',
+                            "-webkit-transition": 'all 1s ease',
+                            "-moz-transition": 'all 1s ease',
+                            "-o-transition": 'all 1s ease'
+                        });
+
+                        $('#third-part').css({
+                            "overflow": "hidden",
+                            "height": "0px",
+                            "transiton": 'all 1s ease',
+                            "-webkit-transition": 'all 1s ease',
+                            "-moz-transition": 'all 1s ease',
+                            "-o-transition": 'all 1s ease'
+                        });
+
+                        $("#btn-next-1").click(function () {
+                            $('#first-part').css({
+                                'height': '0px',
+                                "visibility": 'hidden'
+                            });
+                            $('#second-part').css({
+                                'height': heightSecond,
+                                'visibility': 'visible'
+                            });
+                        });
+
+                        $("#btn-next").click(function () {
+                            $('#second-part').css({
+                                'height': '0px',
+                                "visibility": 'hidden'
+                            });
+                            $('#third-part').css({
+                                'height': heightThird,
+                                'visibility': 'visible'
+                            });
+                        });
+
+                        $("#btn-back-1").click(function () {
+                            $('#first-part').css({
+                                'height': heightFirst,
+                                'visibility': 'visible'
+                            });
+                            $('#second-part').css({
+                                'height': '0px',
+                                "visibility": 'hidden'
+                            });
+                        });
+
+                        $("#btn-back").click(function () {
+                            $('#second-part').css({
+                                'height': heightFirst,
+                                'visibility': 'visible'
+                            });
+                            $('#third-part').css({
+                                'height': '0px',
+                                "visibility": 'hidden'
+                            });
+                        });
+                             $(".form_datetime").datetimepicker({
+                                format: "dd MM yyyy - hh:ii",
+                                autoclose: true,
+                                todayBtn: true,
+                                startDate: "2013-02-14 10:00",
+                                minuteStep: 10
+                            });
+
+                    }, false);
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+{% endblock %}
