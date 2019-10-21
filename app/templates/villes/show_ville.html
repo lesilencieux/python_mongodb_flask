@@ -4,47 +4,47 @@
     <section class="content">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h1 class="box-title"> Details des informations de la mission  </h1>
+                <h1 class="box-title"> Details des informations de la structure  </h1>
                 <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse">
                         <i class="fa fa-minus"></i>
                     </button>
                 </div>
             </div>
-            {% for mission in read_mission %}
+            {% for structure in read_structure %}
             <div class="box-body">
                 <table class="table table-bordered table-striped">
                     <tbody>
-             <tr>
-                <th>Date de Création</th>
-                <td>{{ mission['created_at'] }}</td>
-
             <tr>
-                <th>Code mission</th>
-                <td>{{ mission['date_debut_mission']}}</td>
+                <th>Code Structure</th>
+                <td>{{ structure['code_structure']}}</td>
             </tr>
             <tr>
                 <th>Libellé</th>
-                <td>{{ mission['date_fin_mission']}}</td>
+                <td>{{ structure['libelle_structure']}}</td>
             </tr>
             <tr>
                 <th>Délégation</th>
-                <td>{{ mission['reference_ordre_mission']}}</td>
+                <td>{{ structure['delegation_structure']}}</td>
             </tr>
             <tr>
                 <th>Délégué</th>
-                <td>{{ mission['montant_budget_mission'] }}</td>
+                <td>{{ structure['delegue_structure'] }}</td>
             </tr>
             <tr>
                 <th>Responsable</th>
-                <td>{{ mission['devise_budget'] }}</td>
+                <td>{{ structure['responsable_structure'] }}</td>
             </tr>
             <tr>
                 <th>Visa Responsable</th>
-                <td>{{ mission['responsable_structure'] }}</td>
+                <td>{{ structure['visa_responsable_structure'] }}</td>
             </tr>
-
-
+            <tr>
+                <th>Action</th>
+                <td>{{ structure['action_structure'] }}</td>
+            <tr>
+                <th>Date de Création</th>
+                <td>{{ structure['created_at'] }}</td>
             {% endfor %}
         </tbody>
     </table>

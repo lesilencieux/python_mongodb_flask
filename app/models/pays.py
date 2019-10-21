@@ -12,14 +12,8 @@ class Pays():
 
     def get_payss(self):
         result = self.payss.find()
-        toreturns = []
-        # return [str(pays['_id']) for pays in result]
-
         return result
-        # for pays in result:
-        #     pays['_id'] = str(pays['_id'])
-        #     toreturns.append(pays)
-        # return jsonify(toreturns)
+
     def get_all_codes_of_payss(self):
         result = self.payss.find()
         toreturns = []
@@ -57,7 +51,7 @@ class Pays():
         try:
             self.payss.insert(jsn)
             return True
-        except DuplicateKeyError:
+        except DuplicateKeyError :
             return False
 
 
