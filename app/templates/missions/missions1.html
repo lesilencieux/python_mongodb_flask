@@ -1,0 +1,611 @@
+{% extends "homes.html" %}
+{% block content %}
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Hello, Multiple Select!</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/multiple-select@1.4.2/dist/multiple-select.min.css">
+</head>
+<center><h1>Creation de mission</h1></center>
+
+<span>&nbsp;</span>
+
+<center>
+    <form action="/structure" method="POST" autocomplete="on" name="form">
+
+
+        <div class="col-sm-offset-3 col-sm-6" id="first-part">
+
+
+            <div class="input-group margin-bottom-sm">
+                <div class="form-group">
+                    <div class="input-group date" id="datetimepicker7" data-target-input="nearest">
+                        <input type="text" required placeholder="Date debut " class="form-control datetimepicker-input"
+                               data-target="#datetimepicker7"/>
+                        <div class="input-group-append" data-target="#datetimepicker7" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group date" id="datetimepicker8" data-target-input="nearest">
+                        <input type="text" required placeholder="Date fin " class="form-control datetimepicker-input"
+                               data-target="#datetimepicker8"/>
+                        <div data-target="#datetimepicker8" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
+                <input name="responsable_structure" required="required" class="form-control" type="text"
+                       placeholder="Reference de la lettre de mission ">
+            </div>
+            <span>&nbsp;</span>
+
+            <div class="md-form">
+                <textarea id="form10" class="md-textarea form-control" rows="4" placeholder="Objet"></textarea>
+            </div>
+            <span>&nbsp;</span>
+            <div class="input-group margin-bottom-sm">
+                <div class="form-group">
+
+                    <div class="col-xs-9">
+                        <label style="font-weight: bold;" class="col-xs-3 control-label">Destination </label>
+                        <label onclick="destination_externe()" id="destination_externe">
+                            <input id="inlineradio10" name="sampleinlineradio" value="option1" type="radio">
+                            Externe</label>
+                        <label onclick="destination_interne()" id="destination_interne">
+                            <input id="inlineradio11" name="sampleinlineradio" value="option1" type="radio">
+                            Interne</label>
+
+                    </div>
+                </div>
+                <span>&nbsp;</span>
+            </div>
+
+            <div>
+                <a href="#">
+                    <button type="button" id="first-reset" class="btn btn-primary btn-sm pull-left">
+                        <span class="visible-xs"><i class="fa fa-refresh fa-2x"></i></span>
+                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-refresh"></i> Annuler</span>
+                    </button>
+                </a>
+
+                <span class="btn btn-primary btn-sm  " id="firsr-btn-next">
+                    <span class="visible-xs"><i class="fa fa-arrow-circle-right fa-2x"></i></span>
+                    <span class="visible-sm visible-md visible-lg">Suivant <i
+                            class="fa fa-arrow-circle-right"></i></span>
+                </span>
+
+
+            </div>
+
+        </div>
+        <span>&nbsp;</span>
+
+        <div class="col-sm-offset-3 col-sm-6" id="second-part">
+
+            <div class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
+                <input name="reference_ordre_mission" required="required" class="form-control" type="text"
+                       placeholder="Reference de l'ordre de la mission">
+            </div>
+            <span>&nbsp;</span>
+
+            <div class="input-group margin-bottom-sm">
+
+                <select class="selectpicker" single data-live-search="true">
+                    <option>Mustard</option>
+                    <option>Ketchup</option>
+                    <option>Relish</option>
+                </select>
+                <input name="montant_budget_mission" required="required" class="form-control" type="text"
+                       placeholder="Montant du budget ">
+
+                <select class="selectpicker" single data-live-search="true">
+                    <option>$</option>
+                    <option>€</option>
+                    <option>£</option>
+                    <option>ECO</option>
+                    <option>FCFA</option>
+                </select>
+
+            </div>
+
+            <span>&nbsp;</span>
+
+            <div class="input-group margin-bottom-sm">
+                <div class="form-group">
+                    <div class="input-group date" id="datetimepicker9" data-target-input="nearest">
+                        <input type="text" required placeholder="Date de départ "
+                               class="form-control datetimepicker-input"
+                               data-target="#datetimepicker7"/>
+                        <div class="input-group-append" data-target="#datetimepicker7" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group date" id="datetimepicker10" data-target-input="nearest">
+                        <input type="text" required placeholder="Date de retour "
+                               class="form-control datetimepicker-input"
+                               data-target="#datetimepicker8"/>
+                        <div data-target="#datetimepicker8" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <span>&nbsp;</span>
+            <div id="div_pays_destination" style="display: none" class="input-group margin-bottom-sm">
+
+                <select class="selectpicker" multiple data-live-search="true">
+                    <option>Benin</option>
+                    <option>Toge</option>
+                    <option>Nigeria</option>
+                </select>
+            </div>
+            <span>&nbsp;</span>
+
+
+            <span>&nbsp;</span>
+            <div class="row">
+                <div class="col-xs-4 col-sm-offset-3 col-sm-3">
+                    <span class="btn btn-primary btn-sm pull-left" id="first-btn-back">
+                        <span class="visible-xs"><i class="fa fa-arrow-circle-left fa-2x"></i></span>
+                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-arrow-circle-left"></i> Précedent</span>
+                    </span>
+                </div>
+                <div class="col-xs-4 col-sm-3">
+                    <a href="#">
+                        <button type="button" id="second-reset" class="btn btn-primary btn-sm ">
+                            <span class="visible-xs"><i class="fa fa-refresh fa-2x"></i></span>
+                            <span class="visible-sm visible-md visible-lg"><i class="fa fa-refresh"></i> Annuler</span>
+                        </button>
+                    </a>
+                    </span>
+
+
+                </div>
+
+                <span class="btn btn-primary btn-sm  " id="second-btn-next">
+                    <span class="visible-xs"><i class="fa fa-arrow-circle-right fa-2x"></i></span>
+                    <span class="visible-sm visible-md visible-lg">Suivant <i
+                            class="fa fa-arrow-circle-right"></i></span>
+                </span>
+
+            </div>
+
+        </div>
+
+        <span>&nbsp;</span>
+        <div class="col-sm-offset-3 col-sm-6" id="third-part">
+
+            <div id="div_ville_pays_destination" style="display: none" class="form-group">
+                <select class="selectpicker" placeholder="Les villes des pays de destination" multiple
+                        data-live-search="true">
+
+                    <optgroup label="Benin">
+                        <option value="volvo">Cotonou</option>
+                        <option value="saab">Allada</option>
+                        <option value="saab">Parakou</option>
+                    </optgroup>
+                    <optgroup label="Togo">
+                        <option value="mercedes">Lomé</option>
+                    </optgroup>
+                    <optgroup label="Togo">
+                        <option value="mercedes">Abuja</option>
+                        <option value="mercedes">Lagos</option>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="form-group">
+                <select class="selectpicker" placeholder="Les villes des pays de destination" multiple
+                        data-live-search="true">
+
+                    <option value="volvo">Agent1</option>
+                    <option value="saab">Agent2</option>
+                    <option value="saab">Agent3</option>
+                    <option value="mercedes">Agent4</option>
+                    <option value="mercedes">Agent5</option>
+                    <option value="mercedes">Agent6</option>
+                </select>
+            </div>
+            <span>&nbsp;</span>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa  fa-cc-visa" aria-hidden="true"></i></span>
+                <input name="moyen_transport_mission" required="required" class="form-control" type="text"
+                       placeholder="Moyen de transport ">
+            </div>
+            <span>&nbsp;</span>
+            <div id="div_commune_mission" class="input-group">
+                <span class="input-group-addon"><i class="fa  fa-cc-visa" aria-hidden="true"></i></span>
+                <input name="moyen_transport_mission" required="required" class="form-control" type="text"
+                       placeholder="Commune ">
+            </div>
+            <span>&nbsp;</span>
+            <div class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
+                <input name="immatriculation_moyen_transport_mission" required="required" class="form-control"
+                       type="text"
+                       placeholder="Immatriculation ">
+            </div>
+            <span>&nbsp;</span>
+            <div class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
+                <input name="structure_initiatrice_mission" required="required" class="form-control" type="text"
+                       placeholder="Structure initiatrice ">
+            </div>
+            <span>&nbsp;</span>
+            <div class="row">
+
+                <div class="col-xs-4 col-sm-offset-3 col-sm-3">
+                    <span class="btn btn-primary btn-sm pull-left" id="second-btn-back">
+                        <span class="visible-xs"><i class="fa fa-arrow-circle-left fa-2x"></i></span>
+                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-arrow-circle-left"></i> Précedent</span>
+                    </span>
+                </div>
+                <div class="col-xs-4 col-sm-3">
+                    <a href="#">
+                        <button type="button" id="third-reset" class="btn btn-primary btn-sm ">
+                            <span class="visible-xs"><i class="fa fa-refresh fa-2x"></i></span>
+                            <span class="visible-sm visible-md visible-lg"><i class="fa fa-refresh"></i> Annuler</span>
+                        </button>
+                    </a>
+                    </span>
+                </div>
+                <span class="btn btn-primary btn-sm  " id="third-btn-next">
+                    <span class="visible-xs"><i class="fa fa-arrow-circle-right fa-2x"></i></span>
+                    <span class="visible-sm visible-md visible-lg">Suivant <i
+                            class="fa fa-arrow-circle-right"></i></span>
+                </span>
+
+            </div>
+        </div>
+         <span>&nbsp;</span>
+        <div class="col-sm-offset-3 col-sm-6" id="fourth-part">
+
+            <span>&nbsp;</span>
+            <div id="div_code_type_localite" class="input-group">
+                <span class="input-group-addon"><i class="fa  fa-cc-visa" aria-hidden="true"></i></span>
+                <input name="moyen_transport_mission" required="required" class="form-control" type="text"
+                       placeholder=" Code Type Localite ">
+            </div>
+
+            <span>&nbsp;</span>
+            <div id="div_libelle_localite_mission" style="display: none" class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
+                <input name="commune_mission" required="required" class="form-control"
+                       type="text"
+                       placeholder="Libelle Localité  ">
+            </div>
+
+            <span>&nbsp;</span>
+            <div id="div_code_localite_parente" class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
+                <input name="immatriculation_moyen_transport_mission" required="required" class="form-control"
+                       type="text"
+                       placeholder="Code Localité Parente ">
+            </div>
+            <span>&nbsp;</span>
+
+            <div id="code_localite_mission" class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
+                <input name="structure_initiatrice_mission" required="required" class="form-control" type="text"
+                       placeholder="Code Localité ">
+            </div>
+            <span>&nbsp;</span>
+
+            <div id="libelle_localite_mission" class="input-group margin-bottom-sm">
+                <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
+                <input name="structure_initiatrice_mission" required="required" class="form-control" type="text"
+                       placeholder="Libellé Localité ">
+            </div>
+            <span>&nbsp;</span>
+
+            <div class="row">
+
+                <div class="col-xs-4 col-sm-offset-3 col-sm-3">
+                    <span class="btn btn-primary btn-sm pull-left" id="third-btn-back">
+                        <span class="visible-xs"><i class="fa fa-arrow-circle-left fa-2x"></i></span>
+                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-arrow-circle-left"></i> Précedent</span>
+                    </span>
+                </div>
+                <div class="col-xs-4 col-sm-3">
+                    <a href="#">
+                        <button type="button" id="fourth-reset" class="btn btn-primary btn-sm ">
+                            <span class="visible-xs"><i class="fa fa-refresh fa-2x"></i></span>
+                            <span class="visible-sm visible-md visible-lg"><i class="fa fa-refresh"></i> Annuler</span>
+                        </button>
+                    </a>
+                    </span>
+                </div>
+                    <button type="submit" class="btn btn-primary btn-sm pull-right">
+                        <span class="visible-xs"><i class="fa fa-save fa-2x"></i></span>
+                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-save"></i> {{'Valider'}}</span>
+                    </button>
+            </div>
+        </div>
+
+    </form>
+</center>
+<span>&nbsp;</span>
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h1 class="box-title">Liste Structure</h1>
+        <div class="box-tools pull-right">
+            <button class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="box-body">
+        <div align="right">
+            <a href="list_structure">
+                <button type="button" class="btn btn-success">Aller à liste des structures</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://unpkg.com/multiple-select@1.4.2/dist/multiple-select.min.js"></script>
+
+<script type="text/javascript">
+
+      document.addEventListener("DOMContentLoaded", function () {
+                        var heightFirst = $('#first-part').css("height");
+                        var heightSecond = $('#second-part').css("height");
+                        var heightThird = $('#third-part').css("height");
+                        $('#first-part').css({
+                            "overflow": "hidden",
+                            "height": heightFirst,
+                            "transiton": 'all 1s',
+                            "-webkit-transition": 'all 1s ease',
+                            "-moz-transition": 'all 1s ease',
+                            "-o-transition": 'all 1s ease'
+
+                        });
+                        $('#second-part').css({
+                            "overflow": "hidden",
+                            "height": "0px",
+                            "transiton": 'all 1s ease',
+                            "-webkit-transition": 'all 1s ease',
+                            "-moz-transition": 'all 1s ease',
+                            "-o-transition": 'all 1s ease'
+                        });
+
+                        $('#third-part').css({
+                            "overflow": "hidden",
+                            "height": "0px",
+                            "transiton": 'all 1s ease',
+                            "-webkit-transition": 'all 1s ease',
+                            "-moz-transition": 'all 1s ease',
+                            "-o-transition": 'all 1s ease'
+                        });
+
+                        $('#fourth-part').css({
+                            "overflow": "hidden",
+                            "height": "0px",
+                            "transiton": 'all 1s ease',
+                            "-webkit-transition": 'all 1s ease',
+                            "-moz-transition": 'all 1s ease',
+                            "-o-transition": 'all 1s ease'
+                        });
+
+
+                        $("#firsr-btn-next").click(function () {
+                            $('#first-part').css({
+                                'height': '0px',
+                                "visibility": 'hidden'
+                            });
+                            $('#second-part').css({
+                                'height': '350px',
+                                'visibility': 'visible'
+                            });
+                        });
+
+                        $("#second-btn-next").click(function () {
+                            $('#second-part').css({
+                                'height': '0px',
+                                "visibility": 'hidden'
+                            });
+                            $('#third-part').css({
+                                'height': '450px',
+                                'visibility': 'visible'
+                            });
+                        });
+
+                        $("#third-btn-next").click(function () {
+                            $('#third-part').css({
+                                'height': '0px',
+                                "visibility": 'hidden'
+                            });
+                            $('#fourth-part').css({
+                                'height': '350px',
+                                'visibility': 'visible'
+                            });
+                        });
+
+                        $("#first-btn-back").click(function () {
+                            $('#first-part').css({
+                                'height': heightFirst,
+                                'visibility': 'visible'
+                            });
+                            $('#second-part').css({
+                                'height': '0px',
+                                "visibility": 'hidden'
+                            });
+                        });
+
+                        $("#second-btn-back").click(function () {
+                            $('#second-part').css({
+                                'height': heightFirst,
+                                'visibility': 'visible'
+                            });
+                            $('#third-part').css({
+                                'height': '0px',
+                                "visibility": 'hidden'
+                            });
+                        });
+
+                        $("#third-btn-back").click(function () {
+                            $('#third-part').css({
+                                'height': '400px',
+                                'visibility': 'visible'
+                            });
+                            $('#fourth-part').css({
+                                'height': '0px',
+                                "visibility": 'hidden'
+                            });
+                        });
+
+                          $(function () {
+                            $('#datetimepicker7').datetimepicker();
+                            $('#datetimepicker8').datetimepicker({
+                                useCurrent: false
+                            });
+                            $("#datetimepicker7").on("change.datetimepicker", function (e) {
+                                $('#datetimepicker8').datetimepicker('minDate', e.date);
+                            });
+                            $("#datetimepicker8").on("change.datetimepicker", function (e) {
+                                $('#datetimepicker7').datetimepicker('maxDate', e.date);
+                            });
+                        });
+
+                         $('select').selectpicker();
+
+
+
+                    function destination_interne() {
+                            div_pays_destination = document.getElementById('div_pays_destination');
+                            div_ville_pays_destination = document.getElementById('div_ville_pays_destination');
+                            div_commune_mission = document.getElementById('div_commune_mission');
+                            div_libelle_localite_mission = document.getElementById('div_libelle_localite_mission');
+
+                            third_btn_next = document.getElementById('third-btn-next');
+                            validate_mission_externe_destination = document.getElementById('validate-mission-externe-destination');
+
+                            validate_mission_externe_destination.style.display = "none";
+                            validate_mission_externe_destination.style.height = "none"; // Optionnel rétablir la hauteur
+                            validate_mission_externe_destination.style.required = false; // Optionnel rétablir la hauteur
+
+                            third_btn_next.style.display = "block";
+                            third_btn_next.style.height = "auto"; // Optionnel rétablir la hauteur
+
+                            div_libelle_localite_mission.style.display = "block";
+                            div_libelle_localite_mission.style.height = "auto"; // Optionnel rétablir la hauteur
+
+                             div_pays_destination.style.display = "none";
+                             div_pays_destination.style.height = "none"; // Optionnel rétablir la hauteur
+                             div_pays_destination.style.required = false; // Optionnel rétablir la hauteur
+
+                             div_ville_pays_destination.style.display = "none";
+                             div_ville_pays_destination.style.height = "none"; // Optionnel rétablir la hauteur
+                             div_ville_pays_destination.style.required = false;
+
+
+                             div_commune_mission.style.display = "block"
+                             div_commune_mission.style.height = "auto"; // Optionnel rétablir la hauteur
+
+                    }
+
+                    function destination_externe() {
+                            div_pays_destination = document.getElementById('div_pays_destination');
+                            div_ville_pays_destination = document.getElementById('div_ville_pays_destination');
+                            div_commune_mission = document.getElementById('div_commune_mission');
+                            div_libelle_localite_mission = document.getElementById('div_libelle_localite_mission');
+
+                            third_btn_next = document.getElementById('third-btn-next');
+                            validate_mission_externe_destination = document.getElementById('validate-mission-externe-destination');
+
+                            validate_mission_externe_destination.style.display = "block";
+                            validate_mission_externe_destination.style.height = "auto"; // Optionnel rétablir la hauteur
+
+                            third_btn_next.style.display = "none";
+                            third_btn_next.style.height = "none"; // Optionnel rétablir la hauteur
+
+
+                            // Contenu caché, le montrer
+
+                             div_pays_destination.style.display = "block";
+                             div_pays_destination.style.height = "auto"; // Optionnel rétablir la hauteur
+                             div_ville_pays_destination.style.display = "block";
+                             div_ville_pays_destination.style.height = "auto"; // Optionnel rétablir la hauteur
+
+                             div_commune_mission.style.height = "none"; // Optionnel rétablir la hauteur
+                             div_commune_mission.style.display = "none"
+                             div_commune_mission.style.required = false
+
+                             div_commune_mission.style.height = "none"; // Optionnel rétablir la hauteur
+                             div_commune_mission.style.display = "none"
+                             div_commune_mission.style.required = false
+
+
+
+                    }
+
+
+
+
+                    }, false);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+{% endblock %}

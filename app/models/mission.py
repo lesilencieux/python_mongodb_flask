@@ -35,7 +35,7 @@ class Mission():
         for mission in missions:
             mission["_id"] = str(mission["_id"])
             toreturns.append(mission)
-        return jsonify(toreturns)
+        return toreturns
 
     def get_mission_by_code(self,code_mission):
         myquery = { "code_mission": code_mission}
@@ -53,7 +53,7 @@ class Mission():
 
     def create_new_mission(self,jsn):
         # Create index on code of mission field to prevent duplicated inserting
-        self.missions.create_index([('code_mission', '')], unique=True)
+        # self.missions.create_index([('code_mission', '')], unique=True)
         try:
             self.missions.insert(jsn)
             return True
@@ -61,16 +61,29 @@ class Mission():
             return False
 
 
-    def updatemission(self,id,newvalues):
+    def update_mission(self,id,newvalues):
         query = {"_id": ObjectId(id)}
         updated = {"$set": newvalues}
-        self.missions.update_one(query,updated)
-        return 'Updated a mission with id %s' % id
+        if self.missions.update(query,updated):
+            return True
+        else:
+            return False
 
-    def deletemission(self, id):
+    def validate_mission(self, id):
         query = {"_id": ObjectId(id)}
-        self.missions.delete_one(query)
-        return 'Removed a mission with id %s' % id
+        newvalues = {"status_mission":"Validee"}
+        updated = {"$set": newvalues}
+        if self.missions.update(query, updated):
+            return True
+        else:
+            return False
+
+    def delete_mission(self, id):
+        query = {"_id": ObjectId(str(id))}
+        if self.missions.remove(query):
+            return True
+        else:
+            return False
 
     def delete_mission_by_code(self, code_mission):
         query = {"code_mission": code_mission}

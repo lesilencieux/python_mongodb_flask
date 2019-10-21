@@ -1,0 +1,101 @@
+{% extends "homes.html" %}
+{% block content %}
+<center><h1>Liste des Structures </h1></center>
+<section class="content">
+    <div class="box box-primary">
+        <div class="box-header with-border">
+
+            <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body">
+            <table id="lststructure" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Code Numerque </th>
+                    <th>Code ISO Alpha 1</th>
+                    <th>Code ISO Alpha 2</th>
+                    <th>Libellé Fr</th>
+                    <th>Libellé En</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for pays in list_pays %}
+                <tr>
+
+                    <td class="table-active">{{ pays['code_numerique_pays'] }}</td>
+                    <td class="table-primary">{{ pays['code_alphat1_pays'] }}</td>
+                    <td class="table-secondary">{{ pays['code_alphat2_pays'] }}</td>
+                    <td class="table-success">{{ pays['libelle_fr_pays'] }}</td>
+                    <td class="table-danger">{{ pays['libelle_en_pays'] }}</td>
+                    <td class="table-light">
+                        <div class="input-group btn">
+                            <a class="icon" href="structure/code1"
+                               title="Voir le détail de structure ">
+                                <button class="btn btn-info small" onclick="test()">
+                                    <i class="fa fa-info" aria-hidden="true"></i>
+                                </button>&nbsp;&nbsp;
+
+                            </a>
+                            <a class="icon" href="update_structure/code1"
+                               title=" Modifier la structure">
+                                <button class="btn btn-warning small" onclick="">
+                                    <i class="fa fa-pencil glyphicon glyphicon-pencil"></i>
+                                </button>&nbsp;&nbsp;
+
+                            </a>
+                            <form class="icon" method="GET" action="/delete_structure/code3">
+                                <a class="icon" href="list_structure"
+                                   title=" Supprimer la structure">
+                                    <button class="btn btn-danger small" onclick="">
+                                        <i class="fa fa-times glyphicon glyphicon-remove"></i>
+                                    </button>
+                                </a>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h1 class="box-title">Nouvelle Structure</h1>
+            <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" data-widget="collapse">
+                    <i class="fa fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-body">
+            <div align="right">
+                <a href="structures">
+                    <button type="button" class="btn btn-success">Ajouter une Nouvelle Structure</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+    <script type="text/javascript">
+
+      document.addEventListener("DOMContentLoaded",  function(e) {
+            alert("txt")
+            var txt = $(e.target).text();
+            console.log(txt);
+            alert(txt)
+         } false);
+
+
+</script>
+
+
+{% endblock %}
