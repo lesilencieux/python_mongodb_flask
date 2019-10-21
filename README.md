@@ -1,7 +1,25 @@
 Keep in mind that this is not a complete web application, but a proof of concept on how to make work flask-login with mongoDB (and pymongo).
 
-To install the requirements simply run the following command (you need pip to be installed on your system):
-`sudo pip install -r requirements.txt`
+1. create virtual environnement and activate it by doing
+    - mkdir venv
+    - virtualenv venv/
+    - source venv/bin/activate
+
+2. install pip within environment
+    - sudo apt install python3-pip
+
+3. install the requirements librairies 
+    - sudo pip install -r requirements.txt
+
+4. add permission to run-dev.py
+    - chmod 777 run-dev.py
+
+5. install and run mongo
+    - service mongod start
+
+6. run project
+    - ./run-dev.py
+
 
 You can install everything in a [virtualenv](https://virtualenv.pypa.io/en/latest/) without problems.
 
