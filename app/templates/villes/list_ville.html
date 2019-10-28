@@ -15,49 +15,37 @@
             <table id="lststructure" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                    <th>Code Numerque </th>
-                    <th>Code ISO Alpha 1</th>
-                    <th>Code ISO Alpha 2</th>
-                    <th>Libellé Fr</th>
-                    <th>Libellé En</th>
+                    <th>Ville</th>
+                    <th>Pays</th>
+                    <th>Date Création</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                {% for pays in list_pays %}
+                {% for ville in list_ville %}
                 <tr>
 
-                    <td class="table-active">{{ pays['code_numerique_pays'] }}</td>
-                    <td class="table-primary">{{ pays['code_alphat1_pays'] }}</td>
-                    <td class="table-secondary">{{ pays['code_alphat2_pays'] }}</td>
-                    <td class="table-success">{{ pays['libelle_fr_pays'] }}</td>
-                    <td class="table-danger">{{ pays['libelle_en_pays'] }}</td>
-                    <td class="table-light">
+                    <td class="table-active">{{ ville['non_ville'] }}
+                    </td>
+                    <td class="table-primary">{{ ville['libelle_fr_pays'] }}</td>
+                    <td class="table-secondary">{{ ville['created_at'] }}</td>
+
+                    <td>
                         <div class="input-group btn">
-                            <a class="icon" href="structure/code1"
-                               title="Voir le détail de structure ">
-                                <button class="btn btn-info small" onclick="test()">
-                                    <i class="fa fa-info" aria-hidden="true"></i>
-                                </button>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-success  dropdown-toggle pull-right"
+                                    data-toggle="dropdown">
+                                Actions <span class="fa fa-caret-down"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="delete_ville/{{ ville['_id'] }}">
+                                    <button class="btn btn-danger btn-block">Supprimer</button>
+                                </a></li>
+                                <li class="divider"></li>
 
-                            </a>
-                            <a class="icon" href="update_structure/code1"
-                               title=" Modifier la structure">
-                                <button class="btn btn-warning small" onclick="">
-                                    <i class="fa fa-pencil glyphicon glyphicon-pencil"></i>
-                                </button>&nbsp;&nbsp;
-
-                            </a>
-                            <form class="icon" method="GET" action="/delete_structure/code3">
-                                <a class="icon" href="list_structure"
-                                   title=" Supprimer la structure">
-                                    <button class="btn btn-danger small" onclick="">
-                                        <i class="fa fa-times glyphicon glyphicon-remove"></i>
-                                    </button>
-                                </a>
-                            </form>
+                            </ul>
                         </div>
                     </td>
+
                 </tr>
                 {% endfor %}
                 </tbody>
@@ -76,8 +64,8 @@
         </div>
         <div class="box-body">
             <div align="right">
-                <a href="structures">
-                    <button type="button" class="btn btn-success">Ajouter une Nouvelle Structure</button>
+                <a href="ville">
+                    <button type="button" class="btn btn-success">Ajouter une Nouvelle Ville</button>
                 </a>
             </div>
         </div>
@@ -85,7 +73,7 @@
 
 </section>
 
-    <script type="text/javascript">
+<script type="text/javascript">
 
       document.addEventListener("DOMContentLoaded",  function(e) {
             alert("txt")
@@ -93,6 +81,7 @@
             console.log(txt);
             alert(txt)
          } false);
+
 
 
 </script>

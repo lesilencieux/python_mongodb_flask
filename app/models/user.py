@@ -63,7 +63,21 @@ class User():
 
     def delete_user(self, id):
         query = {"_id": ObjectId(id)}
-        self.utilisateurs.delete_one(query)
+        self.users.delete_one(query)
         return 'Removed a user with id %s' % id
+
+    def login_user_with_username(self, username,password):
+        query = {"username": username ,"password":password}
+        if self.users.find_one(query):
+            return True
+        else:
+            return False
+
+    def login_user_with_email(self, email,password):
+        query = {"email": email ,"password":password}
+        if self.users.find_one(query):
+            return True
+        else:
+            return False
 
 

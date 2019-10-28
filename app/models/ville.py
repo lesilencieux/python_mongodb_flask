@@ -72,10 +72,12 @@ class Ville():
         self.villes.update_one(query,updated)
         return 'Updated a ville with id %s' % id
 
-    def deleteville(self, id):
+    def delete_ville(self, id):
         query = {"_id": ObjectId(id)}
-        self.villes.delete_one(query)
-        return 'Removed a ville with id %s' % id
+        if self.villes.delete_one(query):
+            return True
+        else:
+            return False
 
     def delete_ville_by_code(self, code_ville):
         query = {"code_ville": code_ville}

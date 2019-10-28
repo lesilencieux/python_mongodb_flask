@@ -3,8 +3,6 @@
 
 <center><h1>Creation de agents</h1></center>
 
-<span>&nbsp;</span>
-
 <center>
     <form action="/agent" method="POST" autocomplete="on" name="form">
 
@@ -32,26 +30,9 @@
                 <input name="ifu_agent" required="required" class="form-control" type="text" placeholder="IFU">
             </div>
             <span>&nbsp;</span>
-
             <div class="input-group margin-bottom-sm">
-
-                <div class="input-group select2-bootstrap-prepend">
-                    <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-
-                    <select name="structure_agent" class="form-control select2-single" tabindex="-1" aria-hidden="true" required>
-                        <option value="" disabled selected>Selectionner la structure de l'agent</option>
-
-                        {% for structure in list_structure %}
-                        <option name="structure_agent" value="{{ structure['code_structure'] }}">{{
-                            structure['code_structure'] }}
-                        </option>
-
-                        {% endfor %}
-                    </select>
-
-                </div>
             </div>
-            <span>&nbsp;</span>
+                        <span>&nbsp;</span>
 
             <div>
                 <a href="#">
@@ -69,40 +50,58 @@
             </div>
 
         </div>
-        <span>&nbsp;</span>
         <div class="col-sm-offset-3 col-sm-6" id="second-part">
-            <div class="input-group margin-bottom-sm">
 
+            <div class="input-group margin-bottom-sm">
                 <div class="input-group select2-bootstrap-prepend">
                     <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                    <select name="corps_agent" class="selectpicker" data-width="100%" single data-live-search="true">
 
-                    <select name="corps_agent" class="form-control select2-single" tabindex="-1" aria-hidden="true" required>
                         <option value="" disabled selected>Selectionner le corps de l'agent</option>
-
-                        {% for corps in list_corps %}
-                        <option name="corps_agent" value="{{ corps['libelle_corps'] }}">{{ corps['libelle_corps'] }}
+                        {% for corps in corps_list %}
+                        <option name="corps_agent" value="{{ corps['libelle_corps'] }}">{{
+                            corps['libelle_corps'] }}
                         </option>
+
                         {% endfor %}
                     </select>
                 </div>
             </div>
             <span>&nbsp;</span>
 
+            <div class="input-group select2-bootstrap-prepend">
+                <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                <select name="structure_agent" class="selectpicker" data-width="100%" single
+                        data-live-search="true">
+
+                    <option value="" disabled selected>Selectionner la structure de l'agent</option>
+
+                    {% for structure in list_structures %}
+                    <option name="structure_agent" value="{{ structure['code_structure'] }}">{{
+                        structure['code_structure'] }}
+                    </option>
+
+                    {% endfor %}
+                </select>
+
+            </div>
+
+            <span>&nbsp;</span>
+
             <div class="input-group margin-bottom-sm">
 
                 <div class="input-group select2-bootstrap-prepend">
                     <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                    <select name="grade_agent" class="selectpicker" data-width="100%" single data-live-search="true">
 
-                    <select name="grade_agent" class="form-control select2-single" tabindex="-1" aria-hidden="true" required>
                         <option value="" disabled selected>Selectionner le grade de l'agent</option>
 
-                        {% for grade in list_grade %}
+                        {% for grade in list_grades %}
                         <option name="grade_agent" value="{{ grade['libelle_grade'] }}">{{ grade['libelle_grade'] }}
                         </option>
                         {% endfor %}
 
                     </select>
-
                 </div>
             </div>
             <span>&nbsp;</span>
@@ -110,9 +109,10 @@
             <div class="input-group margin-bottom-sm">
                 <div class="input-group select2-bootstrap-prepend">
                     <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-                    <select name="qualite_agent" class="form-control select2-single" tabindex="-1" aria-hidden="true" required>
+                    <select name="qualite_agent" class="selectpicker" data-width="100%" single data-live-search="true">
+
                         <option value="" disabled selected>Selectionner la qualité de l'agent</option>
-                        {% for qualite in list_qualite %}
+                        {% for qualite in list_qualities %}
                         <option name="qualite_agent" value="{{ qualite['libelle_qualite'] }}">{{
                             qualite['libelle_qualite'] }}
                         </option>
@@ -120,15 +120,15 @@
                         {% endfor %}
                     </select>
                 </div>
+                <span>&nbsp;</span>
             </div>
 
              <span>&nbsp;</span>
             <div class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-                <input name="action_agent" required="required" class="form-control" type="text" placeholder="Action">
+                <span class="input-group-addon"><i class="fa  fa-code-fork" aria-hidden="true"></i></span>
+                <input name="date_et_lieu_de_naissance_agent" required="required" class="form-control" type="text" placeholder="Date et lieu de naissance de l'agent">
             </div>
             <span>&nbsp;</span>
-
 
             <div class="row">
 
@@ -153,11 +153,19 @@
                         <span class="visible-sm visible-md visible-lg"><i class="fa fa-save"></i> {{'Valider'}}</span>
                     </button>
                 </div>
+                <span>&nbsp;</span>
             </div>
         </div>
+
         </div>
+
     </form>
+
+
 </center>
+
+<span>&nbsp;</span>
+<span>&nbsp;</span>
 <div class="box box-primary">
     <div class="box-header with-border">
         <h1 class="box-title">Liste agent</h1>
@@ -239,6 +247,8 @@
 });
 
                     }, false);
+
+
 
 
 

@@ -48,9 +48,8 @@
 <span>&nbsp;</span>
 
 <center>
-    <form action="/update_mission" method="POST" autocomplete="on" name="form">
+    <form action="/mission_update/{{read_mission['_id']}}" method="POST" autocomplete="on" name="form">
 
-        {% for mission in read_mission %}
         <div class="col-sm-offset-3 col-sm-6" id="first-part">
 
 
@@ -58,7 +57,7 @@
 
                 <div class="input-group date">
                             <span class="input-group-addon"><i
-                                    class="fa fa-calendar"></i></span><input value="{{mission['date_debut_mission']}}" name="date_debut_mission" id="date_added"
+                                    class="fa fa-calendar"></i></span><input value="{{read_mission['date_debut_mission']}}" name="date_debut_mission" id="date_added"
                                                                              placeholder="Date Debut Mission"
                                                                              type="text" class="form-control">
                 </div>
@@ -67,7 +66,7 @@
 
                 <div class="input-group date">
                             <span class="input-group-addon"><i
-                                    class="fa fa-calendar"></i></span><input value="{{mission['date_fin_mission']}}" name="date_fin_mission" id="date_modified"
+                                    class="fa fa-calendar"></i></span><input value="{{read_mission['date_fin_mission']}}" name="date_fin_mission" id="date_modified"
                                                                              placeholder="Date Fin Mission" type="text"
                                                                              class="form-control">
                 </div>
@@ -76,13 +75,13 @@
 
             <div class="input-group margin-bottom-sm">
                 <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
-                <input value="{{mission['responsable_structure']}}" name="responsable_structure" required="required" class="form-control" type="text"
+                <input value="{{read_mission['reference_lettre_de_mission']}}" name="responsable_structure" required="required" class="form-control" type="text"
                        placeholder="Reference de la lettre de mission ">
             </div>
             <span>&nbsp;</span>
 
             <div class="md-form">
-                <textarea value="{{mission['objet_mission']}}"  name="objet_mission" id="form10" class="md-textarea form-control" rows="5"
+                <textarea value="{{read_mission['objet_mission']}}"  name="objet_mission" id="form10" class="md-textarea form-control" rows="5"
                           placeholder="Objet"></textarea>
             </div>
             <span>&nbsp;</span>
@@ -126,7 +125,7 @@
             <div class="input-group margin-bottom-sm">
 
                 <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
-                <input name="reference_ordre_mission" required="required" class="form-control" type="text"
+                <input name="reference_ordre_mission" value="{{read_mission['reference_ordre_mission']}}" required="required" class="form-control" type="text"
                        placeholder="Reference de l'ordre de la mission">
 
 
@@ -146,34 +145,12 @@
             <span>&nbsp;</span>
 
             <div class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
-                <input name="montant_budget_mission" value="{{mission['montant_budget_mission']}}" required="required" class="form-control" type="number"
-                       placeholder="Montant du budget ">
-            </div>
-            <span>&nbsp;</span>
-
-            <div class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
-
-                <select name="devise_budget"  class="selectpicker" data-width="100%" single data-live-search="true">
-                    <option>$</option>
-                    <option>€</option>
-                    <option>£</option>
-                    <option>ECO</option>
-                    <option>FCFA</option>
-                </select>
-
-            </div>
-
-            <span>&nbsp;</span>
-
-            <div class="input-group margin-bottom-sm">
 
                 <div class="form-group">
 
                     <div class="input-group date">
                             <span class="input-group-addon"><i
-                                    class="fa fa-calendar"></i></span><input value="{{mission['date_depart_mission']}}" name="date_depart_mission"
+                                    class="fa fa-calendar"></i></span><input value="{{read_mission['date_depart_mission']}}" name="date_depart_mission"
                                                                              id="date_added_1"
                                                                              placeholder="Date Départ Mission"
                                                                              type="text" class="form-control">
@@ -184,7 +161,7 @@
 
                     <div class="input-group date">
                             <span class="input-group-addon"><i
-                                    class="fa fa-calendar"></i></span><input value="{{mission['date_retour_mission']}}" name="date_retour_mission"
+                                    class="fa fa-calendar"></i></span><input value="{{read_mission['date_retour_mission']}}" name="date_retour_mission"
                                                                              id="date_modified_1"
                                                                              placeholder="Date Fin Mission" type="text"
                                                                              class="form-control">
@@ -233,7 +210,7 @@
                         data-live-search="true">
 
                     {% for pays in list_pays %}
-                    <option>{{ pays['libelle_fr_pays'] }}</option>
+                    <option selected>{{ pays['libelle_fr_pays'] }}</option>
                     {% endfor %}
 
                 </select>
@@ -267,7 +244,7 @@
                 <select name="agents_mission" class="selectpicker" data-width="100%" multiple
                         data-live-search="true">
                     {% for agent in list_agents %}
-                    <option>{{ agent['prenom_agent'] }} {{ agent['nom_agent'] }}</option>
+                    <option selected>{{ agent['prenom_agent'] }} {{ agent['nom_agent'] }}</option>
                     {% endfor %}
 
                 </select>
@@ -275,14 +252,14 @@
             <span>&nbsp;</span>
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa  fa-cc-visa" aria-hidden="true"></i></span>
-                <input value="{{mission['moyen_transport_mission']}}" name="moyen_transport_mission" required="required" class="form-control" type="text"
+                <input value="{{read_mission['moyen_transport_mission']}}" name="moyen_transport_mission" required="required" class="form-control" type="text"
                        placeholder="Moyen de transport ">
             </div>
 
             <span>&nbsp;</span>
             <div id="div_commune_mission" class="input-group margin-bottom-sm">
                  <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
-                <input id="input_commune_mission" value="{{mission['commune_mission']}}" name="commune_mission" class="form-control" type="text"
+                <input id="input_commune_mission" value="{{read_mission['commune_mission']}}" name="commune_mission" class="form-control" type="text"
                        placeholder="Commune ">
             </div>
 
@@ -290,7 +267,7 @@
             <span>&nbsp;</span>
             <div class="input-group margin-bottom-sm">
                 <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
-                <input value="{{mission['immatriculation_moyen_transport_mission']}}" name="immatriculation_moyen_transport_mission" required="required" class="form-control"
+                <input value="{{read_mission['immatriculation_moyen_transport_mission']}}" name="immatriculation_moyen_transport_mission" required="required" class="form-control"
                        type="text"
                        placeholder="Immatriculation ">
             </div>
@@ -298,7 +275,7 @@
 
             <div class="input-group margin-bottom-sm">
                 <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
-                <input value="{{mission['structure_initiatrice_mission']}}" name="structure_initiatrice_mission" required="required" class="form-control" type="text"
+                <input value="{{read_mission['structure_initiatrice_mission']}}" name="structure_initiatrice_mission" required="required" class="form-control" type="text"
                        placeholder="Structure initiatrice ">
             </div>
             <span>&nbsp;</span>
@@ -338,20 +315,20 @@
 
             <div id="div_code_type_localite" class="input-group">
                 <span class="input-group-addon"><i class="fa  fa-cc-visa" aria-hidden="true"></i></span>
-                <input value="{{mission['code_type_localite_mission']}}" id="input_code_type_localite" name="code_type_localite_mission" class="form-control" type="text"
+                <input value="{{read_mission['code_type_localite_mission']}}" id="input_code_type_localite" name="code_type_localite_mission" class="form-control" type="text"
                        placeholder=" Code Type Localite ">
             </div>
 
             <span>&nbsp;</span>
             <div id="div_libelle_localite_mission" style="display: none" class="input-group margin-bottom-sm">
-                <input value="{{mission['libelle_localite_miision']}}" id="input_libelle_localite_mission" name="libelle_localite_mission" class="form-control"
+                <input value="{{read_mission['libelle_localite_miision']}}" id="input_libelle_localite_mission" name="libelle_localite_mission" class="form-control"
                        type="text"
                        placeholder="Libelle Localité  ">
             </div>
             <span>&nbsp;</span>
             <div id="div_code_localite_parente" class="input-group margin-bottom-sm">
                 <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
-                <input value="{{mission['code_localite_parente_mission']}}" id="input_code_localite_parente" name="code_localite_parente_mission" class="form-control"
+                <input value="{{read_mission['code_localite_parente_mission']}}" id="input_code_localite_parente" name="code_localite_parente_mission" class="form-control"
                        type="text"
                        placeholder="Code Localité Parente ">
             </div>
@@ -359,7 +336,7 @@
 
             <div id="code_localite_mission" class="input-group margin-bottom-sm">
                 <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
-                <input value="{{mission['code_localite_mission']}}" id="input_localite_mission" name="code_localite_mission" class="form-control" type="text"
+                <input value="{{read_mission['code_localite_mission']}}" id="input_localite_mission" name="code_localite_mission" class="form-control" type="text"
                        placeholder="Code Localité ">
             </div>
             <span>&nbsp;</span>
@@ -390,7 +367,6 @@
                 </button>
             </div>
         </div>
-        {%endfor%}
     </form>
 </center>
 

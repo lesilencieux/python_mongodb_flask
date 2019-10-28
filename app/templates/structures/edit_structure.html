@@ -6,8 +6,7 @@
 <span>&nbsp;</span>
 
 <center>
-    <form action="/structure" method="POST" autocomplete="on" name="form">
-        {% for structure in read_structure %}
+    <form action="/structure_update/{{read_structure['_id']}}" method="POST" autocomplete="on" name="form">
 
         <div class="col-sm-offset-3 col-sm-6" id="first-part">
 
@@ -15,19 +14,19 @@
             <div class="input-group margin-bottom-sm">
                 <span class="input-group-addon"><i class="fa fa-tag" aria-hidden="true"></i></span>
                 <input name="libelle_structure" required="required" class="form-control" type="text"
-                       placeholder="Libellé" value={{structure["libelle_structure"]}}>
+                       placeholder="Libellé" value={{read_structure["libelle_structure"]}}>
             </div>
             <span>&nbsp;</span>
             <div class="input-group margin-bottom-sm">
                 <span class="input-group-addon"><i class="fa fa-users" aria-hidden="true"></i></span>
                 <input name="delegation_structure" required="required" class="form-control" type="text"
-                       placeholder="Délégations" value={{structure["delegation_structure"]}}>
+                       placeholder="Délégations" value={{read_structure["delegation_structure"]}}>
             </div>
             <span>&nbsp;</span>
             <div class="input-group margin-bottom-sm">
                 <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
                 <input name="delegue_structure" required="required" class="form-control" type="text"
-                       placeholder="Délégué" value={{structure["delegue_structure"]}}>
+                       placeholder="Délégué" value={{read_structure["delegue_structure"]}}>
             </div>
             <span>&nbsp;</span>
             <div>
@@ -50,19 +49,13 @@
             <div class="input-group margin-bottom-sm">
                 <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
                 <input name="responsable_structure" required="required" class="form-control" type="text"
-                       placeholder="Responsable" value={{structure["responsable_structure"]}}>
+                       placeholder="Responsable" value={{read_structure["responsable_structure"]}}>
             </div>
             <span>&nbsp;</span>
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa  fa-cc-visa" aria-hidden="true"></i></span>
                 <input name="visa_responsable_structure" required="required" class="form-control" type="text"
-                       placeholder="Visa Responsable" value={{structure["visa_responsable_structure"]}}>
-            </div>
-            <span>&nbsp;</span>
-            <div class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
-                <input name="action_structure" required="required" class="form-control" type="text" placeholder="Action"
-                       value={{structure["action_structure"]}}>
+                       placeholder="Visa Responsable" value={{read_structure["visa_responsable_structure"]}}>
             </div>
             <span>&nbsp;</span>
 
@@ -92,7 +85,6 @@
             </div>
         </div>
         </div>
-        {% endfor %}
     </form>
 </center>
 <div class="box box-primary">

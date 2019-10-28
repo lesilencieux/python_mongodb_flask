@@ -18,7 +18,6 @@
                     <th>Libelle</th>
                     <th>Libelle Unique</th>
                     <th> Description </th>
-                    <th>Action</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -29,31 +28,29 @@
                     <td class="table-primary">{{ type_agent['libelle_type_agent'] }}</td>
                     <td class="table-info">{{ type_agent['libelle_unique_type_agent'] }}</td>
                     <td class="table-info">{{ type_agent['description_type_agent'] }}</td>
-                    <td class="table-info">{{ type_agent['action_type_agent'] }}</td>
-                    <td class="table-light">
+                    <td>
                         <div class="input-group btn">
-                            <a class="icon" href="type_agent/code1"
-                               title="Voir le détail de type_agent ">
-                                <button class="btn btn-info small" onclick="test()">
-                                    <i class="fa fa-info" aria-hidden="true"></i>
-                                </button>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-success  dropdown-toggle pull-right"
+                                    data-toggle="dropdown">
+                                Actions <span class="fa fa-caret-down"></span>
+                            </button>
 
-                            </a>
-                            <a class="icon" href="update_type_agent/code1"
-                               title=" Modifier la type_agent">
-                                <button class="btn btn-warning small" onclick="">
-                                    <i class="fa fa-pencil glyphicon glyphicon-pencil"></i>
-                                </button>&nbsp;&nbsp;
+                            <ul class="dropdown-menu">
 
-                            </a>
-                            <form class="icon" method="GET" action="/delete_type_agent/code3">
-                                <a class="icon" href="list_type_agent"
-                                   title=" Supprimer la type_agent">
-                                    <button class="btn btn-danger small" onclick="">
-                                        <i class="fa fa-times glyphicon glyphicon-remove"></i>
-                                    </button>
-                                </a>
-                            </form>
+                                <li><a href="show_type_agent/{{ type_agent['_id'] }}">
+                                    <button class="btn btn-info btn-block">Afficher</button>
+                                </a></li>
+
+                                 <li><a href="update_type_agent/{{ type_agent['_id'] }}">
+                                    <button class="btn btn-warning btn-block">Modifier</button>
+                                </a></li>
+
+                                <li><a href="delete_type_agent/{{ type_agent['_id'] }}">
+                                    <button class="btn btn-danger btn-block">Supprimer</button>
+                                </a></li>
+                                <li class="divider"></li>
+
+                            </ul>
                         </div>
                     </td>
                 </tr>
@@ -74,7 +71,7 @@
         </div>
         <div class="box-body">
             <div align="right">
-                <a href="type_agents">
+                <a href="type_agent">
                     <button type="button" class="btn btn-success">Ajouter une Nouveau Type Agent</button>
                 </a>
             </div>
