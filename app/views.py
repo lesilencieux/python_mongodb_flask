@@ -27,12 +27,18 @@ from datetime import datetime
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    # return render_template('admin.html')
+    return render_template('admin_login.html')
 
 
 @app.route('/admin1')
 def home1():
     return render_template('admin.html')
+
+
+@app.route('/register')
+def register():
+    return render_template('admin_register.html')
 
 
 @app.route('/structures')

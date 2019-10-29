@@ -1,199 +1,207 @@
-
-
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
 <!--[if IE 8 ]>    <html lang="en" class="no-js ie8 lt8"> <![endif]-->
 <!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
-    <head>
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en" class="no-js">
+<!--<![endif]-->
 
-        {% if title %}
-        <title>{{ title }}</title>
-        {% else %}
-        <title>Mission</title>
-        {% endif %}
-        <meta charset="UTF-8" />
-        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
-        <title>Authentification</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-        <meta name="description" content="Login and Registration Form with HTML5 and CSS3" />
-        <meta name="keywords" content="html5, css3, form, switch, animation, :target, pseudo-class" />
-        <meta name="author" content="Codrops" />
+<head>
 
-        <link rel="shortcut icon" href="../favicon.ico">
+  {% if title %}
+  <title>{{ title }}</title>
+  {% else %}
+  <title>Mission</title>
+  {% endif %}
+  <meta charset="UTF-8" />
+  <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
+  <title>Authentification</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Login and Registration Form with HTML5 and CSS3" />
+  <meta name="keywords" content="html5, css3, form, switch, animation, :target, pseudo-class" />
+  <meta name="author" content="Codrops" />
 
-        <link rel="shortcut icon"  href="{{ url_for('static', filename='img/favicon.ico') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/demo.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style3.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/animate-custom.css') }}">
+  <link rel="shortcut icon" href="../favicon.ico">
 
-    </head>
-    <body>
-        <div class="container">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/demo.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style3.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/animate-custom.css') }}">
 
-            <header>
-                <h1>Formulaire de connection et d'enregistrement</h1>
+</head>
 
-            </header>
-            <section>				
-                <div id="container_demo" >
-                    <a class="hiddenanchor" id="toregister"></a>
-                    <a class="hiddenanchor" id="tologin"></a>
-                    <div id="wrapper">
-                        <div id="login" class="animate form">
-                            <form  action="/login" method="POST" autocomplete="on" name="form">
-                                <h1>Se Connecter</h1>
-                                <p> 
-                                    <label for="username" class="uname" data-icon="u" > Votre Email ou Nom d'Utilisateur </label>
-                                    <input id="username" name="username" required="required" type="text" placeholder="monnomdutilsateur or monmail@mail.com"/>
-                                </p>
-                                <p> 
-                                    <label for="password" class="youpasswd" data-icon="p"> Votre Mot de Passe </label>
-                                    <input id="password" name="password" required="required" type="password" placeholder="exp. X8df!90EO" />
-                                </p>
-                                <p class="keeplogin"> 
-									<input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
-									<label for="loginkeeping">Se Rappeller de Moi</label>
-								</p>
-                                <p class="login button"> 
-                                    <input type="submit" value="Se Connecter" />
-								</p>
-                                <p class="change_link">
-									Pas encore enrégistré ?
-									<a href="#toregister" class="to_register">S'enrégistrer'</a>
-								</p>
-                            </form>
-                        </div>
+<body>
+  <div class="container">
 
-                        <div id="register" class="animate form">
-                            <form id="myForm"  action="/" method="post" autocomplete="on">
-                                <h1> S'enregistrer </h1>
-                                <p> 
-                                    <label for="usernamesignup" class="uname" data-icon="u">Votre Nom d'Utilisateur</label>
-                                    <input id="usernamesignup"  title="Le nom d'utilisateur ne doit pas être vide et ne doit contenir que des lettres, des chiffres et des soulignés."
-                       type="text" required pattern="\w+" name="usernamesignup" required="required" type="text" placeholder="monsupernomdutilisateur690" />
-                                </p>
-                                <p> 
-                                    <label for="emailsignup" class="youmail" data-icon="e" > Votre Email</label>
-                                    <input class="form-control" id="emailsignup" name="emailsignup" required="required" type="email" placeholder="monsupermail@mail.com"/>
-                                </p>
-                                <p> 
-                                    <label for="passwordsignup" class="youpasswd" data-icon="p">Votre Mot de Passe </label>
-                                    <input id="passwordsignup"  title="Le mot de passe doit contenir au moins 6 caractères, y compris les majuscules/minuscules et les chiffres."
-                       type="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"   name="passwordsignup" required="required" type="password" placeholder="exp. X8df!90EO"/>
-                                </p>
-                                <p> 
-                                    <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Svp Confirmer Votre Mot de Passe </label>
-                                    <input id="passwordsignup_confirm"  title="Veuillez entrer le même mot de passe que ci-dessus." type="password"
-                       required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"  name="passwordsignup_confirm" required="required" type="password" placeholder="exp. X8df!90EO"/>
-                                </p>
+    <header>
+      <h1>Formulaire de connection et d'enregistrement</h1>
 
-                                <p class="signin button"> 
-									<input type="submit" value="S'enregistrer"/>
-								</p>
-                                <p class="change_link">  
-									Déjà enrégistré ?
-									<a href="#tologin" class="to_register"> Aller connecter </a>
-								</p>
-                            </form>
+    </header>
+    <section>
+      <div id="container_demo">
+        <a class="hiddenanchor" id="toregister"></a>
+        <a class="hiddenanchor" id="tologin"></a>
+        <div id="wrapper">
+          <div id="login" class="animate form">
+            <form action="/login" method="POST" autocomplete="on" name="form">
+              <h1>Se Connecter</h1>
+              <p>
+                <label for="username" class="uname" data-icon="u"> Votre Email ou Nom d'Utilisateur </label>
+                <input id="username" name="username" required="required" type="text"
+                  placeholder="monnomdutilsateur or monmail@mail.com" />
+              </p>
+              <p>
+                <label for="password" class="youpasswd" data-icon="p"> Votre Mot de Passe </label>
+                <input id="password" name="password" required="required" type="password" placeholder="exp. X8df!90EO" />
+              </p>
+              <p class="keeplogin">
+                <input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" />
+                <label for="loginkeeping">Se Rappeller de Moi</label>
+              </p>
+              <p class="login button">
+                <input type="submit" value="Se Connecter" />
+              </p>
+              <p class="change_link">
+                Pas encore enrégistré ?
+                <a href="#toregister" class="to_register">S'enrégistrer'</a>
+              </p>
+            </form>
+          </div>
 
-                        </div>
-						
-                    </div>
-                </div>  
-            </section>
+          <div id="register" class="animate form">
+            <form id="myForm" action="/" method="post" autocomplete="on">
+              <h1> S'enregistrer </h1>
+              <p>
+                <label for="usernamesignup" class="uname" data-icon="u">Votre Nom d'Utilisateur</label>
+                <input id="usernamesignup"
+                  title="Le nom d'utilisateur ne doit pas être vide et ne doit contenir que des lettres, des chiffres et des soulignés."
+                  type="text" required pattern="\w+" name="usernamesignup" required="required" type="text"
+                  placeholder="monsupernomdutilisateur690" />
+              </p>
+              <p>
+                <label for="emailsignup" class="youmail" data-icon="e"> Votre Email</label>
+                <input class="form-control" id="emailsignup" name="emailsignup" required="required" type="email"
+                  placeholder="monsupermail@mail.com" />
+              </p>
+              <p>
+                <label for="passwordsignup" class="youpasswd" data-icon="p">Votre Mot de Passe </label>
+                <input id="passwordsignup"
+                  title="Le mot de passe doit contenir au moins 6 caractères, y compris les majuscules/minuscules et les chiffres."
+                  type="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" name="passwordsignup"
+                  required="required" type="password" placeholder="exp. X8df!90EO" />
+              </p>
+              <p>
+                <label for="passwordsignup_confirm" class="youpasswd" data-icon="p">Svp Confirmer Votre Mot de Passe
+                </label>
+                <input id="passwordsignup_confirm" title="Veuillez entrer le même mot de passe que ci-dessus."
+                  type="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" name="passwordsignup_confirm"
+                  required="required" type="password" placeholder="exp. X8df!90EO" />
+              </p>
+
+              <p class="signin button">
+                <input type="submit" value="S'enregistrer" />
+              </p>
+              <p class="change_link">
+                Déjà enrégistré ?
+                <a href="#tologin" class="to_register"> Aller connecter </a>
+              </p>
+            </form>
+
+          </div>
+
         </div>
+      </div>
+    </section>
+  </div>
 
-    <script type="text/javascript">
+  <script type="text/javascript">
 
-      document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
 
-        // JavaScript form validation
+      // JavaScript form validation
 
-        var checkPassword = function(str)
-        {
-          var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-          return re.test(str);
-        };
+      var checkPassword = function (str) {
+        var re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+        return re.test(str);
+      };
 
-        var checkForm = function(e)
-        {
-          if(this.username.value == "") {
-            alert("Erreur: Le nom d'utilisateur ne peut pas être vide !");
-            this.username.focus();
-            e.preventDefault(); // equivalent to return false
-            return;
-          }
-          re = /^\w+$/;
-          if(!re.test(this.username.value)) {
-            alert("Erreur: Le nom d'utilisateur ne doit contenir que des lettres, des chiffres et des traits de soulignement !");
-            this.username.focus();
-            e.preventDefault();
-            return;
-          }
-          if(this.pwd1.value != "" && this.pwd1.value == this.pwd2.value) {
-            if(!checkPassword(this.pwd1.value)) {
-              alert("Le mot de passe que vous avez entré n'est pas valide !");
-              this.pwd1.focus();
-              e.preventDefault();
-              return;
-            }
-          } else {
-            alert("Erreur: Veuillez vérifier que vous avez bien saisi et confirmé votre mot de passe !");
+      var checkForm = function (e) {
+        if (this.username.value == "") {
+          alert("Erreur: Le nom d'utilisateur ne peut pas être vide !");
+          this.username.focus();
+          e.preventDefault(); // equivalent to return false
+          return;
+        }
+        re = /^\w+$/;
+        if (!re.test(this.username.value)) {
+          alert("Erreur: Le nom d'utilisateur ne doit contenir que des lettres, des chiffres et des traits de soulignement !");
+          this.username.focus();
+          e.preventDefault();
+          return;
+        }
+        if (this.pwd1.value != "" && this.pwd1.value == this.pwd2.value) {
+          if (!checkPassword(this.pwd1.value)) {
+            alert("Le mot de passe que vous avez entré n'est pas valide !");
             this.pwd1.focus();
             e.preventDefault();
             return;
           }
-          alert("Le nom d'utilisateur et le mot de passe sont VALIDES !");
-        };
-
-        var myForm = document.getElementById("myForm");
-        myForm.addEventListener("submit", checkForm, true);
-
-        // HTML5 form validation
-
-        var supports_input_validity = function()
-        {
-          var i = document.createElement("input");
-          return "setCustomValidity" in i;
+        } else {
+          alert("Erreur: Veuillez vérifier que vous avez bien saisi et confirmé votre mot de passe !");
+          this.pwd1.focus();
+          e.preventDefault();
+          return;
         }
+        alert("Le nom d'utilisateur et le mot de passe sont VALIDES !");
+      };
 
-        if(supports_input_validity()) {
-          var usernameInput = document.getElementById("usernamesignup");
-          usernameInput.setCustomValidity(usernameInput.title);
+      var myForm = document.getElementById("myForm");
+      myForm.addEventListener("submit", checkForm, true);
 
-          var pwd1Input = document.getElementById("passwordsignup");
-          pwd1Input.setCustomValidity(pwd1Input.title);
+      // HTML5 form validation
 
-          var pwd2Input = document.getElementById("passwordsignup_confirm");
+      var supports_input_validity = function () {
+        var i = document.createElement("input");
+        return "setCustomValidity" in i;
+      }
 
-          // input key handlers
+      if (supports_input_validity()) {
+        var usernameInput = document.getElementById("usernamesignup");
+        usernameInput.setCustomValidity(usernameInput.title);
 
-          usernameInput.addEventListener("keyup", function(e) {
-            usernameInput.setCustomValidity(this.validity.patternMismatch ? usernameInput.title : "");
-          }, false);
+        var pwd1Input = document.getElementById("passwordsignup");
+        pwd1Input.setCustomValidity(pwd1Input.title);
 
-          pwd1Input.addEventListener("keyup", function(e) {
-            this.setCustomValidity(this.validity.patternMismatch ? pwd1Input.title : "");
-            if(this.checkValidity()) {
-              pwd2Input.pattern = RegExp.escape(this.value);
-              pwd2Input.setCustomValidity(pwd2Input.title);
-            } else {
-              pwd2Input.pattern = this.pattern;
-              pwd2Input.setCustomValidity("");
-            }
-          }, false);
+        var pwd2Input = document.getElementById("passwordsignup_confirm");
 
-          pwd2Input.addEventListener("keyup", function(e) {
-            this.setCustomValidity(this.validity.patternMismatch ? pwd2Input.title : "");
-          }, false);
+        // input key handlers
 
-        }
+        usernameInput.addEventListener("keyup", function (e) {
+          usernameInput.setCustomValidity(this.validity.patternMismatch ? usernameInput.title : "");
+        }, false);
 
-      }, false);
+        pwd1Input.addEventListener("keyup", function (e) {
+          this.setCustomValidity(this.validity.patternMismatch ? pwd1Input.title : "");
+          if (this.checkValidity()) {
+            pwd2Input.pattern = RegExp.escape(this.value);
+            pwd2Input.setCustomValidity(pwd2Input.title);
+          } else {
+            pwd2Input.pattern = this.pattern;
+            pwd2Input.setCustomValidity("");
+          }
+        }, false);
+
+        pwd2Input.addEventListener("keyup", function (e) {
+          this.setCustomValidity(this.validity.patternMismatch ? pwd2Input.title : "");
+        }, false);
+
+      }
+
+    }, false);
 
 
-</script>
-    </body>
+  </script>
+</body>
+
 </html>
