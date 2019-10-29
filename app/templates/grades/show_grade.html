@@ -1,38 +1,56 @@
 {% extends "homes.html" %}
 {% block content %}
- <center>
+<center>
     <section class="content">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h1 class="box-title"> Details des informations de la grade  </h1>
+                <h1 class="box-title"> Details des informations de la grade </h1>
                 <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse">
                         <i class="fa fa-minus"></i>
                     </button>
                 </div>
             </div>
-            {% for grade in read_grade %}
             <div class="box-body">
                 <table class="table table-bordered table-striped">
+
                     <tbody>
+                    <tr>
+                        <th>Libellé</th>
+                        <td>{{ read_grade['libelle_grade']}}</td>
+                    </tr>
 
-            <tr>
-                <th>Libellé</th>
-                <td>{{ grade['libelle_grade']}}</td>
-            </tr>
-            <tr>
-                <th>Action</th>
-                <td>{{ grade['action_grade'] }}</td>
-            <tr>
-                <th>Date de Création</th>
-                <td>{{ grade['created_at'] }}</td>
-            {% endfor %}
-        </tbody>
-    </table>
+                    <tr>
+                        <th>Date de Création</th>
+                        <td>{{ read_grade['created_at'] }}</td>
+                    </tr>
+                    </tbody>
+
+                </table>
 
 
-        </div>
+            </div>
         </div>
     </section>
- </center>
+</center>
+<span></span>
+
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h1 class="box-title">Liste grade</h1>
+        <div class="box-tools pull-right">
+            <button class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="box-body">
+        <div align="right">
+            <a href="/list_grade">
+                <button type="button" class="btn btn-success">Aller à liste des grade</button>
+            </a>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

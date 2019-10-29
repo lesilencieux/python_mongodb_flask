@@ -61,10 +61,12 @@ class Pays():
         self.payss.update_one(query,updated)
         return 'Updated a pays with id %s' % id
 
-    def deletepays(self, id):
+    def delete_pays(self, id):
         query = {"_id": ObjectId(id)}
-        self.payss.delete_one(query)
-        return 'Removed a pays with id %s' % id
+        if self.payss.delete_one(query):
+            return True
+        else:
+            return False
 
     def delete_pays_by_code(self, code_pays):
         query = {"code_pays": code_pays}

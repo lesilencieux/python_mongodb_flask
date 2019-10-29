@@ -4,47 +4,51 @@
     <section class="content">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h1 class="box-title"> Details des informations de la structure  </h1>
+                <h1 class="box-title"> Details sur l' agent  </h1>
                 <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse">
                         <i class="fa fa-minus"></i>
                     </button>
                 </div>
             </div>
-            {% for structure in read_structure %}
+            {% for agent in list_agent %}
             <div class="box-body">
                 <table class="table table-bordered table-striped">
                     <tbody>
             <tr>
-                <th>Code Structure</th>
-                <td>{{ structure['code_structure']}}</td>
+                <th>Matricule agent</th>
+                <td>{{ agent['matricule_agent']}}</td>
             </tr>
             <tr>
-                <th>Libellé</th>
-                <td>{{ structure['libelle_structure']}}</td>
+                <th>IFU</th>
+                <td>{{ agent['ifu_agent']}}</td>
             </tr>
             <tr>
-                <th>Délégation</th>
-                <td>{{ structure['delegation_structure']}}</td>
+                <th>Prénoms</th>
+                <td>{{ agent['prenom_agent']}}</td>
             </tr>
             <tr>
-                <th>Délégué</th>
-                <td>{{ structure['delegue_structure'] }}</td>
+                <th>Nom</th>
+                <td>{{ agent['nom_agent'] }}</td>
             </tr>
             <tr>
-                <th>Responsable</th>
-                <td>{{ structure['responsable_structure'] }}</td>
+                <th>Structure</th>
+                <td>{{ agent['structure_agent'] }}</td>
             </tr>
             <tr>
-                <th>Visa Responsable</th>
-                <td>{{ structure['visa_responsable_structure'] }}</td>
+                <th>Corps</th>
+                <td>{{ agent['corps_agent'] }}</td>
             </tr>
             <tr>
-                <th>Action</th>
-                <td>{{ structure['action_structure'] }}</td>
+                <th>Grade</th>
+                <td>{{ agent['grade_agent'] }}</td>
+            <tr>
+            <tr>
+                <th>Qualité</th>
+                <td>{{ agent['qualite_agent'] }}</td>
             <tr>
                 <th>Date de Création</th>
-                <td>{{ structure['created_at'] }}</td>
+                <td>{{ agent['created_at'] }}</td>
             {% endfor %}
         </tbody>
     </table>

@@ -6,36 +6,31 @@
 <span>&nbsp;</span>
 
 <center>
-    <form action="/type_agent" method="POST" autocomplete="on" name="form">
-        {% for type_agent in read_type_agent %}
+    <form action="/type_agent_update/{{read_type_agent['_id']}}" method="POST" autocomplete="on" name="form">
 
         <div class="col-sm-offset-3 col-sm-6" id="first-part">
 
             <span>&nbsp;</span>
             <div class="input-group margin-bottom-sm">
                 <span class="input-group-addon"><i class="fa  fa-code-fork" aria-hidden="true"></i></span>
-                <input name="libelle_type_agent" required="required" class="form-control" type="text"
+                <input name="libelle_type_agent" value="{{read_type_agent['libelle_type_agent']}}" required="required" class="form-control" type="text"
                        placeholder="Libelle">
             </div>
             <span>&nbsp;</span>
             <div class="input-group margin-bottom-sm">
                 <span class="input-group-addon"><i class="fa fa-tag" aria-hidden="true"></i></span>
-                <input name="libelle_unique_type_agent" required="required" class="form-control" type="text"
+                <input name="libelle_unique_type_agent" value="{{read_type_agent['libelle_unique_type_agent']}}" required="required" class="form-control" type="text"
                        placeholder="Libelle Unique">
             </div>
 
             <span>&nbsp;</span>
             <div class="input-group margin-bottom-sm">
                 <span class="input-group-addon"><i class="fa fa-tag" aria-hidden="true"></i></span>
-                <input name="description_type_agent" required="required" class="form-control" type="text"
+                <input name="description_type_agent" value="{{read_type_agent['description_type_agent']}}" required="required" class="form-control" type="text"
                        placeholder="Description Type Agent">
             </div>
             <span>&nbsp;</span>
-            <div class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-tag" aria-hidden="true"></i></span>
-                <input name="action_type_agent" required="required" class="form-control" type="text"
-                       placeholder="Action">
-            </div>
+
             <div>
                 <a href="#">
                     <button type="button" id="first-reset" class="btn btn-primary btn-sm pull-left">
@@ -55,7 +50,6 @@
 
         </div>
         </div>
-        {% endfor %}
     </form>
 </center>
 <div class="box box-primary">
@@ -69,7 +63,7 @@
     </div>
     <div class="box-body">
         <div align="right">
-            <a href="lplist_type_agent">
+            <a href="list_type_agent">
                 <button type="button" class="btn btn-success">Aller à liste des type_agents</button>
             </a>
         </div>

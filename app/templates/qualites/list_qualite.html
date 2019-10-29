@@ -17,7 +17,6 @@
                 <tr>
                     <th>Libelle</th>
                     <th>Description</th>
-                    <th>Action</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -27,31 +26,29 @@
 
                     <td class="table-primary">{{ qualite['libelle_qualite'] }}</td>
                     <td class="table-primary">{{ qualite['description_qualite'] }}</td>
-                    <td class="table-info">{{ qualite['action_qualite'] }}</td>
-                    <td class="table-light">
+                    <td>
                         <div class="input-group btn">
-                            <a class="icon" href="qualite/code1"
-                               title="Voir le détail de qualite ">
-                                <button class="btn btn-info small" onclick="test()">
-                                    <i class="fa fa-info" aria-hidden="true"></i>
-                                </button>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-success  dropdown-toggle pull-right"
+                                    data-toggle="dropdown">
+                                Actions <span class="fa fa-caret-down"></span>
+                            </button>
 
-                            </a>
-                            <a class="icon" href="update_qualite/code1"
-                               title=" Modifier la qualite">
-                                <button class="btn btn-warning small" onclick="">
-                                    <i class="fa fa-pencil glyphicon glyphicon-pencil"></i>
-                                </button>&nbsp;&nbsp;
+                            <ul class="dropdown-menu">
 
-                            </a>
-                            <form class="icon" method="GET" action="/delete_qualite/code3">
-                                <a class="icon" href="list_qualite"
-                                   title=" Supprimer la qualite">
-                                    <button class="btn btn-danger small" onclick="">
-                                        <i class="fa fa-times glyphicon glyphicon-remove"></i>
-                                    </button>
-                                </a>
-                            </form>
+                                <li><a href="/show_qualite/{{ qualite['_id'] }}">
+                                    <button class="btn btn-info btn-block">Afficher</button>
+                                </a></li>
+
+                                <li><a href="/update_qualite/{{ qualite['_id'] }}">
+                                    <button class="btn btn-warning btn-block">Modifier</button>
+                                </a></li>
+
+                                <li><a href="/delete_qualite/{{ qualite['_id'] }}">
+                                    <button class="btn btn-danger btn-block">Supprimer</button>
+                                </a></li>
+                                <li class="divider"></li>
+
+                            </ul>
                         </div>
                     </td>
                 </tr>
@@ -63,7 +60,7 @@
 
     <div class="box box-primary">
         <div class="box-header with-border">
-            <h1 class="box-title">Nouveau qualite</h1>
+            <h1 class="box-title">Nouvelle qualite</h1>
             <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse">
                     <i class="fa fa-minus"></i>
@@ -81,7 +78,7 @@
 
 </section>
 
-    <script type="text/javascript">
+<script type="text/javascript">
 
       document.addEventListener("DOMContentLoaded",  function(e) {
             alert("txt")
@@ -89,6 +86,7 @@
             console.log(txt);
             alert(txt)
          } false);
+
 
 
 </script>

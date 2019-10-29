@@ -29,14 +29,7 @@ class Qualite():
 
     def get_qualite(self,qualite_id):
         myquery = { "_id": ObjectId(qualite_id) }
-        qualites = self.qualites.find(myquery)
-
-        toreturns = []
-        for qualite in qualites:
-            qualite["_id"] = str(qualite["_id"])
-            toreturns.append(qualite)
-        return jsonify(toreturns)
-
+        return self.qualites.find_one(myquery)
 
     def create_new_qualite(self,jsn):
         # Create index on code of qualite field to prevent duplicated inserting
@@ -48,16 +41,21 @@ class Qualite():
             return False
 
 
-    def updatequalite(self,id,newvalues):
+    def update_qualite(self,id,newvalues):
         query = {"_id": ObjectId(id)}
         updated = {"$set": newvalues}
-        self.qualites.update_one(query,updated)
-        return 'Updated a qualite with id %s' % id
+        if self.qualites.update_one(query,updated):
+            return True
+        else:
+            return False
 
-    def deletequalite(self, id):
+
+    def delete_qualite(self, id):
         query = {"_id": ObjectId(id)}
-        self.qualites.delete_one(query)
-        return 'Removed a qualite with id %s' % id
+        if self.qualites.delete_one(query):
+            return True
+        else:
+            return False
 
     def delete_qualite_by_code(self, code_qualite):
         query = {"code_qualite": code_qualite}

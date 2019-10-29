@@ -1,57 +1,55 @@
 {% extends "homes.html" %}
 {% block content %}
- <center>
+<center>
     <section class="content">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h1 class="box-title"> Details des informations de la mission  </h1>
+                <h1 class="box-title"> Details des informations de la mission </h1>
                 <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse">
                         <i class="fa fa-minus"></i>
                     </button>
                 </div>
             </div>
-            {% for mission in read_mission %}
+
             <div class="box-body">
                 <table class="table table-bordered table-striped">
                     <tbody>
-             <tr>
-                <th>Date de Création</th>
-                <td>{{ mission['created_at'] }}</td>
+                    <tr>
+                        <th>Date de Création</th>
+                        <td>{{ read_mission['created_at'] }}</td>
 
-            <tr>
-                <th>Code mission</th>
-                <td>{{ mission['date_debut_mission']}}</td>
-            </tr>
-            <tr>
-                <th>Libellé</th>
-                <td>{{ mission['date_fin_mission']}}</td>
-            </tr>
-            <tr>
-                <th>Délégation</th>
-                <td>{{ mission['reference_ordre_mission']}}</td>
-            </tr>
-            <tr>
-                <th>Délégué</th>
-                <td>{{ mission['montant_budget_mission'] }}</td>
-            </tr>
-            <tr>
-                <th>Responsable</th>
-                <td>{{ mission['devise_budget'] }}</td>
-            </tr>
-            <tr>
-                <th>Visa Responsable</th>
-                <td>{{ mission['responsable_structure'] }}</td>
-            </tr>
+                    <tr>
+                        <th>Code mission</th>
+                        <td>{{ read_mission['date_debut_mission']}}</td>
+                    </tr>
+                    <tr>
+                        <th>Libellé</th>
+                        <td>{{ read_mission['date_fin_mission']}}</td>
+                    </tr>
+                    <tr>
+                        <th>Délégation</th>
+                        <td>{{ read_mission['reference_ordre_mission']}}</td>
+                    </tr>
+                    <tr>
+                        <th>Délégué</th>
+                        <td>{{ read_mission['montant_budget_mission'] }}</td>
+                    </tr>
+                    <tr>
+                        <th>Responsable</th>
+                        <td>{{ read_mission['devise_budget'] }}</td>
+                    </tr>
+                    <tr>
+                        <th>Visa Responsable</th>
+                        <td>{{ read_mission['responsable_structure'] }}</td>
+                    </tr>
 
-
-            {% endfor %}
-        </tbody>
-    </table>
+                    </tbody>
+                </table>
 
 
-        </div>
+            </div>
         </div>
     </section>
- </center>
+</center>
 {% endblock %}

@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 
 WTF_CSRF_ENABLED = True
-SECRET_KEY = 'Put your secret key here'
+SECRET_KEY = 'Try'
 DB_NAME = 'missions'
 
 DATABASE = MongoClient()[DB_NAME]

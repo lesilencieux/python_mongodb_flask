@@ -11,28 +11,23 @@
                     </button>
                 </div>
             </div>
-            {% for qualite in read_qualite %}
             <div class="box-body">
                 <table class="table table-bordered table-striped">
                     <tbody>
 
                     <tr>
                         <th>Libellé</th>
-                        <td>{{ qualite['libelle_qualite']}}</td>
+                        <td>{{ read_qualite['libelle_qualite']}}</td>
                     </tr>
 
                     <tr>
                         <th>Description</th>
-                        <td>{{ qualite['description_qualite']}}</td>
+                        <td>{{ read_qualite['description_qualite']}}</td>
                     </tr>
 
                     <tr>
-                        <th>Action</th>
-                        <td>{{ qualite['action_qualite'] }}</td>
-                    <tr>
                         <th>Date de Création</th>
-                        <td>{{ qualite['created_at'] }}</td>
-                        {% endfor %}
+                        <td>{{ read_qualite['created_at'] }}</td>
                     </tbody>
                 </table>
 
@@ -40,5 +35,26 @@
             </div>
         </div>
     </section>
+
 </center>
+
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h1 class="box-title">Liste des qualités</h1>
+        <div class="box-tools pull-right">
+            <button class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="box-body">
+        <div align="right">
+            <a href="/list_qualite">
+                <button type="button" class="btn btn-success">Aller à liste des qualités</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}

@@ -69,8 +69,10 @@ class TypeBudget():
 
     def deletetype_budget(self, id):
         query = {"_id": ObjectId(id)}
-        self.type_budgets.delete_one(query)
-        return 'Removed a type_budget with id %s' % id
+        if self.type_budgets.delete_one(query):
+            return True
+        else:
+            return False
 
     def delete_type_budget_by_code(self, code_type_budget):
         query = {"code_type_budget": code_type_budget}

@@ -26,9 +26,10 @@
                 </tr>
                 </thead>
                 <tbody>
+                {% print(current_user.get_username()) %}
+                {% print(current_user._roles) %}
                 {% for mission in list_missions %}
                 <tr>
-
                     <td class="table-active">{{ mission['reference_ordre_mission'] }}</td>
                     <td class="table-primary">{{ mission['structure_initiatrice_mission'] }}</td>
                     <td class="table-secondary">{{ mission['created_at'] }}</td>
@@ -45,8 +46,9 @@
                                             <li><a href="mission/{{ mission['_id'] }}"><button class="btn btn-info btn-block"  >Afficher</button></a></li>
                                             <li><a href="validate_mission/{{ mission['_id'] }}"><button class="btn btn-primary btn-block">Valider</button></a></li>
                                             <li><a href="#"><button class="btn btn-dark btn-block">Rejeter</button></a></li>
-                                            <li><a href="edit_mission/{{ mission['_id'] }}"><button class="btn btn-warning btn-block">Modifier</button></a></li>
-                                            <li><a href="delete_mission/{{ mission['_id'] }}"><button class="btn btn-danger btn-block">Supprimer</button></a></li>
+                                            <li><a href="/update_mission/{{ mission['_id'] }}"><button class="btn btn-warning btn-block">Modifier</button></a></li>
+                                            <li><a href="/ordre_de_mission/{{ mission['_id'] }}"><button class="btn btn-warning btn-block">OM</button></a></li>
+                                            <li><a href="/delete_mission/{{ mission['_id'] }}"><button class="btn btn-danger btn-block">Supprimer</button></a></li>
                                             <li class="divider"></li>
 
                                         </ul>

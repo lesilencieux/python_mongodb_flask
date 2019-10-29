@@ -28,14 +28,10 @@ class TypeAgent():
         return toreturns
 
     def get_type_agent(self,type_agent_id):
-        myquery = { "_id": ObjectId(type_agent_id) }
-        type_agents = self.type_agents.find(myquery)
+        myquery = { "_id": ObjectId(str(type_agent_id)) }
+        return self.type_agents.find_one(myquery)
 
-        toreturns = []
-        for type_agent in type_agents:
-            type_agent["_id"] = str(type_agent["_id"])
-            toreturns.append(type_agent)
-        return jsonify(toreturns)
+
 
     def get_type_agent_by_code(self,code_type_agent):
         myquery = { "code_type_agent": code_type_agent}
@@ -67,7 +63,7 @@ class TypeAgent():
         self.type_agents.update_one(query,updated)
         return 'Updated a type_agent with id %s' % id
 
-    def deletetype_agent(self, id):
+    def delete_type_agent(self, id):
         query = {"_id": ObjectId(id)}
         self.type_agents.delete_one(query)
         return 'Removed a type_agent with id %s' % id

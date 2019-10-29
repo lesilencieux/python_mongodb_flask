@@ -76,7 +76,7 @@
 
             <div class="input-group margin-bottom-sm">
                 <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
-                <input name="responsable_structure" required="required" class="form-control" type="text"
+                <input name="reference_lettre_de_mission" required="required" class="form-control" type="text"
                        placeholder="Reference de la lettre de mission ">
             </div>
             <span>&nbsp;</span>
@@ -145,26 +145,6 @@
             </div>
             <span>&nbsp;</span>
 
-            <div class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
-                <input name="montant_budget_mission" required="required" class="form-control" type="number"
-                       placeholder="Montant du budget ">
-            </div>
-            <span>&nbsp;</span>
-
-            <div class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
-
-                <select name="devise_budget" class="selectpicker" data-width="100%" single data-live-search="true">
-                    <option>$</option>
-                    <option>€</option>
-                    <option>£</option>
-                    <option>ECO</option>
-                    <option>FCFA</option>
-                </select>
-
-            </div>
-
             <span>&nbsp;</span>
 
             <div class="input-group margin-bottom-sm">
@@ -227,8 +207,7 @@
         <div class="col-sm-offset-3 col-sm-6" id="third-part">
 
             <div id="div_pays_destination" class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
-                <select class="selectpicker"
+                <select name="pays_destination_mission" class="selectpicker"
                         data-width="100%" multiple
                         data-live-search="true">
 
@@ -238,9 +217,9 @@
 
                 </select>
             </div>
+        <span>&nbsp;</span>
 
             <div id="div_ville_pays_destination" style="display: none" class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
                 <select name="ville_pays_destination_mission" id="select_ville_pays_destination" class="selectpicker"
                         data-width="100%" multiple
                         data-live-search="true">
@@ -267,12 +246,34 @@
                 <select name="agents_mission" class="selectpicker" data-width="100%" multiple
                         data-live-search="true">
                     {% for agent in list_agents %}
-                    <option>{{ agent['prenom_agent'] }} {{ agent['nom_agent'] }}</option>
+                    <option>{{ agent['ifu_agent'] }} {{ agent['prenom_agent'] }} {{ agent['nom_agent'] }}</option>
                     {% endfor %}
 
                 </select>
             </div>
+
+
+                 <span>&nbsp;</span>
+
+            <div class="input-group select2-bootstrap-prepend">
+                <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
+                <select name="structure_initiatrice_mission" class="selectpicker" data-width="100%" single
+                        data-live-search="true">
+
+                    <option value="" disabled selected>Selectionner la structure de l'agent</option>
+
+                    {% for structure in list_structures %}
+                    <option name="structure_initiatrice_mission" value="{{ structure['code_structure'] }}">{{
+                        structure['code_structure'] }}
+                    </option>
+
+                    {% endfor %}
+                </select>
+
+            </div>
+
             <span>&nbsp;</span>
+
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa  fa-cc-visa" aria-hidden="true"></i></span>
                 <input name="moyen_transport_mission" required="required" class="form-control" type="text"
@@ -296,12 +297,8 @@
             </div>
             <span>&nbsp;</span>
 
-            <div class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
-                <input name="structure_initiatrice_mission" required="required" class="form-control" type="text"
-                       placeholder="Structure initiatrice ">
-            </div>
-            <span>&nbsp;</span>
+
+
 
             <div class="row">
 

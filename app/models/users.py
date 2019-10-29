@@ -5,15 +5,14 @@ from bson import ObjectId
 from pymongo.errors import DuplicateKeyError
 
 
-
-class User():
+class Users():
     client = MongoClient("localhost", 27017)
     db = client["missions"]
     users = db["users"]
 
-    def __init__(self, username):
+    def __init__(self, username, roles):
+        self._roles = roles
         self.username = username
-        self.email = None
 
     def is_authenticated(self):
         return True
@@ -29,24 +28,10 @@ class User():
 
     @staticmethod
     def validate_login(password_hash, password):
-        return check_password_hash(password_hash, password)
-
-    def read(self):
-        rs = self.users.find()
-        result = []
-        for user in rs:
-            user['_id'] = str(user['_id'])
-            result.append(user)
-        return jsonify(result)
-
-    def read_by_id(self, utilisateur_id):
-        myquery = {"_id": ObjectId(utilisateur_id)}
-        users = self.utilisateurs.find(myquery)
-        result = []
-        for user in users:
-            user["_id"] = str(user["_id"])
-            result.append(user)
-        return jsonify(result)
+        if check_password_hash(password_hash, password):
+            return True
+        else:
+            return False
 
     def create(self, user):
         try:
@@ -66,18 +51,40 @@ class User():
         self.users.delete_one(query)
         return 'Removed a user with id %s' % id
 
-    def login_user_with_username(self, username,password):
-        query = {"username": username ,"password":password}
+    def login_user_with_email(self, email):
+        query = {"email": email}
+        if self.users.find_one(query):
+            return self.users.find_one(query)
+        else:
+            return False
+
+    def get_user_by_email(self, email):
+        query = {"email": email}
+        return self.users.find_one(query)
+
+    def login_user_with_username(self, username):
+        query = {"username": username}
         if self.users.find_one(query):
             return True
         else:
             return False
 
-    def login_user_with_email(self, email,password):
-        query = {"email": email ,"password":password}
-        if self.users.find_one(query):
+    def get_user_by_username(self, username):
+        query = {"username": username}
+        return self.users.find_one(query)
+
+    def create_new_users(self, jsn):
+        # Create index on code of agent field to prevent duplicated inserting
+        self.users.create_index([('email', '')], unique=True)
+        self.users.create_index([('username', '')], unique=True)
+        try:
+            self.users.insert(jsn)
             return True
-        else:
+        except DuplicateKeyError:
             return False
 
+    def get_username(self):
+        return self.username
 
+    def get_roles(self):
+        return self._roles

@@ -16,7 +16,7 @@
                 <thead>
                 <tr>
                     <th>Libelle</th>
-                    <th>Action</th>
+                    <th>Date Création</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -25,31 +25,30 @@
                 <tr>
 
                     <td class="table-primary">{{ grade['libelle_grade'] }}</td>
-                    <td class="table-info">{{ grade['action_grade'] }}</td>
-                    <td class="table-light">
+                    <td class="table-info">{{ grade['created_at'] }}</td>
+                    <td>
                         <div class="input-group btn">
-                            <a class="icon" href="grade/code1"
-                               title="Voir le détail de grade ">
-                                <button class="btn btn-info small" onclick="test()">
-                                    <i class="fa fa-info" aria-hidden="true"></i>
-                                </button>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-success  dropdown-toggle pull-right"
+                                    data-toggle="dropdown">
+                                Actions <span class="fa fa-caret-down"></span>
+                            </button>
 
-                            </a>
-                            <a class="icon" href="update_grade/code1"
-                               title=" Modifier la grade">
-                                <button class="btn btn-warning small" onclick="">
-                                    <i class="fa fa-pencil glyphicon glyphicon-pencil"></i>
-                                </button>&nbsp;&nbsp;
+                            <ul class="dropdown-menu">
 
-                            </a>
-                            <form class="icon" method="GET" action="/delete_grade/code3">
-                                <a class="icon" href="list_grade"
-                                   title=" Supprimer la grade">
-                                    <button class="btn btn-danger small" onclick="">
-                                        <i class="fa fa-times glyphicon glyphicon-remove"></i>
-                                    </button>
-                                </a>
-                            </form>
+                                <li><a href="/show_grade/{{ grade['_id'] }}">
+                                    <button class="btn btn-info btn-block">Afficher</button>
+                                </a></li>
+
+                                <li><a href="/update_grade/{{ grade['_id'] }}">
+                                    <button class="btn btn-warning btn-block">Modifier</button>
+                                </a></li>
+
+                                <li><a href="/delete_grade/{{ grade['_id'] }}">
+                                    <button class="btn btn-danger btn-block">Supprimer</button>
+                                </a></li>
+                                <li class="divider"></li>
+
+                            </ul>
                         </div>
                     </td>
                 </tr>

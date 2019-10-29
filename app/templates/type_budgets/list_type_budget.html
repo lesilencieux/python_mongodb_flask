@@ -1,6 +1,6 @@
 {% extends "homes.html" %}
 {% block content %}
-<center><h1>Liste des type_budgets </h1></center>
+<center><h1>Liste des type budgets </h1></center>
 <section class="content">
     <div class="box box-primary">
         <div class="box-header with-border">
@@ -16,8 +16,8 @@
                 <thead>
                 <tr>
                     <th>Libelle</th>
-                    <th>Type Budget</th>
-                    <th>Action</th>
+                    <th>Description Type_budget</th>
+                    <th>Date de Création</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -26,35 +26,24 @@
                 <tr>
 
                     <td class="table-primary">{{ type_budget['libelle_type_budget'] }}</td>
-                    <td class="table-primary">{{ type_budget['libelle_unique_type_agent'] }}</td>
                     <td class="table-info">{{ type_budget['description_type_budget'] }}</td>
                     <td class="table-info">{{ type_budget['created_at'] }}</td>
-                    <td class="table-light">
+                    <td>
                         <div class="input-group btn">
-                            <a class="icon" href="type_budget/code1"
-                               title="Voir le détail de type_budget ">
-                                <button class="btn btn-info small" onclick="test()">
-                                    <i class="fa fa-info" aria-hidden="true"></i>
-                                </button>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-success  dropdown-toggle pull-right"
+                                    data-toggle="dropdown">
+                                Actions <span class="fa fa-caret-down"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="delete_type_budget/{{ type_budget['_id'] }}">
+                                    <button class="btn btn-danger btn-block">Supprimer</button>
+                                </a></li>
+                                <li class="divider"></li>
 
-                            </a>
-                            <a class="icon" href="update_type_budget/code1"
-                               title=" Modifier la type_budget">
-                                <button class="btn btn-warning small" onclick="">
-                                    <i class="fa fa-pencil glyphicon glyphicon-pencil"></i>
-                                </button>&nbsp;&nbsp;
-
-                            </a>
-                            <form class="icon" method="GET" action="/delete_type_budget/code3">
-                                <a class="icon" href="list_type_budget"
-                                   title=" Supprimer la type_budget">
-                                    <button class="btn btn-danger small" onclick="">
-                                        <i class="fa fa-times glyphicon glyphicon-remove"></i>
-                                    </button>
-                                </a>
-                            </form>
+                            </ul>
                         </div>
                     </td>
+
                 </tr>
                 {% endfor %}
                 </tbody>
@@ -82,7 +71,7 @@
 
 </section>
 
-    <script type="text/javascript">
+<script type="text/javascript">
 
       document.addEventListener("DOMContentLoaded",  function(e) {
             alert("txt")
@@ -90,6 +79,7 @@
             console.log(txt);
             alert(txt)
          } false);
+
 
 
 </script>
