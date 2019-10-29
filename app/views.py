@@ -23,6 +23,8 @@ from app.models import mission
 from .user import User
 from app.models import users
 from werkzeug.security import generate_password_hash
+from werkzeug.security import check_password_hash
+
 from datetime import datetime
 import dateutil.parser
 
@@ -354,36 +356,26 @@ def login():
     miss1 = mission.Mission()
     list_missions = miss1.get_missions()
     if request.method == 'POST':
-        user_with_username = users.Users().login_user_with_username(request.values.get("username"),
-                                                                    request.values.get("password"))
-        user_with_email = users.Users().login_user_with_email(request.values.get("username"),
-                                                              request.values.get("password"))
-
-        print(generate_password_hash(request.values.get("password")))
-
+        user_with_username = users.Users("", "").login_user_with_username(request.values.get("username"))
+        user_with_email = users.Users("", "").login_user_with_email(request.values.get("email"))
+        password = request.values.get("password")
         if user_with_email:
-            if user_with_email and User.validate_login(user_with_email['password'],request.values.get("password")):
-                user_obj = users.Users(user_with_email['email'])
-                login_user(user_obj)
-                flash("Logged in successfully!", category='success')
-                return redirect(request.args.get("next") or url_for("write"))
+            read_user1 = users.Users("", "").get_user_by_email(request.values.get("email"))
+            if user_with_email and check_password_hash(read_user1['password'], password):
+                login_user(users.Users(read_user1['username'], ""))
+                return render_template('missions/list_mission.html', user=read_user1, list_missions=list_missions)
             flash("Wrong username or password!", category='error')
-            # flash("Logged in successfully!", category='success')
-            # return render_template('missions/list_mission.html', title='login', list_missions=list_missions)
-
+            return render_template('admin.html')
         elif user_with_username:
-
-            if user_with_email and User.validate_login(user_with_email['password'],request.values.get("password")):
-                user_obj = users.Users(user_with_email['username'])
-                login_user(user_obj)
-                flash("Logged in successfully!", category='success')
-                return redirect(request.args.get("next") or url_for("write"))
-            flash("Wrong username or password!", category='error')
-            # flash("Logged in successfully!", category='success')
-            # return render_template('missions/list_mission.html', title='login', form=form, list_missions=list_missions)
-
+            read_user2 = users.Users("", "").get_user_by_username(request.values.get("username"))
+            if user_with_username and check_password_hash(read_user2['password'], password):
+                login_user(users.Users(read_user2['username'], ""))
+                print(read_user2)
+                return render_template('missions/list_mission.html', user=read_user2, list_missions=list_missions)
+            flash("username/email ou password incorrect !", category='error')
+            return render_template('admin.html')
         else:
-            flash("Wrong username or password!", category='error')
+            flash("username/email or password incorrect !", category='error')
     return render_template('admin.html')
 
 
@@ -399,8 +391,9 @@ def save_users():
     email = request.values.get("emailsignup")
     password = request.values.get("passwordsignup")
     print(password)
-    u = {"username": username, "email": email, "password": generate_password_hash(password)}
-    user1 = users.Users("")
+    u = {"username": username, "email": email, "password": generate_password_hash(password, method='pbkdf2:sha256'),
+         "roles": ["admin", "invite"]}
+    user1 = users.Users("", "")
     if username is not None and email is not None and password is not None:
         if user1.create_new_users(u):
             flash("Utilisateur créé avec succès!", category='success')
@@ -721,10 +714,12 @@ def updat_missions(id_mission):
     list_pays2 = pay.get_payss()
 
     if read_mission:
-        return render_template('missions/edit_mission.html', read_mission=read_mission, list_agents=list_agents, list_pays=list_pays2,
+        return render_template('missions/edit_mission.html', read_mission=read_mission, list_agents=list_agents,
+                               list_pays=list_pays2,
                                list_type_budget=list_type_budget)
     flash("Quelque chose s'est mal passé lors de la mise à jour de la mission !", category='error')
-    return render_template('missions/list_mission.html',read_mission=read_mission, list_agents=list_agents, list_pays=list_pays2,
+    return render_template('missions/list_mission.html', read_mission=read_mission, list_agents=list_agents,
+                           list_pays=list_pays2,
                            list_type_budget=list_type_budget)
 
 
@@ -1002,8 +997,9 @@ def groupe_ville_by_pay():
 @app.route('/login2', methods=['GET', 'POST'])
 def login2():
     form = LoginForm()
-    if request.method == 'POST' :
+    if request.method == 'POST':
         user1 = app.config['USERS_COLLECTION'].find_one({"_id": form.username.data})
+
         if user1 and User.validate_login(user1['password'], form.password.data):
             user_obj = User(user1['_id'])
             login_user(user_obj)

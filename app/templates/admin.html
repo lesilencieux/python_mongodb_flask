@@ -36,7 +36,8 @@
                 <h1>Formulaire de connection et d'enregistrement</h1>
 
             </header>
-            <section>				
+            <section>
+
                 <div id="container_demo" >
                     <a class="hiddenanchor" id="toregister"></a>
                     <a class="hiddenanchor" id="tologin"></a>
@@ -55,7 +56,11 @@
                                 <p class="keeplogin"> 
 									<input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
 									<label for="loginkeeping">Se Rappeller de Moi</label>
-								</p>
+                                </p>
+
+                                                        {% include "flash.html" %}
+
+
                                 <p class="login button"> 
                                     <input type="submit" value="Se Connecter" />
 								</p>

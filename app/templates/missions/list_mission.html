@@ -26,9 +26,10 @@
                 </tr>
                 </thead>
                 <tbody>
+                {% print(current_user.get_username()) %}
+                {% print(current_user._roles) %}
                 {% for mission in list_missions %}
                 <tr>
-
                     <td class="table-active">{{ mission['reference_ordre_mission'] }}</td>
                     <td class="table-primary">{{ mission['structure_initiatrice_mission'] }}</td>
                     <td class="table-secondary">{{ mission['created_at'] }}</td>
