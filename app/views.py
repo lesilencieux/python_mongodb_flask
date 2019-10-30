@@ -356,20 +356,20 @@ def login():
     miss1 = mission.Mission()
     list_missions = miss1.get_missions()
     if request.method == 'POST':
-        user_with_username = users.Users("", "").login_user_with_username(request.values.get("username"))
-        user_with_email = users.Users("", "").login_user_with_email(request.values.get("email"))
+        user_with_username = users.Users("","","").login_user_with_username(request.values.get("username"))
+        user_with_email = users.Users("","","").login_user_with_email(request.values.get("email"))
         password = request.values.get("password")
         if user_with_email:
-            read_user1 = users.Users("", "").get_user_by_email(request.values.get("email"))
+            read_user1 = users.Users("","","").get_user_by_email(request.values.get("email"))
             if user_with_email and check_password_hash(read_user1['password'], password):
-                login_user(users.Users(read_user1['username'], ""))
+                login_user(users.Users(read_user1['username'], read_user1['email'],read_user1['roles']))
                 return render_template('missions/list_mission.html', user=read_user1, list_missions=list_missions)
             flash("Wrong username or password!", category='error')
             return render_template('admin.html')
         elif user_with_username:
-            read_user2 = users.Users("", "").get_user_by_username(request.values.get("username"))
+            read_user2 = users.Users("","","").get_user_by_username(request.values.get("username"))
             if user_with_username and check_password_hash(read_user2['password'], password):
-                login_user(users.Users(read_user2['username'], ""))
+                login_user(users.Users(read_user2['username'], read_user2['email'],read_user2['roles']))
                 print(read_user2)
                 return render_template('missions/list_mission.html', user=read_user2, list_missions=list_missions)
             flash("username/email ou password incorrect !", category='error')
@@ -392,10 +392,9 @@ def save_users():
     password = request.values.get("passwordsignup")
     print(password)
     u = {"username": username, "email": email, "password": generate_password_hash(password, method='pbkdf2:sha256'),
-         "roles": ["admin", "invite"]}
-    user1 = users.Users("", "")
+         "roles": [str("admin").encode('ascii'), str("invite").encode('ascii')]}
     if username is not None and email is not None and password is not None:
-        if user1.create_new_users(u):
+        if users.Users("","","").create_new_users(u):
             flash("Utilisateur créé avec succès!", category='success')
             return redirect(request.args.get("next") or url_for("write"))
         flash("Ces identifiants ont été déjà utilisés !", category='error')
@@ -511,10 +510,10 @@ def save_agent():
     if prenom_agent is not None and nom_agent is not None and matricule_agent is not None and ifu_agent is not None:
         if agent1.create_new_agent(agt):
             flash("Agent créé avec succès!", category='success')
-            return render_template('agents/agents.html', corps_list=corps_list, list_grades=list_grades,
+            return render_template('agents/utilisateurs.html', corps_list=corps_list, list_grades=list_grades,
                                    list_qualities=list_qualities, list_structures=list_structures)
 
-    return render_template('agents/agents.html', corps_list=corps_list, list_grades=list_grades,
+    return render_template('agents/utilisateurs.html', corps_list=corps_list, list_grades=list_grades,
                            list_qualities=list_qualities, list_structures=list_structures)
 
 
@@ -570,10 +569,10 @@ def save_type_agent():
     if libelle_type_agent is not None and libelle_unique_type_agent is not None and description_type_agent is not None:
         if typ_agent1.create_new_type_agent(typ_agent):
             flash("Structure créé avec succès!", category='success')
-            return render_template('agents/agents.html', message="ok")
+            return render_template('agents/utilisateurs.html', message="ok")
         flash("Ce libelle du type agent a été déjà utilisé !", category='error')
-        return render_template('agents/agents.html', message="ko")
-    return render_template('agents/agents.html', message="ko")
+        return render_template('agents/utilisateurs.html', message="ko")
+    return render_template('agents/utilisateurs.html', message="ko")
 
 
 @app.route('/type_agent_update/<id_type_agent>', methods=['GET', 'POST'])
@@ -646,6 +645,7 @@ def save_missions():
     code_localite_parente_mission = request.values.get("code_localite_parente_mission")
     reference_lettre_de_mission = request.values.get("reference_lettre_de_mission")
     code_localite_mission = request.values.get("code_localite_mission")
+    current_username = request.values.get("input_current_user")
     to_save_mission = {"date_debut_mission": dateutil.parser.parse(date_debut_mission),
                        "date_fin_mission": dateutil.parser.parse(date_fin_mission),
                        "responsable_structure": responsable_structure,
@@ -670,7 +670,7 @@ def save_missions():
                        "type_budget": type_budget,
                        "created_at": dateutil.parser.parse(str(datetime.now())),
                        "status_mission": "En attente de validation",
-                       "auteur": "Hilaire"
+                       "auteur": current_username
                        }
     missi = mission.Mission()
 
@@ -959,10 +959,10 @@ def settings():
 
 @lm.user_loader
 def load_user(username):
-    u = app.config['USERS_COLLECTION'].find_one({"_id": username})
+    u = app.config['USERS_COLLECTION'].find_one({"username": username})
     if not u:
         return None
-    return user.User(u['_id'])
+    return user.User(u)
 
 
 @app.route("/ordre_de_mission/<id_mission>")
@@ -980,30 +980,17 @@ def ordre_de_mission(id_mission):
                            read_struc=read_struc)
 
 
-def groupe_ville_by_pay():
-    list_pays = pays.Pays().get_payss()
-    list_villes = ville.Ville().get_villes()
-    list_pays_to_return = []
-    list_ville_to_return = []
-    for pays in list_pays:
-        for ville in list_villes:
-            if str(pays['libelle_fr_pays']).lower() == str(ville['libelle_fr_pays']).lower():
-                list_ville_to_return.append(ville['non_ville'])
-        list_pays_to_return['pays'] = pays['libelle_fr_pays']
-        list_pays_to_return.append(list_ville_to_return)
-    return list_pays_to_return
+# def groupe_ville_by_pay():
+#     list_pays = pays.Pays().get_payss()
+#     list_villes = ville.Ville().get_villes()
+#     list_pays_to_return = []
+#     list_ville_to_return = []
+#     for pays in list_pays:
+#         for ville in list_villes:
+#             if str(pays['libelle_fr_pays']).lower() == str(ville['libelle_fr_pays']).lower():
+#                 list_ville_to_return.append(ville['non_ville'])
+#         list_pays_to_return['pays'] = pays['libelle_fr_pays']
+#         list_pays_to_return.append(list_ville_to_return)
+#     return list_pays_to_return
 
 
-@app.route('/login2', methods=['GET', 'POST'])
-def login2():
-    form = LoginForm()
-    if request.method == 'POST':
-        user1 = app.config['USERS_COLLECTION'].find_one({"_id": form.username.data})
-
-        if user1 and User.validate_login(user1['password'], form.password.data):
-            user_obj = User(user1['_id'])
-            login_user(user_obj)
-            flash("Logged in successfully!", category='success')
-            return redirect(request.args.get("next") or url_for("write"))
-        flash("Wrong username or password!", category='error')
-    return render_template('login.html', title='login', form=form)

@@ -63,6 +63,8 @@
 <div data-component="sidebar">
     <div class="sidebar">
         <ul class="list-group flex-column d-inline-block first-menu">
+             {% if "u'admin'" in current_user._roles %}
+<!--            Utilisateur-->
 <!--            <li class="list-group-item pl-3 py-2">-->
 <!--                <a href="#"><i class="fa fa-user-o" aria-hidden="true"><span-->
 <!--                        class="ml-2 align-middle">Utilisateurs</span></i></a>-->
@@ -77,7 +79,7 @@
 <!--                    </li>-->
 <!--                </ul> &lt;!&ndash; /.submenu &ndash;&gt;-->
 <!--            </li> &lt;!&ndash; /.list-group-item &ndash;&gt;-->
-
+            <!--            Agents-->
             <li class="list-group-item pl-3 py-2">
                 <a href="#"><i class="fa fa-user-o" aria-hidden="true"><span class="ml-2 align-middle">Agents</span></i></a>
                 <ul class="list-group flex-column d-inline-block submenu">
@@ -94,7 +96,7 @@
 
                 </ul> <!-- /.submenu -->
             </li> <!-- /.list-group-item -->
-
+<!--            Mission-->
             <li class="list-group-item pl-3 py-2">
                 <a href="#">
                     <i class="fa fa-user-o" aria-hidden="true"><span class="ml-2 align-middle">Missions</span></i>
@@ -130,7 +132,7 @@
                     </li>
                 </ul> <!-- /.submenu -->
             </li> <!-- /.list-group-item -->
-
+<!--            Paramettre-->
 
             <li class="list-group-item pl-3 py-2">
                 <a href="#"><i class="fa fa-user-o" aria-hidden="true"><span
@@ -179,7 +181,59 @@
                     </li>
                 </ul>
             </li>
+            {% else %}
+            <!--            Mission-->
+            <li class="list-group-item pl-3 py-2">
+                <a href="#">
+                    <i class="fa fa-user-o" aria-hidden="true"><span class="ml-2 align-middle">Missions</span></i>
+                </a>
+                <ul class="list-group flex-column d-inline-block submenu">
 
+                    <li class="list-group-item pl-4">
+                        <a href="/list_mission" class="">Lister</a>
+                        <ul class="list-group flex-column d-inline-block sub-submenu">
+                            <span class="arrow"></span>
+                            <li class="list-group-item pl-4">
+                                <a href="#">Passées</a>
+                            </li>
+                        </ul>
+
+                        <ul class="list-group flex-column d-inline-block sub-submenu">
+                            <span class="arrow"></span>
+                            <li class="list-group-item pl-4">
+                                <a href="#">Passées</a>
+                            </li>
+                            <li class="list-group-item pl-4">
+                                <a href="#">En cours</a>
+                            </li>
+
+                            <li class="list-group-item pl-4">
+                                <a href="#">A venir</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="list-group-item pl-4">
+                        <a href="missions" class="">Ajouter</a>
+                    </li>
+                </ul> <!-- /.submenu -->
+            </li> <!-- /.list-group-item -->
+            <!--            Support -->
+            <li class="list-group-item pl-3 py-2">
+                <a href="#">
+                    <i class="fa fa-user-o" aria-hidden="true"><span class="ml-2 align-middle">Support</span></i>
+                </a>
+                <ul class="list-group flex-column d-inline-block submenu">
+
+                    <li class="list-group-item pl-4">
+                        <a href="#" class="">Lister</a>
+
+                    </li>
+
+
+                </ul> <!-- /.submenu -->
+            </li> <!-- /.list-group-item -->
+            {% endif %}
 
         </ul> <!-- /.first-menu -->
     </div> <!-- /.sidebar -->
