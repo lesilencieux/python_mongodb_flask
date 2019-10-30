@@ -10,9 +10,10 @@ class Users():
     db = client["missions"]
     users = db["users"]
 
-    def __init__(self, username, roles):
+    def __init__(self, username, email,roles):
         self._roles = roles
         self.username = username
+        self._email = email
 
     def is_authenticated(self):
         return True
@@ -87,4 +88,11 @@ class Users():
         return self.username
 
     def get_roles(self):
-        return self._roles
+        list_roles= []
+        for role in self._roles:
+            list_roles.append(str(role))
+        return list_roles
+
+    def get_email(self):
+        return self._email
+

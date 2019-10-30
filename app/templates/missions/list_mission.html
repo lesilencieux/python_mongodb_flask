@@ -21,13 +21,11 @@
                     <th>Date Début</th>
                     <th>Date Fin</th>
                     <th>Status</th>
-                    <th>Auteur</th>
                     <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                {% print(current_user.get_username()) %}
-                {% print(current_user._roles) %}
+
                 {% for mission in list_missions %}
                 <tr>
                     <td class="table-active">{{ mission['reference_ordre_mission'] }}</td>
@@ -36,25 +34,78 @@
                     <td class="table-success">{{ mission['date_debut_mission'] }}</td>
                     <td class="table-danger">{{ mission['date_fin_mission'] }}</td>
                     <td class="table-warning">{{ mission['status_mission'] }}</td>
-                    <td class="table-info">{{ mission['auteur'] }}</td>
                     <td>
-                                    <div class="input-group btn">
-                                        <button type="button" class="btn btn-success  dropdown-toggle pull-right" data-toggle="dropdown">
-                                            Actions  <span class="fa fa-caret-down"></span>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="mission/{{ mission['_id'] }}"><button class="btn btn-info btn-block"  >Afficher</button></a></li>
-                                            <li><a href="validate_mission/{{ mission['_id'] }}"><button class="btn btn-primary btn-block">Valider</button></a></li>
-                                            <li><a href="#"><button class="btn btn-dark btn-block">Rejeter</button></a></li>
-                                            <li><a href="/update_mission/{{ mission['_id'] }}"><button class="btn btn-warning btn-block">Modifier</button></a></li>
-                                            <li><a href="/ordre_de_mission/{{ mission['_id'] }}"><button class="btn btn-warning btn-block">OM</button></a></li>
-                                            <li><a href="/delete_mission/{{ mission['_id'] }}"><button class="btn btn-danger btn-block">Supprimer</button></a></li>
-                                            <li class="divider"></li>
+                        <div class="input-group btn">
+                            <button type="button" class="btn btn-success  dropdown-toggle pull-right"
+                                    data-toggle="dropdown">
+                                Actions <span class="fa fa-caret-down"></span>
+                            </button>
+                            {% if 'admin' in current_user._roles %}
+                            {% if mission['status_mission'] == 'Validee' %}
+                            <ul class="dropdown-menu">
+                                <li><a href="/mission/{{ mission['_id'] }}">
+                                    <button class="btn btn-info btn-block">Afficher</button>
+                                </a></li>
+                                <li><a href="/ordre_de_mission/{{ mission['_id'] }}">
+                                    <button class="btn btn-warning btn-block">OM</button>
+                                </a></li>
+                                <!--                                        <li><a href="/delete_mission/{{ mission['_id'] }}">-->
+                                <!--                                            <button class="btn btn-danger btn-block">Supprimer</button>-->
+                                <!--                                        </a></li>-->
+                                <li class="divider"></li>
 
-                                        </ul>
-                                    </div>
-                                </td>
-                    </tr>
+                            </ul>
+                            {% else %}
+                            <ul class="dropdown-menu">
+                                <li><a href="/mission/{{ mission['_id'] }}">
+                                    <button class="btn btn-info btn-block">Afficher</button>
+                                </a></li>
+                                <li><a href="validate_mission/{{ mission['_id'] }}">
+                                    <button class="btn btn-primary btn-block">Valider</button>
+                                </a></li>
+                                <li><a href="#">
+                                    <button class="btn btn-dark btn-block">Rejeter</button>
+                                </a></li>
+                                <li><a href="/update_mission/{{ mission['_id'] }}">
+                                    <button class="btn btn-warning btn-block">Modifier</button>
+                                </a></li>
+                                <!--                                        <li><a href="/delete_mission/{{ mission['_id'] }}">-->
+                                <!--                                            <button class="btn btn-danger btn-block">Supprimer</button>-->
+                                <!--                                        </a></li>-->
+                                <li class="divider"></li>
+
+                            </ul>
+                            {% endif %}
+                            {% else %}
+                            {% if mission['status_mission'] == 'Validee' %}
+                            <ul class="dropdown-menu">
+                                <li><a href="/mission/{{ mission['_id'] }}">
+                                    <button class="btn btn-info btn-block">Afficher</button>
+                                </a></li>
+                                <li><a href="/ordre_de_mission/{{ mission['_id'] }}">
+                                    <button class="btn btn-warning btn-block">OM</button>
+                                </a></li>
+                                <li class="divider"></li>
+
+                            </ul>
+                            {% else %}
+                            <ul class="dropdown-menu">
+                                <li><a href="mission/{{ mission['_id'] }}">
+                                    <button class="btn btn-info btn-block">Afficher</button>
+                                </a></li>
+
+                                <li><a href="/update_mission/{{ mission['_id'] }}">
+                                    <button class="btn btn-warning btn-block">Modifier</button>
+                                </a></li>
+
+                                <li class="divider"></li>
+
+                            </ul>
+                            {% endif %}
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
                 </tr>
                 {% endfor %}
                 </tbody>
@@ -82,7 +133,7 @@
 
 </section>
 
-    <script type="text/javascript">
+<script type="text/javascript">
 
       document.addEventListener("DOMContentLoaded",  function(e) {
             alert("txt")
@@ -90,6 +141,10 @@
             console.log(txt);
             alert(txt)
          } false);
+
+
+
+
 
 
 </script>
