@@ -31,7 +31,8 @@ import dateutil.parser
 
 @app.route('/')
 def home():
-    return render_template('admin.html')
+    return render_template('admin_login.html')
+    # return render_template('admin.html')
 
 
 @app.template_filter()
@@ -370,18 +371,21 @@ def login():
                 login_user(users.Users(read_user1['username'], ""))
                 return render_template('missions/list_mission.html', user=read_user1, list_missions=list_missions)
             flash("Wrong username or password!", category='error')
-            return render_template('admin.html')
+            # return render_template('admin.html')
+            return render_template('admin_login.html')
         elif user_with_username:
             read_user2 = users.Users("", "").get_user_by_username(request.values.get("username"))
             if user_with_username and check_password_hash(read_user2['password'], password):
                 login_user(users.Users(read_user2['username'], ""))
                 print(read_user2)
                 return render_template('missions/list_mission.html', user=read_user2, list_missions=list_missions)
-            flash("username/email ou password incorrect !", category='error')
-            return render_template('admin.html')
+            flash("Nom d'utilisateur ou Mot de passe incorrect !", category='error')
+            # return render_template('admin.html')
+            return render_template('admin_login.html')
         else:
-            flash("username/email or password incorrect !", category='error')
-    return render_template('admin.html')
+            flash("Nom d'utilisateur ou Mot de passe incorrect !", category='error')
+    # return render_template('admin.html')
+    return render_template('admin_login.html')
 
 
 @app.route('/logout')
