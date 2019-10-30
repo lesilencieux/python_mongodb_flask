@@ -63,7 +63,8 @@
 <div data-component="sidebar">
     <div class="sidebar">
         <ul class="list-group flex-column d-inline-block first-menu">
-             {% if "u'admin'" in current_user._roles %}
+
+             {% if "admin" in current_user.get_roles() %}
 <!--            Utilisateur-->
 <!--            <li class="list-group-item pl-3 py-2">-->
 <!--                <a href="#"><i class="fa fa-user-o" aria-hidden="true"><span-->

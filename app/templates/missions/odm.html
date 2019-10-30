@@ -29,6 +29,7 @@
 </head>
 
 <body>
+    {% for agent in list_agents %}
 	<!-- Start banner Area -->
 	<section class="relative about-banner" id="home">
 		<div class="overlay overlay-bg"></div>
@@ -43,7 +44,6 @@
 		</div>
 	</section>
 	<!-- End banner Area -->
-
 	<!-- Start Sample Area -->
 	<div class="container">
 
@@ -117,21 +117,21 @@
 		<div class="row">
 			<div class="col-md-12">
 				<blockquote class="generic-blockquote">
-					<strong class="h5">Nom :</strong> {{ list_agents[0]['nom_agent'] }} <br>
-					<strong class="h5">Prénom(s) :</strong> {{ list_agents[0]['prenom_agent'] }} <br>
-					<strong class="h5">Qualité :</strong> {{ list_agents[0]['qualite_agent'] }} <br>
+					<strong class="h5">Nom :</strong> {{ agent['nom_agent'] }} <br>
+					<strong class="h5">Prénom(s) :</strong> {{ agent['prenom_agent'] }} <br>
+					<strong class="h5">Qualité :</strong> {{ agent['qualite_agent'] }} <br>
 					<strong class="h5">Adresse complète :</strong> Cotonou, Tel : 97 44 90 39 <br>
-					<strong class="h5">Date et lieu de naissance :</strong> {{ list_agents[0]['date_et_lieu_de_naissance_agent'] }} <br>
-					<strong class="h5">Matricule :</strong> {{ list_agents[0]['matricule_agent'] }} <br>
-					<strong class="h5">Grade :</strong> {{ list_agents[0]['grade_agent'] }} <br>
+					<strong class="h5">Date et lieu de naissance :</strong> {{ agent['date_et_lieu_de_naissance_agent'] }} <br>
+					<strong class="h5">Matricule :</strong> {{ agent['matricule_agent'] }} <br>
+					<strong class="h5">Grade :</strong> {{ agent['grade_agent'] }} <br>
 					<strong class="h5">De se rendre à :</strong> {{ mission['libelle_localite_mission']}} <br>
 					<strong class="h5">Pour (Objet Complet) :</strong> {{mission['objet_mission']}} <br>
 					<strong class="h5">Moyen de transport :</strong> {{ mission['moyen_transport_mission'] }} <br>
 					<strong class="h5">Date de Départ :</strong> {{mission['date_depart_mission'] }} <br>
 					<strong class="h5">Date de Retour :</strong> {{mission['date_fin_mission'] }}<br>
-					<strong class="h5">Les Frais de transport sont imputables à :</strong> {{ list_agents[0]['nom_agent'] }}  <br>
-					<strong class="h5">Les Frais de mission sont imputables à :</strong>  {{ list_agents[0]['nom_agent'] }}  <br>
-					<strong class="h5">Les Autorités administratives sont priées de faciliter à :</strong> {{ list_agents[0]['nom_agent'] }}
+					<strong class="h5">Les Frais de transport sont imputables à :</strong> {{ agent['nom_agent'] }}  <br>
+					<strong class="h5">Les Frais de mission sont imputables à :</strong>  {{ agent['nom_agent'] }}  <br>
+					<strong class="h5">Les Autorités administratives sont priées de faciliter à :</strong> {{ agent['nom_agent'] }}
 					<br>
 					<strong class="h5">Autorité à saisir en cas d'urgence :</strong>{{ read_struc['responsable_structure']}}
 					<span STYLE="padding:0 0 0 40px;"><strong class="h5">Tél :</strong> 21 32 41 88</span>
@@ -166,7 +166,7 @@
 
 	</div>
 	<!-- End Sample Area -->
-
+    {%endfor%}
 	<!--
 			Script
 			============================================= -->

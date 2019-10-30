@@ -30,11 +30,13 @@ import dateutil.parser
 
 
 @app.route('/')
+@login_required
 def home():
     return render_template('admin.html')
 
 
 @app.template_filter()
+@login_required
 def datetimefilter(value, format='%Y/%m/%d %H:%M'):
     """convert a datetime to a different format."""
     return value.strftime(format)
@@ -44,16 +46,19 @@ app.jinja_env.filters['datetimefilter'] = datetimefilter
 
 
 @app.route('/admin1')
+@login_required
 def home1():
     return render_template('admin.html')
 
 
 @app.route('/structures')
+@login_required
 def structur():
     return render_template('structures/structures.html')
 
 
 @app.route('/missions')
+@login_required
 def missions():
     agt = agent.Agent()
     list_agents = agt.get_agents()
@@ -71,6 +76,7 @@ def missions():
 
 
 @app.route('/villes')
+@login_required
 def villes():
     pay = pays.Pays()
     list_pays = pay.get_payss()
@@ -78,11 +84,13 @@ def villes():
 
 
 @app.route('/pays')
+@login_required
 def payss():
     return render_template('pays/pays.html')
 
 
 @app.route('/budget')
+@login_required
 def budgets():
     typ_budg = type_budgets.TypeBudget()
     list_budgets = typ_budg.get_type_budgets()
@@ -90,31 +98,37 @@ def budgets():
 
 
 @app.route('/type_budget')
+@login_required
 def type_budgetss():
     return render_template('type_budgets/type_budgets.html')
 
 
 @app.route('/corps')
+@login_required
 def corpss():
     return render_template('corps/corps.html')
 
 
 @app.route('/qualites')
+@login_required
 def qualites():
     return render_template('qualites/qualites.html')
 
 
 @app.route('/types')
+@login_required
 def types():
     return render_template('type_agents/type_agents.html')
 
 
 @app.route('/grades')
+@login_required
 def gradess():
     return render_template('grades/grades.html')
 
 
 @app.route('/list_structure')
+@login_required
 def structures():
     structure1 = structure.Structure()
     list_structures = structure1.get_structures()
@@ -122,6 +136,7 @@ def structures():
 
 
 @app.route('/list_mission')
+@login_required
 def missions_list():
     miss1 = mission.Mission()
     list_missions = miss1.get_missions()
@@ -129,6 +144,7 @@ def missions_list():
 
 
 @app.route('/list_budget')
+@login_required
 def liste_budgets():
     budget1 = budget.Budget()
     list_budgets = budget1.get_budgets()
@@ -136,6 +152,7 @@ def liste_budgets():
 
 
 @app.route('/list_type_budget')
+@login_required
 def liste_type_budgets():
     type_budget1 = type_budgets.TypeBudget()
     list_type_budgets = type_budget1.get_type_budgets()
@@ -143,6 +160,7 @@ def liste_type_budgets():
 
 
 @app.route('/list_qualite')
+@login_required
 def list_qualite():
     qualite1 = qualite.Qualite()
     list_qualites = qualite1.get_qualites()
@@ -150,6 +168,7 @@ def list_qualite():
 
 
 @app.route('/list_pays')
+@login_required
 def list_pays():
     pays1 = pays.Pays()
     list_pays = pays1.get_payss()
@@ -157,6 +176,7 @@ def list_pays():
 
 
 @app.route('/list_corps')
+@login_required
 def list_corps():
     corps1 = corps.Corps()
     list_corps = corps1.get_corpss()
@@ -164,6 +184,7 @@ def list_corps():
 
 
 @app.route('/list_grade')
+@login_required
 def list_grade():
     grade1 = grade.Grade()
     list_grades = grade1.get_grades()
@@ -171,6 +192,7 @@ def list_grade():
 
 
 @app.route('/list_agent')
+@login_required
 def agents():
     agent1 = agent.Agent()
     list_agents = agent1.get_agents()
@@ -178,6 +200,7 @@ def agents():
 
 
 @app.route('/show_agent/<id_agent>')
+@login_required
 def show_agents(id_agent):
     agent1 = agent.Agent()
     list_agent = agent1.get_agent(str(id_agent))
@@ -186,6 +209,7 @@ def show_agents(id_agent):
 
 
 @app.route('/show_grade/<id_grade>')
+@login_required
 def show_grade(id_grade):
     grade1 = grade.Grade()
     read_grade = grade1.get_grade(str(id_grade))
@@ -193,6 +217,7 @@ def show_grade(id_grade):
 
 
 @app.route('/show_corps/<id_corpq>')
+@login_required
 def show_corps(id_corpq):
     corps1 = corps.Corps()
     read_corps = corps1.get_corps(str(id_corpq))
@@ -201,6 +226,7 @@ def show_corps(id_corpq):
 
 
 @app.route('/show_type_agent/<id_type_agent>')
+@login_required
 def show_type_agents(id_type_agent):
     type_agent1 = type_agent.TypeAgent()
     read_type_agent = type_agent1.get_type_agent(str(id_type_agent))
@@ -208,6 +234,7 @@ def show_type_agents(id_type_agent):
 
 
 @app.route('/show_qualite/<id_qualite>')
+@login_required
 def show_qualite(id_qualite):
     qualite1 = qualite.Qualite()
     read_qualite = qualite1.get_qualite(str(id_qualite))
@@ -216,6 +243,7 @@ def show_qualite(id_qualite):
 
 
 @app.route('/delete_agent/<id_agent>')
+@login_required
 def delete_agents(id_agent):
     agent1 = agent.Agent()
     agent1.delete_agent(str(id_agent))
@@ -224,6 +252,7 @@ def delete_agents(id_agent):
 
 
 @app.route('/list_type_agent')
+@login_required
 def type_agents():
     type_agent1 = type_agent.TypeAgent()
     list_type_agents = type_agent1.get_type_agents()
@@ -231,6 +260,7 @@ def type_agents():
 
 
 @app.route('/structure/<id_structure>')
+@login_required
 def structure_by_id(id_structure):
     structure1 = structure.Structure()
     read_structure = structure1.get_structure(str(id_structure))
@@ -238,6 +268,7 @@ def structure_by_id(id_structure):
 
 
 @app.route('/update_structure/<id>')
+@login_required
 def update_structure_by_code(id):
     structure1 = structure.Structure()
     read_structure = structure1.get_structure(str(id))
@@ -245,6 +276,7 @@ def update_structure_by_code(id):
 
 
 @app.route('/update_type_agent/<id>')
+@login_required
 def update_type_agent(id):
     type_agent1 = type_agent.TypeAgent()
     read_type_agent = type_agent1.get_type_agent(str(id))
@@ -252,6 +284,7 @@ def update_type_agent(id):
 
 
 @app.route('/update_qualite/<id>')
+@login_required
 def update_qualite(id):
     qualite1 = qualite.Qualite()
     read_qualite = qualite1.get_qualite(str(id))
@@ -259,6 +292,7 @@ def update_qualite(id):
 
 
 @app.route('/update_corps/<id>')
+@login_required
 def update_corps(id):
     corps1 = corps.Corps()
     read_corps = corps1.get_corps(str(id))
@@ -266,6 +300,7 @@ def update_corps(id):
 
 
 @app.route('/update_grade/<id>')
+@login_required
 def update_grade(id):
     grade1 = grade.Grade()
     read_grade = grade1.get_grade(str(id))
@@ -273,6 +308,7 @@ def update_grade(id):
 
 
 @app.route('/delete_structure/<id>')
+@login_required
 def delete_structure_by_id(id):
     structure1 = structure.Structure()
     list_structures = structure1.get_structures()
@@ -285,6 +321,7 @@ def delete_structure_by_id(id):
 
 
 @app.route('/delete_type_budget/<id>')
+@login_required
 def delete_type_budget_by_id(id):
     type_budgets1 = type_budgets.TypeBudget()
     read_structure = type_budgets1.deletetype_budget(id)
@@ -299,6 +336,7 @@ def delete_type_budget_by_id(id):
 
 
 @app.route('/delete_pays/<id>')
+@login_required
 def delete_pays_by_id(id):
     pays1 = pays.Pays()
     read_pays = pays1.delete_pays(id)
@@ -313,6 +351,7 @@ def delete_pays_by_id(id):
 
 
 @app.route('/delete_type_agent/<id>')
+@login_required
 def delete_type_agent(id):
     type_agent1 = type_agent.TypeAgent()
     read_pays = type_agent1.delete_type_agent(id)
@@ -327,6 +366,7 @@ def delete_type_agent(id):
 
 
 @app.route('/delete_ville/<id>')
+@login_required
 def delete_ville_by_id(id):
     v1 = ville.Ville()
     read_ville = v1.delete_ville(id)
@@ -341,6 +381,7 @@ def delete_ville_by_id(id):
 
 
 @app.route('/delete_structure/<code_structure>')
+@login_required
 def delete_structure_by_code(code_structure):
     structure1 = structure.Structure()
     read_structure = structure1.delete_structure_by_code(code_structure)
@@ -352,6 +393,7 @@ def delete_structure_by_code(code_structure):
 
 
 @app.route('/login', methods=['GET', 'POST'])
+@login_required
 def login():
     miss1 = mission.Mission()
     list_missions = miss1.get_missions()
@@ -380,28 +422,31 @@ def login():
 
 
 @app.route('/logout')
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('login'))
 
 
 @app.route('/', methods=['GET', 'POST'])
+@login_required
 def save_users():
     username = request.values.get("usernamesignup")
     email = request.values.get("emailsignup")
     password = request.values.get("passwordsignup")
     print(password)
     u = {"username": username, "email": email, "password": generate_password_hash(password, method='pbkdf2:sha256'),
-         "roles": [str("admin").encode('ascii'), str("invite").encode('ascii')]}
+         "roles": ['admin', 'invite']}
     if username is not None and email is not None and password is not None:
         if users.Users("","","").create_new_users(u):
             flash("Utilisateur créé avec succès!", category='success')
-            return redirect(request.args.get("next") or url_for("write"))
+            return render_template('admin.html')
         flash("Ces identifiants ont été déjà utilisés !", category='error')
         return render_template('admin.html', message="ko")
 
 
 @app.route('/pays', methods=['GET', 'POST'])
+@login_required
 def save_pays():
     code_numerique_pays = request.values.get("code_numerique_pays")
     code_alphat1_pays = request.values.get("code_alphat1_pays")
@@ -420,6 +465,7 @@ def save_pays():
 
 
 @app.route('/villes', methods=['GET', 'POST'])
+@login_required
 def save_villes():
     non_ville = request.values.get("non_ville")
     libelle_fr_pays = request.values.get("libelle_fr_pays")
@@ -435,6 +481,7 @@ def save_villes():
 
 
 @app.route('/list_ville')
+@login_required
 def list_villes():
     vl = ville.Ville()
     list_ville = vl.get_villes()
@@ -442,6 +489,7 @@ def list_villes():
 
 
 @app.route('/structure', methods=['GET', 'POST'])
+@login_required
 def save_structure():
     code_structure = request.values.get("code_structure")
     libelle_structure = request.values.get("libelle_structure")
@@ -464,6 +512,7 @@ def save_structure():
 
 
 @app.route('/structure_update/<id>', methods=['GET', 'POST'])
+@login_required
 def structure_update(id):
     type_agent1 = type_agent.TypeAgent()
     read_type_agent = type_agent1.get_type_agent(str(id))
@@ -486,6 +535,7 @@ def structure_update(id):
 
 
 @app.route('/agent', methods=['GET', 'POST'])
+@login_required
 def save_agent():
     list_grades = grade.Grade().get_grades()
     list_qualities = qualite.Qualite().get_qualites()
@@ -518,6 +568,7 @@ def save_agent():
 
 
 @app.route('/qualite', methods=['GET', 'POST'])
+@login_required
 def save_qualite():
     libelle_qualite = request.values.get("libelle_qualite")
     description_qualite = request.values.get("description_qualite")
@@ -537,6 +588,7 @@ def save_qualite():
 
 
 @app.route('/qualite_update/<id_qualite>', methods=['GET', 'POST'])
+@login_required
 def qualite_update(id_qualite):
     qualite1 = qualite.Qualite()
     read_qualite = qualite1.get_qualite(str(id))
@@ -557,6 +609,7 @@ def qualite_update(id_qualite):
 
 
 @app.route('/type_agent', methods=['GET', 'POST'])
+@login_required
 def save_type_agent():
     libelle_type_agent = request.values.get("libelle_type_agent")
     libelle_unique_type_agent = request.values.get("libelle_unique_type_agent")
@@ -576,6 +629,7 @@ def save_type_agent():
 
 
 @app.route('/type_agent_update/<id_type_agent>', methods=['GET', 'POST'])
+@login_required
 def type_agent_update(id_type_agent):
     type_agent1 = type_agent.TypeAgent()
     read_type_agent = type_agent1.get_type_agent(str(id_type_agent))
@@ -596,6 +650,7 @@ def type_agent_update(id_type_agent):
 
 
 @app.route('/type_budget', methods=['GET', 'POST'])
+@login_required
 def save_type_budget():
     libelle_type_budget = request.values.get("libelle_type_budget")
     libelle_unique_type_budget = request.values.get("libelle_unique_type_budget")
@@ -614,6 +669,7 @@ def save_type_budget():
 
 
 @app.route('/mission', methods=['GET', 'POST'])
+@login_required
 def save_missions():
     agt = agent.Agent()
     list_agents = agt.get_agents()
@@ -704,6 +760,7 @@ def save_missions():
 
 
 @app.route('/update_mission/<id_mission>', methods=['GET', 'POST'])
+@login_required
 def updat_missions(id_mission):
     read_mission = mission.Mission().get_mission(str(id_mission))
     agt = agent.Agent()
@@ -724,6 +781,7 @@ def updat_missions(id_mission):
 
 
 @app.route('/mission_update/<id_mission>', methods=['GET', 'POST'])
+@login_required
 def save_updated_missions(id_mission):
     agt = agent.Agent()
     list_agents = agt.get_agents()
@@ -787,6 +845,7 @@ def save_updated_missions(id_mission):
 
 
 @app.route('/budget', methods=['GET', 'POST'])
+@login_required
 def save_budget():
     type_budget1 = type_budgets.TypeBudget()
     list_type_budgets = type_budget1.get_type_budgets()
@@ -805,6 +864,7 @@ def save_budget():
 
 
 @app.route('/pays_select', methods=['GET', 'POST'])
+@login_required
 def get_city_by_country():
     list_countries = request.form.get("pays_destination_mission")
     list_cities_of_each_country = ville.Ville().get_all_cities_for_countries(list_countries)
@@ -829,6 +889,7 @@ def save_corps():
 
 
 @app.route('/corps_update/<id_corps>', methods=['GET', 'POST'])
+@login_required
 def save_corps_updated(id_corps):
     corps1 = corps.Corps()
     read_corps = corps1.get_corps(str(id_corps))
@@ -848,6 +909,7 @@ def save_corps_updated(id_corps):
 
 
 @app.route('/grade', methods=['GET', 'POST'])
+@login_required
 def save_grade():
     libelle_grade = request.values.get("libelle_grade")
     action_grade = request.values.get("action_grade")
@@ -863,6 +925,7 @@ def save_grade():
 
 
 @app.route('/grade_update/<id_grade>', methods=['GET', 'POST'])
+@login_required
 def save_grade_updated(id_grade):
     grade1 = grade.Grade()
     read_grade = grade1.get_grade(str(id_grade))
@@ -883,6 +946,7 @@ def save_grade_updated(id_grade):
 
 
 @app.route('/mission/<id_mission>')
+@login_required
 def read_mission_by_id(id_mission):
     miss = mission.Mission()
     read_mission = miss.get_mission(str(id_mission))
@@ -890,6 +954,7 @@ def read_mission_by_id(id_mission):
 
 
 @app.route('/validate_mission/<id_mission>')
+@login_required
 def validate_mission(id_mission):
     miss1 = mission.Mission()
     list_missions = miss1.get_missions()
@@ -901,6 +966,7 @@ def validate_mission(id_mission):
 
 
 @app.route('/delete_mission/<id_mission>')
+@login_required
 def delete_mission(id_mission):
     miss1 = mission.Mission()
     list_missions = miss1.get_missions()
@@ -912,6 +978,7 @@ def delete_mission(id_mission):
 
 
 @app.route('/delete_qualite/<id_qualite>')
+@login_required
 def delete_qualite(id_qualite):
     qual1 = qualite.Qualite()
 
@@ -924,6 +991,7 @@ def delete_qualite(id_qualite):
 
 
 @app.route('/delete_corps/<id_corps>')
+@login_required
 def delete_corps(id_corps):
     corps1 = corps.Corps()
     list_corps = corps1.get_corpss()
@@ -935,6 +1003,7 @@ def delete_corps(id_corps):
 
 
 @app.route('/delete_grade/<id_grade>')
+@login_required
 def delete_grade(id_grade):
     grade1 = grade.Grade()
     list_grade2 = grade1.get_grades()
@@ -966,6 +1035,7 @@ def load_user(username):
 
 
 @app.route("/ordre_de_mission/<id_mission>")
+@login_required
 def ordre_de_mission(id_mission):
     structu = structure.Structure()
     mis = mission.Mission().get_mission(id_mission)
