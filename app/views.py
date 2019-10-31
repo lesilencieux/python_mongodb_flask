@@ -488,12 +488,10 @@ def logout():
 
 @app.route('/', methods=['GET', 'POST'])
 @login_required
-def save_users(username, email, roles):
-    login_user(users.Users(username, email, roles))
+def save_users():
     username = request.values.get("usernamesignup")
     email = request.values.get("emailsignup")
     password = request.values.get("passwordsignup")
-    print(password)
     u = {"username": username, "email": email, "password": generate_password_hash(password, method='pbkdf2:sha256'),
          "roles": ['admin', 'invite']}
     if username is not None and email is not None and password is not None:
@@ -738,9 +736,9 @@ def save_type_budget(username, email, roles):
     return render_template('type_budgets/type_budgets.html', message="ko")
 
 
-@app.route('/type_budget/<id>/<username>/<email>/<roles>', methods=['GET', 'POST'])
+@app.route('/update_type_budget/<id_type_mission>/<username>/<email>/<roles>', methods=['GET', 'POST'])
 @login_required
-def save_updated_type_budget(id,username, email, roles):
+def save_updated_type_budget(id_type_mission,username, email, roles):
     login_user(users.Users(username, email, roles))
     libelle_type_budget = request.values.get("libelle_type_budget")
     # libelle_unique_type_budget = request.values.get("libelle_unique_type_budget")
@@ -751,7 +749,7 @@ def save_updated_type_budget(id,username, email, roles):
                    "created_at": datetime.now()}
     typ_budget1 = type_budgets.TypeBudget()
     if libelle_type_budget :
-        if typ_budget1.updatetype_budget(id,type_budgt):
+        if typ_budget1.updatetype_budget(str(id_type_mission),type_budgt):
             flash("Type Budget mise à jour  avec succès!", category='success')
             return render_template('type_budgets/edit_type_budgets.html', message="ok")
         flash("Ce libelle du type budget a été déjà utilisé !", category='error')
