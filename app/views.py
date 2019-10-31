@@ -496,7 +496,7 @@ def logout():
 
 
 @app.route('/', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def save_users(username, email, roles):
     login_user(users.Users(username, email, roles))
     username = request.values.get("usernamesignup")
