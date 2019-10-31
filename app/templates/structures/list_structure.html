@@ -44,15 +44,15 @@
 
                             <ul class="dropdown-menu">
 
-                                <li><a href="structure/{{ structure['_id'] }}">
+                                <li><a href="/structure/{{ structure['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
                                     <button class="btn btn-info btn-block">Afficher</button>
                                 </a></li>
 
-                                 <li><a href="update_structure/{{ structure['_id'] }}">
+                                 <li><a href="/update_structure/{{ structure['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
                                     <button class="btn btn-warning btn-block">Modifier</button>
                                 </a></li>
 
-                                <li><a href="delete_structure/{{ structure['_id'] }}">
+                                <li><a href="/delete_structure/{{ structure['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
                                     <button class="btn btn-danger btn-block">Supprimer</button>
                                 </a></li>
                                 <li class="divider"></li>
@@ -79,7 +79,7 @@
         </div>
         <div class="box-body">
             <div align="right">
-                <a href="structures">
+                <a href="/structures/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
                     <button type="button" class="btn btn-success">Ajouter une Nouvelle Structure</button>
                 </a>
             </div>

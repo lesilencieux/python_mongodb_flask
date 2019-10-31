@@ -6,7 +6,7 @@
 <span>&nbsp;</span>
 
 <center>
-    <form action="/corps_update/{{read_corps['_id']}}" method="POST" autocomplete="on" name="form">
+    <form action="/corps_update/{{read_corps['_id']}}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" method="POST" autocomplete="on" name="form">
 
             <div class="col-sm-offset-3 col-sm-6" id="first-part">
 
@@ -49,7 +49,7 @@
     </div>
     <div class="box-body">
         <div align="right">
-            <a href="/list_corps">
+            <a href="/list_corps/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
                 <button type="button" class="btn btn-success">Aller à liste des corpss</button>
             </a>
         </div>

@@ -1,12 +1,12 @@
 {% extends "homes.html" %}
 {% block content %}
 
-<center><h1>Modification de type_agents</h1></center>
+<center><h1>Modification de Type Agents</h1></center>
 
 <span>&nbsp;</span>
 
 <center>
-    <form action="/type_agent_update/{{read_type_agent['_id']}}" method="POST" autocomplete="on" name="form">
+    <form action="/type_budget/{{read_type_agent['_id']}}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" method="POST" autocomplete="on" name="form">
 
         <div class="col-sm-offset-3 col-sm-6" id="first-part">
 
@@ -54,7 +54,7 @@
 </center>
 <div class="box box-primary">
     <div class="box-header with-border">
-        <h1 class="box-title">Liste type_agent</h1>
+        <h1 class="box-title">Liste Type Agent</h1>
         <div class="box-tools pull-right">
             <button class="btn btn-box-tool" data-widget="collapse">
                 <i class="fa fa-minus"></i>
@@ -63,8 +63,8 @@
     </div>
     <div class="box-body">
         <div align="right">
-            <a href="list_type_agent">
-                <button type="button" class="btn btn-success">Aller à liste des type_agents</button>
+            <a href="/list_type_agent/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
+                <button type="button" class="btn btn-success">Aller à liste des Type Agents</button>
             </a>
         </div>
     </div>

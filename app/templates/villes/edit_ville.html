@@ -1,33 +1,33 @@
 {% extends "homes.html" %}
 {% block content %}
 
-<center><h1>Modification de structures</h1></center>
+<center><h1>Modification de villes</h1></center>
 
 <span>&nbsp;</span>
 
 <center>
-    <form action="/structure" method="POST" autocomplete="on" name="form">
-        {% for structure in read_structure %}
+    <form action="/ville/ville['_id']/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" method="POST" autocomplete="on" name="form">
+        {% for ville in read_ville %}
 
         <div class="col-sm-offset-3 col-sm-6" id="first-part">
 
             <span>&nbsp;</span>
             <div class="input-group margin-bottom-sm">
                 <span class="input-group-addon"><i class="fa fa-tag" aria-hidden="true"></i></span>
-                <input name="libelle_structure" required="required" class="form-control" type="text"
-                       placeholder="Libellé" value={{structure["libelle_structure"]}}>
+                <input name="libelle_ville" required="required" class="form-control" type="text"
+                       placeholder="Libellé" value={{ville["libelle_ville"]}}>
             </div>
             <span>&nbsp;</span>
             <div class="input-group margin-bottom-sm">
                 <span class="input-group-addon"><i class="fa fa-users" aria-hidden="true"></i></span>
-                <input name="delegation_structure" required="required" class="form-control" type="text"
-                       placeholder="Délégations" value={{structure["delegation_structure"]}}>
+                <input name="delegation_ville" required="required" class="form-control" type="text"
+                       placeholder="Délégations" value={{ville["delegation_ville"]}}>
             </div>
             <span>&nbsp;</span>
             <div class="input-group margin-bottom-sm">
                 <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-                <input name="delegue_structure" required="required" class="form-control" type="text"
-                       placeholder="Délégué" value={{structure["delegue_structure"]}}>
+                <input name="delegue_ville" required="required" class="form-control" type="text"
+                       placeholder="Délégué" value={{ville["delegue_ville"]}}>
             </div>
             <span>&nbsp;</span>
             <div>
@@ -49,20 +49,20 @@
         <div class="col-sm-offset-3 col-sm-6" id="second-part">
             <div class="input-group margin-bottom-sm">
                 <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
-                <input name="responsable_structure" required="required" class="form-control" type="text"
-                       placeholder="Responsable" value={{structure["responsable_structure"]}}>
+                <input name="responsable_ville" required="required" class="form-control" type="text"
+                       placeholder="Responsable" value={{ville["responsable_ville"]}}>
             </div>
             <span>&nbsp;</span>
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa  fa-cc-visa" aria-hidden="true"></i></span>
-                <input name="visa_responsable_structure" required="required" class="form-control" type="text"
-                       placeholder="Visa Responsable" value={{structure["visa_responsable_structure"]}}>
+                <input name="visa_responsable_ville" required="required" class="form-control" type="text"
+                       placeholder="Visa Responsable" value={{ville["visa_responsable_ville"]}}>
             </div>
             <span>&nbsp;</span>
             <div class="input-group margin-bottom-sm">
                 <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
-                <input name="action_structure" required="required" class="form-control" type="text" placeholder="Action"
-                       value={{structure["action_structure"]}}>
+                <input name="action_ville" required="required" class="form-control" type="text" placeholder="Action"
+                       value={{ville["action_ville"]}}>
             </div>
             <span>&nbsp;</span>
 
@@ -97,7 +97,7 @@
 </center>
 <div class="box box-primary">
     <div class="box-header with-border">
-        <h1 class="box-title">Liste Structure</h1>
+        <h1 class="box-title">Liste ville</h1>
         <div class="box-tools pull-right">
             <button class="btn btn-box-tool" data-widget="collapse">
                 <i class="fa fa-minus"></i>
@@ -106,8 +106,8 @@
     </div>
     <div class="box-body">
         <div align="right">
-            <a href="lplist_structure">
-                <button type="button" class="btn btn-success">Aller à liste des structures</button>
+            <a href="/list_ville/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
+                <button type="button" class="btn btn-success">Aller à liste des villes</button>
             </a>
         </div>
     </div>

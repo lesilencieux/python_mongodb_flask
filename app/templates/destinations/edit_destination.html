@@ -6,7 +6,7 @@
 <span>&nbsp;</span>
 
 <center>
-    <form action="/destination" method="POST" autocomplete="on" name="form">
+    <form action="/destination/destination['_id']/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" method="POST" autocomplete="on" name="form">
         {% for destination in read_destination %}
 
         <div class="col-sm-offset-3 col-sm-6" id="first-part">
@@ -106,7 +106,7 @@
     </div>
     <div class="box-body">
         <div align="right">
-            <a href="lplist_destination">
+            <a href="/list_destination/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
                 <button type="button" class="btn btn-success">Aller à liste des destinations</button>
             </a>
         </div>

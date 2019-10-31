@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="box-body">
-            <table id="lsttype_budget" class="table table-bordered table-striped">
+            <table id="/type_budget/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                     <th>Libelle</th>

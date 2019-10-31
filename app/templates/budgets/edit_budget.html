@@ -6,7 +6,7 @@
 <span>&nbsp;</span>
 
 <center>
-    <form action="/budget" method="POST" autocomplete="on" name="form">
+    <form action="/budget/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" method="POST" autocomplete="on" name="form">
         {% for budget in read_budget %}
 
             <div class="col-sm-offset-3 col-sm-6" id="first-part">
@@ -54,7 +54,7 @@
     </div>
     <div class="box-body">
         <div align="right">
-            <a href="lplist_budget">
+            <a href="/list_budget/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
                 <button type="button" class="btn btn-success">Aller à liste des budgets</button>
             </a>
         </div>

@@ -11,22 +11,16 @@
                     </button>
                 </div>
             </div>
-            {% for type_budget in read_type_budget %}
             <div class="box-body">
                 <table class="table table-bordered table-striped">
                     <tbody>
 
             <tr>
                 <th>Libellé</th>
-                <td>{{ type_budget['libelle_type_budget']}}</td>
+                <td>{{ read_type_budget['libelle_type_budget']}}</td>
             </tr>
-            <tr>
-                <th>Action</th>
-                <td>{{ type_budget['action_type_budget'] }}</td>
-            <tr>
                 <th>Date de Création</th>
-                <td>{{ type_budget['created_at'] }}</td>
-            {% endfor %}
+                <td>{{ read_type_budget['created_at'] }}</td>
         </tbody>
     </table>
 
