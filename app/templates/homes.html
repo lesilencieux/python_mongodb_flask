@@ -85,12 +85,12 @@
                 <a href="#"><i class="fa fa-user-o" aria-hidden="true"><span class="ml-2 align-middle">Agents</span></i></a>
                 <ul class="list-group flex-column d-inline-block submenu">
                     <li class="list-group-item pl-4">
-                        <a href="list_agent" class="">Lister</a>
+                        <a href="/list_agent/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" class="">Lister</a>
 
                     </li> <!-- end Lister -->
 
                     <li class="list-group-item pl-4">
-                        <a href="agent" class="">Ajouter</a>
+                        <a href="/agent/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" class="">Ajouter</a>
 
                     </li> <!-- end Ajouter -->
 
@@ -105,31 +105,31 @@
                 <ul class="list-group flex-column d-inline-block submenu">
 
                     <li class="list-group-item pl-4">
-                        <a href="/list_mission" class="">Lister</a>
-                        <ul class="list-group flex-column d-inline-block sub-submenu">
-                            <span class="arrow"></span>
-                            <li class="list-group-item pl-4">
-                                <a href="#">Passées</a>
-                            </li>
-                        </ul>
+                        <a href="/list_mission/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" class="">Lister</a>
+<!--                        <ul class="list-group flex-column d-inline-block sub-submenu">-->
+<!--                            <span class="arrow"></span>-->
+<!--                            <li class="list-group-item pl-4">-->
+<!--                                <a href="#">Passées</a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
 
-                        <ul class="list-group flex-column d-inline-block sub-submenu">
-                            <span class="arrow"></span>
-                            <li class="list-group-item pl-4">
-                                <a href="#">Passées</a>
-                            </li>
-                            <li class="list-group-item pl-4">
-                                <a href="#">En cours</a>
-                            </li>
+<!--                        <ul class="list-group flex-column d-inline-block sub-submenu">-->
+<!--                            <span class="arrow"></span>-->
+<!--                            <li class="list-group-item pl-4">-->
+<!--                                <a href="#">Passées</a>-->
+<!--                            </li>-->
+<!--                            <li class="list-group-item pl-4">-->
+<!--                                <a href="#">En cours</a>-->
+<!--                            </li>-->
 
-                            <li class="list-group-item pl-4">
-                                <a href="#">A venir</a>
-                            </li>
-                        </ul>
+<!--                            <li class="list-group-item pl-4">-->
+<!--                                <a href="#">A venir</a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
                     </li>
 
                     <li class="list-group-item pl-4">
-                        <a href="missions" class="">Ajouter</a>
+                        <a href="/missions//{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" class="">Ajouter</a>
                     </li>
                 </ul> <!-- /.submenu -->
             </li> <!-- /.list-group-item -->
@@ -141,27 +141,27 @@
 
                 <ul class="list-group flex-column d-inline-block submenu">
                     <li class="list-group-item pl-4">
-                        <a href="list_agent" class="">Agents</a>
+                        <a href="/list_agent/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" class="">Agents</a>
 
                         <ul class="list-group flex-column d-inline-block sub-submenu">
                             <span class="arrow"></span>
                             <li class="list-group-item pl-4">
-                                <a href="types">Type </a>
+                                <a href="/types/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">Type </a>
                             </li>
                             <li class="list-group-item pl-4">
-                                <a href="qualites">Qualité</a>
+                                <a href="/qualites/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">Qualité</a>
                             </li>
                             <li class="list-group-item pl-4">
-                                <a href="corps">Corps</a>
+                                <a href="/corps/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">Corps</a>
                             </li>
                             <li class="list-group-item pl-4">
-                                <a href="grades">Grade</a>
+                                <a href="/grades/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">Grade</a>
                             </li>
                         </ul>
 
                     </li>
                     <li class="list-group-item pl-4">
-                        <a href="type_budget" class="">Budgets</a>
+                        <a href="/type_budget/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" class="">Budgets</a>
 <!--                        <ul class="list-group flex-column d-inline-block sub-submenu">-->
 <!--                            <span class="arrow" style="top:114px;"></span>-->
 <!--                            <li class="list-group-item pl-4">-->
@@ -171,14 +171,14 @@
 
                     </li>
                     <li class="list-group-item pl-4">
-                        <a href="list_structure" class="">Structures</a>
+                        <a href="/list_structure/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" class="">Structures</a>
                     </li>
                     <li class="list-group-item pl-4">
-                        <a href="pays" class="">Pays</a>
+                        <a href="/pays/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" class="">Pays</a>
                     </li>
 
                     <li class="list-group-item pl-4">
-                        <a href="villes" class="">Villes</a>
+                        <a href="/villes/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" class="">Villes</a>
                     </li>
                 </ul>
             </li>
@@ -191,31 +191,31 @@
                 <ul class="list-group flex-column d-inline-block submenu">
 
                     <li class="list-group-item pl-4">
-                        <a href="/list_mission" class="">Lister</a>
-                        <ul class="list-group flex-column d-inline-block sub-submenu">
-                            <span class="arrow"></span>
-                            <li class="list-group-item pl-4">
-                                <a href="#">Passées</a>
-                            </li>
-                        </ul>
+                        <a href="/list_mission/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" class="">Lister</a>
+<!--                        <ul class="list-group flex-column d-inline-block sub-submenu">-->
+<!--                            <span class="arrow"></span>-->
+<!--                            <li class="list-group-item pl-4">-->
+<!--                                <a href="#">Passées</a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
 
-                        <ul class="list-group flex-column d-inline-block sub-submenu">
-                            <span class="arrow"></span>
-                            <li class="list-group-item pl-4">
-                                <a href="#">Passées</a>
-                            </li>
-                            <li class="list-group-item pl-4">
-                                <a href="#">En cours</a>
-                            </li>
+<!--                        <ul class="list-group flex-column d-inline-block sub-submenu">-->
+<!--                            <span class="arrow"></span>-->
+<!--                            <li class="list-group-item pl-4">-->
+<!--                                <a href="#">Passées</a>-->
+<!--                            </li>-->
+<!--                            <li class="list-group-item pl-4">-->
+<!--                                <a href="#">En cours</a>-->
+<!--                            </li>-->
 
-                            <li class="list-group-item pl-4">
-                                <a href="#">A venir</a>
-                            </li>
-                        </ul>
+<!--                            <li class="list-group-item pl-4">-->
+<!--                                <a href="#">A venir</a>-->
+<!--                            </li>-->
+<!--                        </ul>-->
                     </li>
 
                     <li class="list-group-item pl-4">
-                        <a href="missions" class="">Ajouter</a>
+                        <a href="/missions/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" class="">Ajouter</a>
                     </li>
                 </ul> <!-- /.submenu -->
             </li> <!-- /.list-group-item -->

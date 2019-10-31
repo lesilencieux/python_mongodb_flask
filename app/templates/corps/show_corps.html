@@ -43,7 +43,7 @@
         </div>
         <div class="box-body">
             <div align="right">
-                <a href="/list_corps">
+                <a href="/list_corps/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
                     <button type="button" class="btn btn-success">Aller à liste des corps</button>
                 </a>
             </div>

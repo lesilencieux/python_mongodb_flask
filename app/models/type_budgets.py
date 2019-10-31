@@ -29,13 +29,9 @@ class TypeBudget():
 
     def get_budget(self,type_budget_id):
         myquery = { "_id": ObjectId(type_budget_id) }
-        type_budgets = self.type_budgets.find(myquery)
+        return self.type_budgets.find_one(myquery)
 
-        toreturns = []
-        for type_budget in type_budgets:
-            type_budget["_id"] = str(type_budget["_id"])
-            toreturns.append(type_budget)
-        return jsonify(toreturns)
+
 
     def get_type_budget_by_code(self,code_type_budget):
         myquery = { "code_type_budget": code_type_budget}
@@ -64,8 +60,10 @@ class TypeBudget():
     def updatetype_budget(self,id,newvalues):
         query = {"_id": ObjectId(id)}
         updated = {"$set": newvalues}
-        self.type_budgets.update_one(query,updated)
-        return 'Updated a type_budget with id %s' % id
+        if self.type_budgets.update_one(query,updated):
+            return True
+        else:
+            return False
 
     def deletetype_budget(self, id):
         query = {"_id": ObjectId(id)}

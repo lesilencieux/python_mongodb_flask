@@ -48,7 +48,7 @@
 <span>&nbsp;</span>
 
 <center>
-    <form action="/mission" method="POST" autocomplete="on" name="form">
+    <form action="/mission/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" method="POST" autocomplete="on" name="form">
 
 
         <div class="col-sm-offset-3 col-sm-6" id="first-part">

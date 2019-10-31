@@ -43,7 +43,7 @@
                             {% if 'admin' in current_user._roles %}
                             {% if mission['status_mission'] == 'Validee' %}
                             <ul class="dropdown-menu">
-                                <li><a href="/mission/{{ mission['_id'] }}">
+                                <li><a href="/mission/{{ mission['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
                                     <button class="btn btn-info btn-block">Afficher</button>
                                 </a></li>
                                 <li><a href="/ordre_de_mission/{{ mission['_id'] }}">
@@ -57,16 +57,16 @@
                             </ul>
                             {% else %}
                             <ul class="dropdown-menu">
-                                <li><a href="/mission/{{ mission['_id'] }}">
+                                <li><a href="/mission/{{ mission['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
                                     <button class="btn btn-info btn-block">Afficher</button>
                                 </a></li>
-                                <li><a href="validate_mission/{{ mission['_id'] }}">
+                                <li><a href="validate_mission/{{ mission['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
                                     <button class="btn btn-primary btn-block">Valider</button>
                                 </a></li>
-                                <li><a href="#">
-                                    <button class="btn btn-dark btn-block">Rejeter</button>
-                                </a></li>
-                                <li><a href="/update_mission/{{ mission['_id'] }}">
+<!--                                <li><a href="#">-->
+<!--                                    <button class="btn btn-dark btn-block">Rejeter</button>-->
+<!--                                </a></li>-->
+                                <li><a href="/update_mission/{{ mission['_id'] }}{{ mission['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
                                     <button class="btn btn-warning btn-block">Modifier</button>
                                 </a></li>
                                 <!--                                        <li><a href="/delete_mission/{{ mission['_id'] }}">-->
@@ -79,10 +79,10 @@
                             {% else %}
                             {% if mission['status_mission'] == 'Validee' %}
                             <ul class="dropdown-menu">
-                                <li><a href="/mission/{{ mission['_id'] }}">
+                                <li><a href="/mission/{{ mission['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
                                     <button class="btn btn-info btn-block">Afficher</button>
                                 </a></li>
-                                <li><a href="/ordre_de_mission/{{ mission['_id'] }}">
+                                <li><a href="/ordre_de_mission/{{ mission['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
                                     <button class="btn btn-warning btn-block">OM</button>
                                 </a></li>
                                 <li class="divider"></li>
@@ -90,11 +90,11 @@
                             </ul>
                             {% else %}
                             <ul class="dropdown-menu">
-                                <li><a href="mission/{{ mission['_id'] }}">
+                                <li><a href="/mission/{{ mission['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
                                     <button class="btn btn-info btn-block">Afficher</button>
                                 </a></li>
 
-                                <li><a href="/update_mission/{{ mission['_id'] }}">
+                                <li><a href="/update_mission/{{ mission['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
                                     <button class="btn btn-warning btn-block">Modifier</button>
                                 </a></li>
 
@@ -124,7 +124,7 @@
         </div>
         <div class="box-body">
             <div align="right">
-                <a href="missions">
+                <a href="missions/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
                     <button type="button" class="btn btn-success">Ajouter une Nouvelle Mission</button>
                 </a>
             </div>

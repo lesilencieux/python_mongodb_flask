@@ -80,7 +80,7 @@
         </div>
         <div class="box-body">
             <div align="right">
-                <a href="destinations">
+                <a href="/destinations/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
                     <button type="button" class="btn btn-success">Ajouter une Nouvelle destination</button>
                 </a>
             </div>

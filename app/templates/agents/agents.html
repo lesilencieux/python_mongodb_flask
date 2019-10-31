@@ -4,7 +4,7 @@
 <center><h1>Creation de agents</h1></center>
 
 <center>
-    <form action="/agent" method="POST" autocomplete="on" name="form">
+    <form action="/agent/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" method="POST" autocomplete="on" name="form">
 
         <div class="col-sm-offset-3 col-sm-6" id="first-part">
 
@@ -178,7 +178,7 @@
 
     <div class="box-body">
         <div align="right">
-            <a href="list_agent">
+            <a href="list_agent/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
                 <button type="button" class="btn btn-success">Aller à liste des agents</button>
             </a>
         </div>
