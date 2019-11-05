@@ -134,7 +134,7 @@ class Mission():
 
         for miss in missions_for_agent:
 
-            if (d1 >= miss['date_debut_mission'] >= d1) or (d2 >= miss['date_fin_mission'] >= d1):
+            if (d1 >= miss['date_depart_mission'] >= d1) or (d2 >= miss['date_retour_mission'] >= d1):
                 return True
             else:
                 return False

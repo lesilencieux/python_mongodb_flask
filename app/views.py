@@ -20,6 +20,7 @@ from app.models import type_budgets
 from app.models import pays
 from app.models import ville
 from app.models import mission
+from app.models import object
 from .user import User
 from app.models import users
 from werkzeug.security import generate_password_hash
@@ -61,9 +62,8 @@ def structur(username, email, roles):
 
 @app.route('/missions/<username>/<email>/<roles>')
 @login_required
-def missions(username,email,roles):
-    print(roles)
-    login_user(users.Users(username,email,roles))
+def missions(username, email, roles):
+    login_user(users.Users(username, email, roles))
 
     agt = agent.Agent()
     list_agents = agt.get_agents()
@@ -75,9 +75,19 @@ def missions(username,email,roles):
     struc = structure.Structure()
     list_structures = struc.get_structures()
 
+    obj = object.Object()
+    list_objects = obj.get_objects()
+
     return render_template('missions/missions.html', ville=ville, list_agents=list_agents,
                            list_type_budget=list_type_budget,
-                           list_pays=list_pays, list_structures=list_structures)
+                           list_pays=list_pays, list_structures=list_structures,list_objects=list_objects)
+
+
+@app.route('/objects/<username>/<email>/<roles>')
+@login_required
+def objects(username, email, roles):
+    login_user(users.Users(username, email, roles))
+    return render_template('objects/objects.html')
 
 
 @app.route('/villes/<username>/<email>/<roles>')
@@ -158,6 +168,15 @@ def missions_list(username, email, roles):
     return render_template('missions/list_mission.html', list_missions=list_missions)
 
 
+@app.route('/list_object/<username>/<email>/<roles>')
+@login_required
+def object_list(username, email, roles):
+    login_user(users.Users(username, email, roles))
+    obj = object.Object()
+    list_objects = obj.get_objects()
+    return render_template('objects/list_object.html', list_objects=list_objects)
+
+
 @app.route('/list_budget/<username>/<email>/<roles>')
 @login_required
 def liste_budgets(username, email, roles):
@@ -223,7 +242,7 @@ def agents(username, email, roles):
 
 @app.route('/show_agent/<id_agent>/<username>/<email>/<roles>')
 @login_required
-def show_agents(id_agent,username, email, roles):
+def show_agents(id_agent, username, email, roles):
     login_user(users.Users(username, email, roles))
     agent1 = agent.Agent()
     list_agent = agent1.get_agent(str(id_agent))
@@ -233,7 +252,7 @@ def show_agents(id_agent,username, email, roles):
 
 @app.route('/show_type_budget/<id_type_budget>/<username>/<email>/<roles>')
 @login_required
-def show_type_budget(id_type_budget,username, email, roles):
+def show_type_budget(id_type_budget, username, email, roles):
     login_user(users.Users(username, email, roles))
     type_budget1 = type_budgets.TypeBudget()
     read_type_budget = type_budget1.get_budget(str(id_type_budget))
@@ -242,7 +261,7 @@ def show_type_budget(id_type_budget,username, email, roles):
 
 @app.route('/show_grade/<id_grade>/<username>/<email>/<roles>')
 @login_required
-def show_grade(id_grade,username, email, roles):
+def show_grade(id_grade, username, email, roles):
     login_user(users.Users(username, email, roles))
     grade1 = grade.Grade()
     read_grade = grade1.get_grade(str(id_grade))
@@ -251,7 +270,7 @@ def show_grade(id_grade,username, email, roles):
 
 @app.route('/show_corps/<id_corpq>/<username>/<email>/<roles>')
 @login_required
-def show_corps(id_corpq,username, email, roles):
+def show_corps(id_corpq, username, email, roles):
     login_user(users.Users(username, email, roles))
     corps1 = corps.Corps()
     read_corps = corps1.get_corps(str(id_corpq))
@@ -261,7 +280,7 @@ def show_corps(id_corpq,username, email, roles):
 
 @app.route('/show_type_agent/<id_type_agent>/<username>/<email>/<roles>')
 @login_required
-def show_type_agents(id_type_agent,username, email, roles):
+def show_type_agents(id_type_agent, username, email, roles):
     login_user(users.Users(username, email, roles))
     type_agent1 = type_agent.TypeAgent()
     read_type_agent = type_agent1.get_type_agent(str(id_type_agent))
@@ -270,7 +289,7 @@ def show_type_agents(id_type_agent,username, email, roles):
 
 @app.route('/show_qualite/<id_qualite>/<username>/<email>/<roles>')
 @login_required
-def show_qualite(id_qualite,username, email, roles):
+def show_qualite(id_qualite, username, email, roles):
     login_user(users.Users(username, email, roles))
     qualite1 = qualite.Qualite()
     read_qualite = qualite1.get_qualite(str(id_qualite))
@@ -280,7 +299,7 @@ def show_qualite(id_qualite,username, email, roles):
 
 @app.route('/delete_agent/<id_agent>/<username>/<email>/<roles>')
 @login_required
-def delete_agents(id_agent,username, email, roles):
+def delete_agents(id_agent, username, email, roles):
     login_user(users.Users(username, email, roles))
     agent1 = agent.Agent()
     agent1.delete_agent(str(id_agent))
@@ -299,7 +318,7 @@ def type_agents(username, email, roles):
 
 @app.route('/structure/<id_structure>/<username>/<email>/<roles>')
 @login_required
-def structure_by_id(id_structure,username, email, roles):
+def structure_by_id(id_structure, username, email, roles):
     login_user(users.Users(username, email, roles))
     structure1 = structure.Structure()
     read_structure = structure1.get_structure(str(id_structure))
@@ -308,15 +327,16 @@ def structure_by_id(id_structure,username, email, roles):
 
 @app.route('/update_structure/<id>/<username>/<email>/<roles>')
 @login_required
-def update_structure_by_code(id,username, email, roles):
+def update_structure_by_code(id, username, email, roles):
     login_user(users.Users(username, email, roles))
     structure1 = structure.Structure()
     read_structure = structure1.get_structure(str(id))
     return render_template('structures/edit_structure.html', read_structure=read_structure)
 
+
 @app.route('/update_type_budget/<id>/<username>/<email>/<roles>')
 @login_required
-def update_type_budget(id,username, email, roles):
+def update_type_budget(id, username, email, roles):
     login_user(users.Users(username, email, roles))
     type_budge1 = type_budgets.TypeBudget()
     read_type_budget = type_budge1.get_budget(str(id))
@@ -325,7 +345,7 @@ def update_type_budget(id,username, email, roles):
 
 @app.route('/update_type_agent/<id>/<username>/<email>/<roles>')
 @login_required
-def update_type_agent(id,username, email, roles):
+def update_type_agent(id, username, email, roles):
     login_user(users.Users(username, email, roles))
     type_agent1 = type_agent.TypeAgent()
     read_type_agent = type_agent1.get_type_agent(str(id))
@@ -334,7 +354,7 @@ def update_type_agent(id,username, email, roles):
 
 @app.route('/update_qualite/<id>/<username>/<email>/<roles>')
 @login_required
-def update_qualite(id,username, email, roles):
+def update_qualite(id, username, email, roles):
     login_user(users.Users(username, email, roles))
     qualite1 = qualite.Qualite()
     read_qualite = qualite1.get_qualite(str(id))
@@ -343,7 +363,7 @@ def update_qualite(id,username, email, roles):
 
 @app.route('/update_corps/<id>/<username>/<email>/<roles>')
 @login_required
-def update_corps(id,username, email, roles):
+def update_corps(id, username, email, roles):
     login_user(users.Users(username, email, roles))
     corps1 = corps.Corps()
     read_corps = corps1.get_corps(str(id))
@@ -352,7 +372,7 @@ def update_corps(id,username, email, roles):
 
 @app.route('/update_grade/<id>/<username>/<email>/<roles>')
 @login_required
-def update_grade(id,username, email, roles):
+def update_grade(id, username, email, roles):
     login_user(users.Users(username, email, roles))
     grade1 = grade.Grade()
     read_grade = grade1.get_grade(str(id))
@@ -361,7 +381,7 @@ def update_grade(id,username, email, roles):
 
 @app.route('/delete_structure/<id>/<username>/<email>/<roles>')
 @login_required
-def delete_structure_by_id(id,username, email, roles):
+def delete_structure_by_id(id, username, email, roles):
     login_user(users.Users(username, email, roles))
     structure1 = structure.Structure()
     list_structures = structure1.get_structures()
@@ -375,7 +395,7 @@ def delete_structure_by_id(id,username, email, roles):
 
 @app.route('/delete_type_budget/<id>/<username>/<email>/<roles>')
 @login_required
-def delete_type_budget_by_id(id,username, email, roles):
+def delete_type_budget_by_id(id, username, email, roles):
     login_user(users.Users(username, email, roles))
     type_budgets1 = type_budgets.TypeBudget()
     read_structure = type_budgets1.deletetype_budget(id)
@@ -391,7 +411,7 @@ def delete_type_budget_by_id(id,username, email, roles):
 
 @app.route('/delete_pays/<id>/<username>/<email>/<roles>')
 @login_required
-def delete_pays_by_id(id,username, email, roles):
+def delete_pays_by_id(id, username, email, roles):
     login_user(users.Users(username, email, roles))
     pays1 = pays.Pays()
     read_pays = pays1.delete_pays(id)
@@ -407,7 +427,7 @@ def delete_pays_by_id(id,username, email, roles):
 
 @app.route('/delete_type_agent/<id>/<username>/<email>/<roles>')
 @login_required
-def delete_type_agent(id,username, email, roles):
+def delete_type_agent(id, username, email, roles):
     login_user(users.Users(username, email, roles))
     type_agent1 = type_agent.TypeAgent()
     read_pays = type_agent1.delete_type_agent(id)
@@ -423,7 +443,7 @@ def delete_type_agent(id,username, email, roles):
 
 @app.route('/delete_ville/<id>/<username>/<email>/<roles>')
 @login_required
-def delete_ville_by_id(id,username, email, roles):
+def delete_ville_by_id(id, username, email, roles):
     login_user(users.Users(username, email, roles))
     v1 = ville.Ville()
     read_ville = v1.delete_ville(id)
@@ -439,7 +459,7 @@ def delete_ville_by_id(id,username, email, roles):
 
 @app.route('/delete_structure/<code_structure>/<username>/<email>/<roles>')
 @login_required
-def delete_structure_by_code(code_structure,username, email, roles):
+def delete_structure_by_code(code_structure, username, email, roles):
     login_user(users.Users(username, email, roles))
     structure1 = structure.Structure()
     read_structure = structure1.delete_structure_by_code(code_structure)
@@ -487,7 +507,6 @@ def logout():
 
 
 @app.route('/', methods=['GET', 'POST'])
-@login_required
 def save_users():
     username = request.values.get("usernamesignup")
     email = request.values.get("emailsignup")
@@ -564,7 +583,7 @@ def save_structure(username, email, roles):
                 "visa_responsable_structure": visa_responsable_structure,
                 "created_at": datetime.now()}
     structure1 = structure.Structure()
-    if code_structure is not  None and libelle_structure is not  None and delegation_structure is not  None and delegue_structure is not  None and  responsable_structure is not  None and  visa_responsable_structure is not  None :
+    if code_structure is not None and libelle_structure is not None and delegation_structure is not None and delegue_structure is not None and responsable_structure is not None and visa_responsable_structure is not None:
         if structure1.create_new_structure(structur):
             flash("Structure créé avec succès!", category='success')
             return render_template('structures/structures.html', message="ok")
@@ -574,7 +593,7 @@ def save_structure(username, email, roles):
 
 @app.route('/structure_update/<id>/<username>/<email>/<roles>', methods=['GET', 'POST'])
 @login_required
-def structure_update(id,username, email, roles):
+def structure_update(id, username, email, roles):
     login_user(users.Users(username, email, roles))
     type_agent1 = type_agent.TypeAgent()
     read_type_agent = type_agent1.get_type_agent(str(id))
@@ -606,6 +625,8 @@ def save_agent(username, email, roles):
     corps_list = corps.Corps().get_corpss()
     prenom_agent = request.values.get("prenom_agent")
     nom_agent = request.values.get("nom_agent")
+    telephone_agent = request.values.get("telephone_agent")
+    indice_agent = request.values.get("indice_agent")
     matricule_agent = request.values.get("matricule_agent")
     structure_agent = request.form.get("structure_agent")
     ifu_agent = request.values.get("ifu_agent")
@@ -615,6 +636,8 @@ def save_agent(username, email, roles):
     qualite_agent = request.form.get("qualite_agent")
     agt = {"prenom_agent": prenom_agent, "nom_agent": nom_agent,
            "matricule_agent": matricule_agent,
+           "telephone_agent": telephone_agent,
+           "indice_agent": indice_agent,
            "structure_agent": structure_agent, "ifu_agent": ifu_agent,
            "corps_agent": corps_agent,
            "date_et_lieu_de_naissance_agent": date_et_lieu_de_naissance_agent,
@@ -653,7 +676,7 @@ def save_qualite(username, email, roles):
 
 @app.route('/qualite_update/<id_qualite>/<username>/<email>/<roles>', methods=['GET', 'POST'])
 @login_required
-def qualite_update(id_qualite,username, email, roles):
+def qualite_update(id_qualite, username, email, roles):
     login_user(users.Users(username, email, roles))
     qualite1 = qualite.Qualite()
     read_qualite = qualite1.get_qualite(str(id))
@@ -696,7 +719,7 @@ def save_type_agent(username, email, roles):
 
 @app.route('/type_agent_update/<id_type_agent>/<username>/<email>/<roles>', methods=['GET', 'POST'])
 @login_required
-def type_agent_update(id_type_agent,username, email, roles):
+def type_agent_update(id_type_agent, username, email, roles):
     login_user(users.Users(username, email, roles))
     type_agent1 = type_agent.TypeAgent()
     read_type_agent = type_agent1.get_type_agent(str(id_type_agent))
@@ -736,9 +759,9 @@ def save_type_budget(username, email, roles):
     return render_template('type_budgets/type_budgets.html', message="ko")
 
 
-@app.route('/update_type_budget/<id_type_mission>/<username>/<email>/<roles>', methods=['GET', 'POST'])
+@app.route('/update_type_budget/<id_type_budget>/<username>/<email>/<roles>', methods=['GET', 'POST'])
 @login_required
-def save_updated_type_budget(id_type_mission,username, email, roles):
+def save_updated_type_budget(id_type_budget, username, email, roles):
     login_user(users.Users(username, email, roles))
     libelle_type_budget = request.values.get("libelle_type_budget")
     # libelle_unique_type_budget = request.values.get("libelle_unique_type_budget")
@@ -746,17 +769,17 @@ def save_updated_type_budget(id_type_mission,username, email, roles):
     # action_type_budget = request.values.get("action_type_budget")
 
     type_budgt = {"libelle_type_budget": libelle_type_budget,
-                   "created_at": datetime.now()}
+                  "created_at": datetime.now()}
     typ_budget1 = type_budgets.TypeBudget()
-    if libelle_type_budget :
-        if typ_budget1.updatetype_budget(str(id_type_mission),type_budgt):
+    if libelle_type_budget:
+        if typ_budget1.updatetype_budget(str(id_type_budget), type_budgt):
             flash("Type Budget mise à jour  avec succès!", category='success')
             return render_template('type_budgets/edit_type_budgets.html', message="ok")
         flash("Ce libelle du type budget a été déjà utilisé !", category='error')
     return render_template('type_budgets/edit_type_budgets.html', message="ko")
 
 
-@app.route('/mission/<username>/<email>/<roles>', methods=['GET', 'POST'])
+@app.route('/create_mission/<username>/<email>/<roles>', methods=['GET', 'POST'])
 @login_required
 def save_missions(username, email, roles):
     login_user(users.Users(username, email, roles))
@@ -767,15 +790,9 @@ def save_missions(username, email, roles):
     pay = pays.Pays()
     list_pays = pay.get_payss()
 
-    date_debut_mission = request.values.get("date_debut_mission")
-    date_fin_mission = request.values.get("date_fin_mission")
-    responsable_structure = request.values.get("responsable_structure")
-    objet_mission = request.values.get("objet_mission")
-    destination_mission = request.values.get("destination_mission")
+    obj = object.Object()
+    list_objects = obj.get_objects()
     reference_ordre_mission = request.values.get("reference_ordre_mission")
-    type_budget = request.form.get("type_budget")
-    montant_budget_mission = request.values.get("montant_budget_mission")
-    devise_budget = request.form.get("devise_budget")
     date_depart_mission = request.values.get("date_depart_mission")
     date_retour_mission = request.values.get("date_retour_mission")
     pays_destination_mission = request.form.getlist("pays_destination_mission")
@@ -790,10 +807,7 @@ def save_missions(username, email, roles):
     code_localite_parente_mission = request.values.get("code_localite_parente_mission")
     reference_lettre_de_mission = request.values.get("reference_lettre_de_mission")
     code_localite_mission = request.values.get("code_localite_mission")
-    current_username = request.values.get("input_current_user")
-    to_save_mission = {"date_debut_mission": dateutil.parser.parse(date_debut_mission),
-                       "date_fin_mission": dateutil.parser.parse(date_fin_mission),
-                       "responsable_structure": responsable_structure,
+    to_save_mission = {
                        "reference_lettre_de_mission": reference_lettre_de_mission,
                        "code_localite_mission": code_localite_mission,
                        "code_localite_parente_mission": code_localite_parente_mission,
@@ -808,14 +822,9 @@ def save_missions(username, email, roles):
                        "pays_destination_mission": pays_destination_mission,
                        "date_retour_mission": dateutil.parser.parse(date_retour_mission),
                        "date_depart_mission": dateutil.parser.parse(date_depart_mission),
-                       "devise_budget": devise_budget,
-                       "montant_budget_mission": montant_budget_mission,
-                       "objet_mission": objet_mission, "destination_mission": destination_mission,
                        "reference_ordre_mission": reference_ordre_mission,
-                       "type_budget": type_budget,
                        "created_at": dateutil.parser.parse(str(datetime.now())),
-                       "status_mission": "En attente de validation",
-                       "auteur": current_username
+                       "status_mission": "En attente de validation"
                        }
     missi = mission.Mission()
 
@@ -823,34 +832,58 @@ def save_missions(username, email, roles):
     list_structures = struc.get_structures()
 
     for agt in agents_mission:
-
-        if missi.chech_mission_for_agent_between_two_dates(agt, date_debut_mission, date_fin_mission):
+        print( missi.chech_mission_for_agent_between_two_dates(agt, date_depart_mission, date_retour_mission))
+        if missi.chech_mission_for_agent_between_two_dates(agt, date_depart_mission, date_retour_mission):
             flash(
-                "L'agent " + agt + " a déjà une mission en cours dans la période de " + date_debut_mission + " au " + date_fin_mission,
+                "L'agent " + agt + " a déjà une mission en cours dans la période de " + date_depart_mission + " au " + date_retour_mission,
                 category='error')
             return render_template('missions/missions.html', list_agents=list_agents, list_pays=list_pays,
-                                   list_type_budget=list_type_budget, list_structures=list_structures)
-
-    for agt in agents_mission:
-        if missi.check_if_agent_has_already_on_mission_for_end_date(agt, date_debut_mission, date_fin_mission):
-            flash(
-                "L'agent " + agt + " a déjà une mission en cours dans la période de " + date_debut_mission + " au " + date_fin_mission,
-                category='error')
+                                   list_type_budget=list_type_budget, list_structures=list_structures,list_objects=list_objects)
+    if object.Object().chech_object_mission_between_two_dates(reference_lettre_de_mission,date_depart_mission,date_retour_mission):
+        if missi.create_new_mission(to_save_mission):
+            flash("Mission créé avec succès!", category='success')
             return render_template('missions/missions.html', list_agents=list_agents, list_pays=list_pays,
-                                   list_type_budget=list_type_budget, list_structures=list_structures)
-
-    if missi.create_new_mission(to_save_mission):
-        flash("Mission créé avec succès!", category='success')
+                                   list_type_budget=list_type_budget, list_structures=list_structures,
+                                   list_objects=list_objects)
+        flash("Quelque chose s'est mal passé lors de la création de la mission !", category='error')
         return render_template('missions/missions.html', list_agents=list_agents, list_pays=list_pays,
-                               list_type_budget=list_type_budget, list_structures=list_structures)
-    flash("Quelque chose s'est mal passé lors de la création de la mission !", category='error')
-    return render_template('missions/missions.html', list_agents=list_agents, list_pays=list_pays,
-                           list_type_budget=list_type_budget, list_structures=list_structures)
+                               list_type_budget=list_type_budget, list_structures=list_structures,
+                               list_objects=list_objects)
+    else:
+        object_mission = object.Object().get_object_by_ref_lettre_mission(reference_lettre_de_mission)
+        flash("La date de départ et de retour de mission doivent être comprises entre "+str(object_mission['date_debut_mission']) +" et " +str(object_mission['date_fin_mission'])+" dates de l'objet de mission choisi ", category='error')
+        return render_template('missions/missions.html', list_agents=list_agents, list_pays=list_pays,
+                               list_type_budget=list_type_budget, list_structures=list_structures,
+                               list_objects=list_objects)
+
+
+@app.route('/object/<username>/<email>/<roles>', methods=['GET', 'POST'])
+@login_required
+def save_objects(username, email, roles):
+    login_user(users.Users(username, email, roles))
+
+    date_debut_mission = request.values.get("date_debut_mission")
+    date_fin_mission = request.values.get("date_fin_mission")
+    objet_mission = request.values.get("objet_mission")
+    reference_lettre_de_mission = request.values.get("reference_lettre_de_mission")
+    to_save_object = {"date_debut_mission": dateutil.parser.parse(date_debut_mission),
+                      "date_fin_mission": dateutil.parser.parse(date_fin_mission),
+                      "reference_lettre_de_mission": reference_lettre_de_mission,
+                      "objet_mission": objet_mission,
+                      "auteur": users.Users(username, email, roles).get_username()
+                      }
+    objt = object.Object()
+
+    if objt.create_new_object(to_save_object):
+        flash("Object de Mission créé avec succès!", category='success')
+        return render_template('objects/objects.html')
+    flash("Quelque chose s'est mal passé lors de la création l'object de mission !", category='error')
+    return render_template('objects/objects.html')
 
 
 @app.route('/update_mission/<id_mission>/<username>/<email>/<roles>', methods=['GET', 'POST'])
 @login_required
-def updat_missions(id_mission,username, email, roles):
+def updat_missions(id_mission, username, email, roles):
     login_user(users.Users(username, email, roles))
     read_mission = mission.Mission().get_mission(str(id_mission))
     agt = agent.Agent()
@@ -872,7 +905,7 @@ def updat_missions(id_mission,username, email, roles):
 
 @app.route('/mission_update/<id_mission>/<username>/<email>/<roles>', methods=['GET', 'POST'])
 @login_required
-def save_updated_missions(id_mission,username, email, roles):
+def save_updated_missions(id_mission, username, email, roles):
     login_user(users.Users(username, email, roles))
     agt = agent.Agent()
     list_agents = agt.get_agents()
@@ -984,7 +1017,7 @@ def save_corps(username, email, roles):
 
 @app.route('/corps_update/<id_corps>/<username>/<email>/<roles>', methods=['GET', 'POST'])
 @login_required
-def save_corps_updated(id_corps,username, email, roles):
+def save_corps_updated(id_corps, username, email, roles):
     login_user(users.Users(username, email, roles))
     corps1 = corps.Corps()
     read_corps = corps1.get_corps(str(id_corps))
@@ -1022,7 +1055,7 @@ def save_grade(username, email, roles):
 
 @app.route('/grade_update/<id_grade>/<username>/<email>/<roles>', methods=['GET', 'POST'])
 @login_required
-def save_grade_updated(id_grade,username, email, roles):
+def save_grade_updated(id_grade, username, email, roles):
     login_user(users.Users(username, email, roles))
     grade1 = grade.Grade()
     read_grade = grade1.get_grade(str(id_grade))
@@ -1044,8 +1077,8 @@ def save_grade_updated(id_grade,username, email, roles):
 
 @app.route('/mission/<id_mission>/<username>/<email>/<roles>')
 @login_required
-def read_mission_by_id(id_mission ,username,email,roles):
-    login_user(users.Users(username,email,roles))
+def read_mission_by_id(id_mission, username, email, roles):
+    login_user(users.Users(username, email, roles))
     miss = mission.Mission()
     read_mission = miss.get_mission(str(id_mission))
     return render_template('missions/show_mission.html', read_mission=read_mission)
@@ -1053,7 +1086,7 @@ def read_mission_by_id(id_mission ,username,email,roles):
 
 @app.route('/validate_mission/<id_mission>/<username>/<email>/<roles>')
 @login_required
-def validate_mission(id_mission,username, email, roles):
+def validate_mission(id_mission, username, email, roles):
     login_user(users.Users(username, email, roles))
     miss1 = mission.Mission()
     list_missions = miss1.get_missions()
@@ -1066,7 +1099,7 @@ def validate_mission(id_mission,username, email, roles):
 
 @app.route('/delete_mission/<id_mission>/<username>/<email>/<roles>')
 @login_required
-def delete_mission(id_mission,username, email, roles):
+def delete_mission(id_mission, username, email, roles):
     login_user(users.Users(username, email, roles))
     miss1 = mission.Mission()
     list_missions = miss1.get_missions()
@@ -1079,20 +1112,20 @@ def delete_mission(id_mission,username, email, roles):
 
 @app.route('/delete_type_budget/<id>/<username>/<email>/<roles>')
 @login_required
-def delete_type_budget(id,username, email, roles):
+def delete_type_budget(id, username, email, roles):
     login_user(users.Users(username, email, roles))
     tb1 = type_budgets.TypeBudget()
     list_type_budgets = tb1.get_missions()
     if type_budgets.TypeBudget().deletetype_budget(str(id)):
         flash("Type budget  supprimé avec succès!", category='success')
         return render_template('type_budgets/list_type_budget.html', list_type_budgets=list_type_budgets)
-    flash("Quelque chose s'est mal passé lors de la suppression de la mission !", category='error')
-    return render_template('missions/list_mission.html', list_missions=list_missions)
+    flash("Quelque chose s'est mal passé lors de la suppression du type budget !", category='error')
+    return render_template('type_budgets/list_type_budget.html', list_type_budgets=list_type_budgets)
 
 
 @app.route('/delete_qualite/<id_qualite>/<username>/<email>/<roles>')
 @login_required
-def delete_qualite(id_qualite,username, email, roles):
+def delete_qualite(id_qualite, username, email, roles):
     login_user(users.Users(username, email, roles))
     qual1 = qualite.Qualite()
 
@@ -1106,7 +1139,7 @@ def delete_qualite(id_qualite,username, email, roles):
 
 @app.route('/delete_corps/<id_corps>/<username>/<email>/<roles>')
 @login_required
-def delete_corps(id_corps,username, email, roles):
+def delete_corps(id_corps, username, email, roles):
     login_user(users.Users(username, email, roles))
     corps1 = corps.Corps()
     list_corps = corps1.get_corpss()
@@ -1119,7 +1152,7 @@ def delete_corps(id_corps,username, email, roles):
 
 @app.route('/delete_grade/<id_grade>/<username>/<email>/<roles>')
 @login_required
-def delete_grade(id_grade,username, email, roles):
+def delete_grade(id_grade, username, email, roles):
     login_user(users.Users(username, email, roles))
     grade1 = grade.Grade()
     list_grade2 = grade1.get_grades()
@@ -1156,13 +1189,15 @@ def ordre_de_mission(id_mission):
     structu = structure.Structure()
     mis = mission.Mission().get_mission(id_mission)
     read_struc = structu.get_structure_by_code(str(mis['structure_initiatrice_mission']))
-
+    now = datetime.now()
+    other_date_format = "%d/%m/%Y, %H:%M:%S"
     list_agts = mis['agents_mission']
     list_agents = []
     for agt in list_agts:
         agent_x = agent.Agent().get_agent_by_ifu(str(agt).split()[0])
         list_agents.append(agent_x)
-    return render_template('missions/odm.html', mission=mis, list_agents=list_agents, current_time=datetime.now(),
+    return render_template('missions/odm.html', mission=mis, list_agents=list_agents,
+                           current_time=now.strftime("%d %b, %Y"),
                            read_struc=read_struc)
 
 # def groupe_ville_by_pay():

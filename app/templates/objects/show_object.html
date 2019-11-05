@@ -1,0 +1,93 @@
+{% extends "homes.html" %}
+{% block content %}
+<center>
+    <section class="content">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h1 class="box-title"> Details des informations de la mission </h1>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="box-body">
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <th>Date de Création</th>
+                        <td>{{ read_mission['created_at'] }}</td>
+
+                    <tr>
+                        <th>Code mission</th>
+                        <td>{{ read_mission['date_debut_mission']}}</td>
+                    </tr>
+                    <tr>
+                        <th>Libellé</th>
+                        <td>{{ read_mission['date_fin_mission']}}</td>
+                    </tr>
+                    <tr>
+                        <th>Délégation</th>
+                        <td>{{ read_mission['reference_ordre_mission']}}</td>
+                    </tr>
+                    <tr>
+                        <th>Délégué</th>
+                        <td>{{ read_mission['montant_budget_mission'] }}</td>
+                    </tr>
+                    <tr>
+                        <th>Responsable</th>
+                        <td>{{ read_mission['devise_budget'] }}</td>
+                    </tr>
+                    <tr>
+                        <th>Visa Responsable</th>
+                        <td>{{ read_mission['responsable_structure'] }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Type de Budget</th>
+                        <td>{{ read_mission['type_budget'] }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Objet</th>
+                        <td>{{ read_mission['objet_mission'] }}</td>
+                    </tr>
+                    <tr>
+                        <th>Statut</th>
+                        <td>{{ read_mission['status_mission'] }}</td>
+                    </tr>
+                    <tr>
+                        <th>Moyen de Transport</th>
+                        <td>{{ read_mission['moyen_transport_mission'] }}</td>
+                    </tr>
+<tr>
+                        <th>Immatriculation Moyen de Transport</th>
+                        <td>{{ read_mission['immatriculation_moyen_transport_mission'] }}</td>
+                    </tr>
+
+                    <tr>
+                        <th>Villes</th>
+                        <td>{{ read_mission['ville_pays_destination_mission'] }}</td>
+                    </tr>
+                    <tr>
+                        <th>Agents</th>
+                        <td>{{ read_mission['agents_mission'] }}</td>
+                    </tr>
+ <tr>
+                        <th>Structure</th>
+                        <td>{{ read_mission['structure_initiatrice_mission'] }}</td>
+                    </tr><tr>
+                        <th>Date de Création</th>
+                        <td>{{ read_mission['created_at'] }}</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </section>
+</center>
+{% endblock %}

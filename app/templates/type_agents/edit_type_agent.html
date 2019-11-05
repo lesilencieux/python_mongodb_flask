@@ -12,21 +12,18 @@
 
             <span>&nbsp;</span>
             <div class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa  fa-code-fork" aria-hidden="true"></i></span>
-                <input name="libelle_type_agent" value="{{read_type_agent['libelle_type_agent']}}" required="required" class="form-control" type="text"
+                 <input name="libelle_type_agent" value="{{read_type_agent['libelle_type_agent']}}" required="required" class="form-control" type="text"
                        placeholder="Libelle">
             </div>
             <span>&nbsp;</span>
             <div class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-tag" aria-hidden="true"></i></span>
-                <input name="libelle_unique_type_agent" value="{{read_type_agent['libelle_unique_type_agent']}}" required="required" class="form-control" type="text"
+                 <input name="libelle_unique_type_agent" value="{{read_type_agent['libelle_unique_type_agent']}}" required="required" class="form-control" type="text"
                        placeholder="Libelle Unique">
             </div>
 
             <span>&nbsp;</span>
             <div class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-tag" aria-hidden="true"></i></span>
-                <input name="description_type_agent" value="{{read_type_agent['description_type_agent']}}" required="required" class="form-control" type="text"
+                 <input name="description_type_agent" value="{{read_type_agent['description_type_agent']}}" required="required" class="form-control" type="text"
                        placeholder="Description Type Agent">
             </div>
             <span>&nbsp;</span>
@@ -34,15 +31,13 @@
             <div>
                 <a href="#">
                     <button type="button" id="first-reset" class="btn btn-primary btn-sm pull-left">
-                        <span class="visible-xs"><i class="fa fa-refresh fa-2x"></i></span>
-                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-refresh"></i> Annuler</span>
+                         <span class="visible-sm visible-md visible-lg">  Annuler</span>
                     </button>
                 </a>
 
                 <div class="col-xs-4 col-sm-3">
                     <button type="submit" class="btn btn-primary btn-sm pull-right">
-                        <span class="visible-xs"><i class="fa fa-save fa-2x"></i></span>
-                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-save"></i> {{'Valider'}}</span>
+                         <span class="visible-sm visible-md visible-lg">  {{'Valider'}}</span>
                     </button>
                 </div>
 
@@ -53,14 +48,7 @@
     </form>
 </center>
 <div class="box box-primary">
-    <div class="box-header with-border">
-        <h1 class="box-title">Liste Type Agent</h1>
-        <div class="box-tools pull-right">
-            <button class="btn btn-box-tool" data-widget="collapse">
-                <i class="fa fa-minus"></i>
-            </button>
-        </div>
-    </div>
+
     <div class="box-body">
         <div align="right">
             <a href="/list_type_agent/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">

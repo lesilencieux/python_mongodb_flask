@@ -88,10 +88,16 @@ class Users():
         return self.username
 
     def get_roles(self):
-        list_roles= []
-        for role in self._roles:
-            list_roles.append(str(role))
-        return list_roles
+        return str(self._roles).replace("u",'')
+        # list_roles= []
+        # print("********************************")
+        # print(self._roles)
+        # print(str(self._roles).replace("u",''))
+        # print("*******************************")
+        # for role in self._roles:
+        #     print(role)
+        #     list_roles.append(str(role))
+        # return list_roles
 
     def get_email(self):
         return self._email

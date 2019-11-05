@@ -17,27 +17,28 @@
     <!-- Site Title -->
     <title>Missions</title>
 
-    <link rel="stylesheet" href="https://unpkg.com/multiple-select@1.4.2/dist/multiple-select.min.css">
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-          rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-      <link rel="stylesheet" href="css/cus.scss">
+<!--    <link rel="stylesheet" href="https://unpkg.com/multiple-select@1.4.2/dist/multiple-select.min.css">-->
+<!---->
+<!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"-->
+<!--          rel="stylesheet">-->
+<!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="css/cus.scss">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/cus.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/multiple-select.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
 
-       <link data-require="bootstrap@3.3.2" data-semver="3.3.2" rel="stylesheet"
-          href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
-    <script data-require="bootstrap@3.3.2" data-semver="3.3.2"
-            src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <script data-require="jquery@2.1.3" data-semver="2.1.3" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
-    <link rel="stylesheet" href="style.css"/>
-    <script src="moment-2.10.3.js"></script>
-    <script src="bootstrap-datetimepicker.js"></script>
+<!--    <link data-require="bootstrap@3.3.2" data-semver="3.3.2" rel="stylesheet"-->
+<!--          href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>-->
+<!--    <script data-require="bootstrap@3.3.2" data-semver="3.3.2"-->
+<!--            src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>-->
+<!--    <script data-require="jquery@2.1.3" data-semver="2.1.3" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>-->
+<!--    <link rel="stylesheet" href="style.css"/>-->
+<!--    <script src="moment-2.10.3.js"></script>-->
+<!--    <script src="bootstrap-datetimepicker.js"></script>-->
+<!---->
+<!--    <link rel="stylesheet" href="https://unpkg.com/multiple-select@1.4.2/dist/multiple-select.min.css">-->
 
-    <link rel="stylesheet" href="https://unpkg.com/multiple-select@1.4.2/dist/multiple-select.min.css">
 </head>
 
 <body>
@@ -52,6 +53,7 @@
 
         </button>
 
+
         <div><a class="navbar-brand px-1" href="#"><img
                 src="http://kris.agentfire2.com/wp-content/mu-plugins/agentfire-shared-library/img/agentfire.svg"
                 class="d-inline-block mt-1" alt="AgentFire Logo" height="40"></a>
@@ -64,84 +66,113 @@
     <div class="sidebar">
         <ul class="list-group flex-column d-inline-block first-menu">
 
-             {% if "admin" in current_user.get_roles() %}
-<!--            Utilisateur-->
-<!--            <li class="list-group-item pl-3 py-2">-->
-<!--                <a href="#"><i class="fa fa-user-o" aria-hidden="true"><span-->
-<!--                        class="ml-2 align-middle">Utilisateurs</span></i></a>-->
+            {% if current_user.is_authenticated() and "admin" in current_user.get_roles() %}
+            <!--            Utilisateur-->
+            <!--            <li class="list-group-item pl-3 py-2">-->
+            <!--                <a href="#"><i class="fa fa-user-o" aria-hidden="true"><span-->
+            <!--                        class="ml-2 align-middle">Utilisateurs</span></i></a>-->
 
-<!--                <ul class="list-group flex-column d-inline-block submenu">-->
-<!--                    <li class="list-group-item pl-4">-->
-<!--                        <a href="user" class="">Ajouter</a>-->
-<!--                    </li>-->
+            <!--                <ul class="list-group flex-column d-inline-block submenu">-->
+            <!--                    <li class="list-group-item pl-4">-->
+            <!--                        <a href="user" class="">Ajouter</a>-->
+            <!--                    </li>-->
 
-<!--                    <li class="list-group-item pl-4">-->
-<!--                        <a href="">Lister</a>-->
-<!--                    </li>-->
-<!--                </ul> &lt;!&ndash; /.submenu &ndash;&gt;-->
-<!--            </li> &lt;!&ndash; /.list-group-item &ndash;&gt;-->
+            <!--                    <li class="list-group-item pl-4">-->
+            <!--                        <a href="">Lister</a>-->
+            <!--                    </li>-->
+            <!--                </ul> &lt;!&ndash; /.submenu &ndash;&gt;-->
+            <!--            </li> &lt;!&ndash; /.list-group-item &ndash;&gt;-->
             <!--            Agents-->
             <li class="list-group-item pl-3 py-2">
-                <a href="#"><i class="fa fa-user-o" aria-hidden="true"><span class="ml-2 align-middle">Agents</span></i></a>
+                <a href="#"> <img style="margin-left:-30px" src="{{ url_for('static', filename='images/agent1.png')}}"/> <span
+                        class="ml-2 align-middle"> Agents</span></a>
                 <ul class="list-group flex-column d-inline-block submenu">
                     <li class="list-group-item pl-4">
-                        <a href="/list_agent/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" class="">Lister</a>
+                        <a href="/list_agent/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+                           class="">Lister</a>
 
                     </li> <!-- end Lister -->
 
                     <li class="list-group-item pl-4">
-                        <a href="/agent/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" class="">Ajouter</a>
+                        <a href="/agent/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+                           class="">Ajouter</a>
 
                     </li> <!-- end Ajouter -->
 
 
                 </ul> <!-- /.submenu -->
             </li> <!-- /.list-group-item -->
-<!--            Mission-->
+
+            <!--            Object de mission -->
             <li class="list-group-item pl-3 py-2">
                 <a href="#">
-                    <i class="fa fa-user-o" aria-hidden="true"><span class="ml-2 align-middle">Missions</span></i>
+                   <img style="margin-left:-10px" src="{{ url_for('static', filename='images/miss1.png')}}"/><span class="ml-2 align-middle">Object </span></i>
                 </a>
                 <ul class="list-group flex-column d-inline-block submenu">
 
                     <li class="list-group-item pl-4">
-                        <a href="/list_mission/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" class="">Lister</a>
-<!--                        <ul class="list-group flex-column d-inline-block sub-submenu">-->
-<!--                            <span class="arrow"></span>-->
-<!--                            <li class="list-group-item pl-4">-->
-<!--                                <a href="#">Passées</a>-->
-<!--                            </li>-->
-<!--                        </ul>-->
-
-<!--                        <ul class="list-group flex-column d-inline-block sub-submenu">-->
-<!--                            <span class="arrow"></span>-->
-<!--                            <li class="list-group-item pl-4">-->
-<!--                                <a href="#">Passées</a>-->
-<!--                            </li>-->
-<!--                            <li class="list-group-item pl-4">-->
-<!--                                <a href="#">En cours</a>-->
-<!--                            </li>-->
-
-<!--                            <li class="list-group-item pl-4">-->
-<!--                                <a href="#">A venir</a>-->
-<!--                            </li>-->
-<!--                        </ul>-->
+                        <a href="/list_object/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+                           class="">Lister</a>
                     </li>
 
                     <li class="list-group-item pl-4">
-                        <a href="/missions//{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" class="">Ajouter</a>
+                        <a href="/objects/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+                           class="">Ajouter</a>
                     </li>
                 </ul> <!-- /.submenu -->
             </li> <!-- /.list-group-item -->
-<!--            Paramettre-->
+
+
+            <!--            Mission-->
+            <li class="list-group-item pl-3 py-2">
+                <a href="#">
+                     <img style="margin-left:-8px" src="{{ url_for('static', filename='images/miss2.png')}}"/> <span class="ml-2 align-middle">Missions</span></i>
+                </a>
+                <ul class="list-group flex-column d-inline-block submenu">
+
+                    <li class="list-group-item pl-4">
+                        <a href="/list_mission/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+                           class="">Lister</a>
+                        <!--                        <ul class="list-group flex-column d-inline-block sub-submenu">-->
+                        <!--                            <span class="arrow"></span>-->
+                        <!--                            <li class="list-group-item pl-4">-->
+                        <!--                                <a href="#">Passées</a>-->
+                        <!--                            </li>-->
+                        <!--                        </ul>-->
+
+                        <!--                        <ul class="list-group flex-column d-inline-block sub-submenu">-->
+                        <!--                            <span class="arrow"></span>-->
+                        <!--                            <li class="list-group-item pl-4">-->
+                        <!--                                <a href="#">Passées</a>-->
+                        <!--                            </li>-->
+                        <!--                            <li class="list-group-item pl-4">-->
+                        <!--                                <a href="#">En cours</a>-->
+                        <!--                            </li>-->
+
+                        <!--                            <li class="list-group-item pl-4">-->
+                        <!--                                <a href="#">A venir</a>-->
+                        <!--                            </li>-->
+                        <!--                        </ul>-->
+                    </li>
+
+                    <li class="list-group-item pl-4">
+                        <a href="/missions/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+                           class="">Ajouter</a>
+                    </li>
+                </ul> <!-- /.submenu -->
+            </li> <!-- /.list-group-item -->
+
+
+            <!--            Paramettre-->
 
             <li class="list-group-item pl-3 py-2">
-                <a href="#"><i class="fa fa-user-o" aria-hidden="true"><span
-                        class="ml-2 align-middle">Paramettrages</span></i></a>
+                <a href="#"><img style="margin-left:-8px" src="{{ url_for('static', filename='images/param1.png')}}"/><span
+                        class="ml-2 align-middle">Paramettre</span></i></a>
 
                 <ul class="list-group flex-column d-inline-block submenu">
                     <li class="list-group-item pl-4">
-                        <a href="/list_agent/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" class="">Agents</a>
+                        <a href="/list_agent/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+                           class="">Agents</a>
 
                         <ul class="list-group flex-column d-inline-block sub-submenu">
                             <span class="arrow"></span>
@@ -161,78 +192,104 @@
 
                     </li>
                     <li class="list-group-item pl-4">
-                        <a href="/type_budget/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" class="">Budgets</a>
-<!--                        <ul class="list-group flex-column d-inline-block sub-submenu">-->
-<!--                            <span class="arrow" style="top:114px;"></span>-->
-<!--                            <li class="list-group-item pl-4">-->
-<!--                                <a href="type_budget">Types</a>-->
-<!--                            </li>-->
-<!--                        </ul>-->
+                        <a href="/type_budget/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+                           class="">Ligne Budgetaire</a>
+                        <!--                        <ul class="list-group flex-column d-inline-block sub-submenu">-->
+                        <!--                            <span class="arrow" style="top:114px;"></span>-->
+                        <!--                            <li class="list-group-item pl-4">-->
+                        <!--                                <a href="type_budget">Types</a>-->
+                        <!--                            </li>-->
+                        <!--                        </ul>-->
 
                     </li>
                     <li class="list-group-item pl-4">
-                        <a href="/list_structure/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" class="">Structures</a>
+                        <a href="/list_structure/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+                           class="">Structures</a>
                     </li>
                     <li class="list-group-item pl-4">
-                        <a href="/pays/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" class="">Pays</a>
+                        <a href="/pays/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+                           class="">Pays</a>
                     </li>
 
                     <li class="list-group-item pl-4">
-                        <a href="/villes/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" class="">Villes</a>
+                        <a href="/villes/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+                           class="">Villes</a>
                     </li>
                 </ul>
+            <li class="list-group-item pl-3 py-2">
+                <a href="/logout">
+                    <i class="fa fa-user-o" aria-hidden="true"><span class="ml-2 align-middle">Déconnexion</span></i>
+                </a>
+
             </li>
+            </li>
+
             {% else %}
-            <!--            Mission-->
+
+                 <!--       Object de mission -->
             <li class="list-group-item pl-3 py-2">
                 <a href="#">
-                    <i class="fa fa-user-o" aria-hidden="true"><span class="ml-2 align-middle">Missions</span></i>
+                   <img style="margin-left:-10px" src="{{ url_for('static', filename='images/miss1.png')}}"/><span class="ml-2 align-middle">Object </span></i>
                 </a>
                 <ul class="list-group flex-column d-inline-block submenu">
 
                     <li class="list-group-item pl-4">
-                        <a href="/list_mission/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" class="">Lister</a>
-<!--                        <ul class="list-group flex-column d-inline-block sub-submenu">-->
-<!--                            <span class="arrow"></span>-->
-<!--                            <li class="list-group-item pl-4">-->
-<!--                                <a href="#">Passées</a>-->
-<!--                            </li>-->
-<!--                        </ul>-->
-
-<!--                        <ul class="list-group flex-column d-inline-block sub-submenu">-->
-<!--                            <span class="arrow"></span>-->
-<!--                            <li class="list-group-item pl-4">-->
-<!--                                <a href="#">Passées</a>-->
-<!--                            </li>-->
-<!--                            <li class="list-group-item pl-4">-->
-<!--                                <a href="#">En cours</a>-->
-<!--                            </li>-->
-
-<!--                            <li class="list-group-item pl-4">-->
-<!--                                <a href="#">A venir</a>-->
-<!--                            </li>-->
-<!--                        </ul>-->
+                        <a href="/list_object/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+                           class="">Lister</a>
                     </li>
 
                     <li class="list-group-item pl-4">
-                        <a href="/missions/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" class="">Ajouter</a>
+                        <a href="/objects/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+                           class="">Ajouter</a>
+                    </li>
+                </ul> <!-- /.submenu -->
+            </li> <!-- /.list-group-item -->
+
+
+            <!--            Mission-->
+            <li class="list-group-item pl-3 py-2">
+                <a href="#">
+                     <img style="margin-left:-8px" src="{{ url_for('static', filename='images/miss2.png')}}"/><span class="ml-2 align-middle">Missions</span></i>
+                </a>
+                <ul class="list-group flex-column d-inline-block submenu">
+
+                    <li class="list-group-item pl-4">
+                        <a href="/list_mission/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+                           class="">Lister</a>
+                        <!--                        <ul class="list-group flex-column d-inline-block sub-submenu">-->
+                        <!--                            <span class="arrow"></span>-->
+                        <!--                            <li class="list-group-item pl-4">-->
+                        <!--                                <a href="#">Passées</a>-->
+                        <!--                            </li>-->
+                        <!--                        </ul>-->
+
+                        <!--                        <ul class="list-group flex-column d-inline-block sub-submenu">-->
+                        <!--                            <span class="arrow"></span>-->
+                        <!--                            <li class="list-group-item pl-4">-->
+                        <!--                                <a href="#">Passées</a>-->
+                        <!--                            </li>-->
+                        <!--                            <li class="list-group-item pl-4">-->
+                        <!--                                <a href="#">En cours</a>-->
+                        <!--                            </li>-->
+
+                        <!--                            <li class="list-group-item pl-4">-->
+                        <!--                                <a href="#">A venir</a>-->
+                        <!--                            </li>-->
+                        <!--                        </ul>-->
+                    </li>
+
+                    <li class="list-group-item pl-4">
+                        <a href="/missions/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+                           class="">Ajouter</a>
                     </li>
                 </ul> <!-- /.submenu -->
             </li> <!-- /.list-group-item -->
             <!--            Support -->
             <li class="list-group-item pl-3 py-2">
-                <a href="#">
-                    <i class="fa fa-user-o" aria-hidden="true"><span class="ml-2 align-middle">Support</span></i>
+                <a href="/logout">
+                    <i class="fa fa-user-o" aria-hidden="true"><span class="ml-2 align-middle">Déconnexion</span></i>
                 </a>
-                <ul class="list-group flex-column d-inline-block submenu">
 
-                    <li class="list-group-item pl-4">
-                        <a href="#" class="">Lister</a>
-
-                    </li>
-
-
-                </ul> <!-- /.submenu -->
             </li> <!-- /.list-group-item -->
             {% endif %}
 
@@ -248,23 +305,24 @@
 </div>
 
 
-
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<link type="text/javascript"  href="{{ url_for('static', filename='js/jquery.min.js') }}">
+<link type="text/javascript" href="{{ url_for('static', filename='js/jquery.min.js') }}">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-<link type="text/javascript"  href="{{ url_for('static', filename='js/moment.min.js') }}">
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
-<link type="text/javascript"  href="{{ url_for('static', filename='js/tempusdominus-bootstrap-4.min.js') }}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
-<link rel="stylesheet"   href="{{ url_for('static', filename='css/tempusdominus-bootstrap-4.min.css') }}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
-<link rel="stylesheet"   href="{{ url_for('static', filename='css/bootstrap-select.css') }}">
+<link type="text/javascript" href="{{ url_for('static', filename='js/moment.min.js') }}">
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+<link type="text/javascript" href="{{ url_for('static', filename='js/tempusdominus-bootstrap-4.min.js') }}">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/tempusdominus-bootstrap-4.min.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-select.css') }}">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<link type="text/javascript"  href="{{ url_for('static', filename='js/jquery1.min.js') }}">
+<link type="text/javascript" href="{{ url_for('static', filename='js/jquery1.min.js') }}">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
-<link type="text/javascript"  href="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}">
+<link type="text/javascript" href="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
-<link type="text/javascript"  href="{{ url_for('static', filename='js/bootstrap-select.min.js') }}">
+<link type="text/javascript" href="{{ url_for('static', filename='js/bootstrap-select.min.js') }}">
 
 </body>
 
