@@ -39,7 +39,7 @@
                             </button>
                             <ul class="dropdown-menu">
 
-                                <li><a href="/pays/{{ pays['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
+                                <li><a href="/show_pays/{{ pays['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
                                     <button class="btn btn-info btn-block">Afficher</button>
                                 </a></li>
                                 <li><a href="/update_pays/{{ pays['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">

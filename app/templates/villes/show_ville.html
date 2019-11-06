@@ -1,56 +1,37 @@
 {% extends "homes.html" %}
 {% block content %}
- <center>
+<center>
     <section class="content">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h1 class="box-title"> Details des informations de la structure  </h1>
-                <div class="box-tools pull-right">
-                    <button class="btn btn-box-tool" data-widget="collapse">
-                     </button>
-                </div>
+                <h1 class="box-title"> Details des informations de la ville </h1>
+
             </div>
-            {% for structure in read_structure %}
-            <div class="box-body">
+
+               <div class="box-body">
                 <table class="table table-bordered table-striped">
                     <tbody>
+
             <tr>
-                <th>Code Structure</th>
-                <td>{{ structure['code_structure']}}</td>
+                <th>Pays de la ville</th>
+                <td>{{ read_ville['libelle_fr_pays'] }}</td>
             </tr>
             <tr>
-                <th>Libellé</th>
-                <td>{{ structure['libelle_structure']}}</td>
+                <th>Nom de ville</th>
+                <td>{{ read_ville['non_ville'] }}</td>
             </tr>
-            <tr>
-                <th>Délégation</th>
-                <td>{{ structure['delegation_structure']}}</td>
-            </tr>
-            <tr>
-                <th>Délégué</th>
-                <td>{{ structure['delegue_structure'] }}</td>
-            </tr>
-            <tr>
-                <th>Responsable</th>
-                <td>{{ structure['responsable_structure'] }}</td>
-            </tr>
-            <tr>
-                <th>Visa Responsable</th>
-                <td>{{ structure['visa_responsable_structure'] }}</td>
-            </tr>
-            <tr>
-                <th>Action</th>
-                <td>{{ structure['action_structure'] }}</td>
+
             <tr>
                 <th>Date de Création</th>
-                <td>{{ structure['created_at'] }}</td>
-            {% endfor %}
-        </tbody>
-    </table>
+                <td>{{ read_ville['created_at'] }}</td>
+            </tr>
+            </tbody>
+
+            </table>
 
 
         </div>
         </div>
     </section>
- </center>
+</center>
 {% endblock %}

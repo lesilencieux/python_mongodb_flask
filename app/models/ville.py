@@ -23,13 +23,9 @@ class Ville():
 
     def get_ville(self,ville_id):
         myquery = { "_id": ObjectId(ville_id) }
-        villes = self.villes.find(myquery)
+        return self.villes.find_one(myquery)
 
-        toreturns = []
-        for ville in villes:
-            ville["_id"] = str(ville["_id"])
-            toreturns.append(ville)
-        return jsonify(toreturns)
+
     def get_all_cities_for_countries(self, list_contries):
         toreturns = []
         print("*************************** this is ")
@@ -66,11 +62,13 @@ class Ville():
             return False
 
 
-    def updateville(self,id,newvalues):
+    def update_ville(self,id,newvalues):
         query = {"_id": ObjectId(id)}
         updated = {"$set": newvalues}
-        self.villes.update_one(query,updated)
-        return 'Updated a ville with id %s' % id
+        if self.villes.update_one(query,updated):
+            return True
+        else:
+            return False
 
     def delete_ville(self, id):
         query = {"_id": ObjectId(id)}

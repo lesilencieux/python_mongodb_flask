@@ -6,95 +6,73 @@
 <span>&nbsp;</span>
 
 <center>
-    <form action="/structure/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" method="POST" autocomplete="on" name="form">
-        {% for structure in read_structure %}
+    <form action="/save_pays_udated/{{ read_pays['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+          method="POST" autocomplete="on" name="form">
 
         <div class="col-sm-offset-3 col-sm-6" id="first-part">
 
             <span>&nbsp;</span>
             <div class="input-group margin-bottom-sm">
-                 <input name="libelle_structure" required="required" class="form-control" type="text"
-                       placeholder="Libellé" value={{structure["libelle_structure"]}}>
+                <input name="libelle_fr_pays" required="required" class="form-control" type="text"
+                       placeholder="Libellé Fr Pays" value={{read_pays["libelle_fr_pays"]}}>
             </div>
             <span>&nbsp;</span>
             <div class="input-group margin-bottom-sm">
-                 <input name="delegation_structure" required="required" class="form-control" type="text"
-                       placeholder="Délégations" value={{structure["delegation_structure"]}}>
+                <input name="libelle_en_pays" required="required" class="form-control" type="text"
+                       placeholder="Libelle En pays" value={{read_pays["libelle_en_pays"]}}>
             </div>
-            <span>&nbsp;</span>
-            <div class="input-group margin-bottom-sm">
-                 <input name="delegue_structure" required="required" class="form-control" type="text"
-                       placeholder="Délégué" value={{structure["delegue_structure"]}}>
-            </div>
-            <span>&nbsp;</span>
-            <div>
-                <a href="#">
-                    <button type="button" id="first-reset" class="btn btn-primary btn-sm pull-left">
-                         <span class="visible-sm visible-md visible-lg">  Annuler</span>
-                    </button>
-                </a>
 
-                <span class="btn btn-primary btn-sm  " id="btn-next">
-                     <span class="visible-sm visible-md visible-lg">Suivant  </span>
-                </span>
-            </div>
-        </div>
-        <span>&nbsp;</span>
-        <div class="col-sm-offset-3 col-sm-6" id="second-part">
+            <span>&nbsp;</span>
+
             <div class="input-group margin-bottom-sm">
-                 <input name="responsable_structure" required="required" class="form-control" type="text"
-                       placeholder="Responsable" value={{structure["responsable_structure"]}}>
+                <input name="code_alphat1_pays" required="required" class="form-control" type="text"
+                       placeholder="Code  alphat1  pays" value={{read_pays["code_alphat1_pays"]}}>
             </div>
             <span>&nbsp;</span>
             <div class="input-group">
-                 <input name="visa_responsable_structure" required="required" class="form-control" type="text"
-                       placeholder="Visa Responsable" value={{structure["visa_responsable_structure"]}}>
-            </div>
-            <span>&nbsp;</span>
-            <div class="input-group margin-bottom-sm">
-                 <input name="action_structure" required="required" class="form-control" type="text" placeholder="Action"
-                       value={{structure["action_structure"]}}>
+                <input name="code_alphat2_pays" required="required" class="form-control" type="text"
+                       placeholder="Code alphat2 pays" value={{read_pays["code_alphat2_pays"]}}>
             </div>
             <span>&nbsp;</span>
 
-            <div class="row">
+            <span>&nbsp;</span>
+            <div class="input-group">
+                <input name="code_numerique_pays" required="required" class="form-control" type="text"
+                       placeholder="Code numérique pays" value={{read_pays["code_numerique_pays"]}}>
+            </div>
+            <span>&nbsp;</span>
 
-                <div class="col-xs-4 col-sm-offset-3 col-sm-3">
-                    <span class="btn btn-primary btn-sm pull-left" id="btn-back">
-                         <span class="visible-sm visible-md visible-lg">  Précedent</span>
-                    </span>
-                </div>
-                <div class="col-xs-4 col-sm-3">
-                    <a href="#">
-                        <button type="button" id="second-reset" class="btn btn-primary btn-sm ">
-                             <span class="visible-sm visible-md visible-lg">  Annuler</span>
-                        </button>
-                    </a>
-                    </span>
-                </div>
-                <div class="col-xs-4 col-sm-3">
-                    <button type="submit" class="btn btn-primary btn-sm pull-right">
-                         <span class="visible-sm visible-md visible-lg">  {{'Valider'}}</span>
+             <div class="row">
+
+
+            <div class="col-xs-4 col-sm-3">
+                <a href="#">
+                    <button type="button" id="fourth-reset" class="btn btn-primary btn-sm ">
+                        <span class="visible-sm visible-md visible-lg">  Annuler</span>
                     </button>
-                </div>
+                </a>
+                </span>
             </div>
+            <button type="submit" class="btn btn-primary btn-sm pull-right">
+                <span class="visible-sm visible-md visible-lg">  {{'Valider'}}</span>
+            </button>
         </div>
         </div>
-        {% endfor %}
+
     </form>
 </center>
 <div class="box box-primary">
     <div class="box-header with-border">
-        <h1 class="box-title">Liste Structure</h1>
+        <h1 class="box-title">Liste des pays</h1>
         <div class="box-tools pull-right">
             <button class="btn btn-box-tool" data-widget="collapse">
-             </button>
+            </button>
         </div>
     </div>
     <div class="box-body">
         <div align="right">
-            <a href="/list_structure/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
-                <button type="button" class="btn btn-success">Aller à liste des structures</button>
+            <a href="/list_pays/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
+                <button type="button" class="btn btn-success">Aller à liste des pays</button>
             </a>
         </div>
     </div>
@@ -146,6 +124,7 @@
                         });
 
                     }, false);
+
 
 
 

@@ -42,13 +42,15 @@
 
 
 
+
     </style>
 </head>
 <center><h1>Modification de mission</h1></center>
 <span>&nbsp;</span>
 
 <center>
-    <form action="/mission_update/{{read_mission['_id']}}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" method="POST" autocomplete="on" name="form">
+    <form action="/save_updated_object/{{read_object_mission['_id']}}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+          method="POST" autocomplete="on" name="form">
 
         <div class="col-sm-offset-3 col-sm-6" id="first-part">
 
@@ -56,302 +58,39 @@
             <div class="form-group">
 
                 <div class="input-group date">
-                            <span class="input-group-addon"><i
-                                    class="fa fa-calendar"></i></span><input value="{{read_mission['date_debut_mission']}}" name="date_debut_mission" id="date_added"
-                                                                             placeholder="Date Debut Mission"
-                                                                             type="text" class="form-control">
+                          <input
+                        value="{{read_object_mission['date_debut_mission']}}" name="date_debut_mission" id="date_added"
+                        placeholder="Date Debut Mission"
+                        type="text" class="form-control">
                 </div>
             </div>
             <div class="form-group">
 
                 <div class="input-group date">
-                            <span class="input-group-addon"><i
-                                    class="fa fa-calendar"></i></span><input value="{{read_mission['date_fin_mission']}}" name="date_fin_mission" id="date_modified"
-                                                                             placeholder="Date Fin Mission" type="text"
-                                                                             class="form-control">
+                    <input
+                        value="{{read_object_mission['date_fin_mission']}}" name="date_fin_mission" id="date_modified"
+                        placeholder="Date Fin Mission" type="text"
+                        class="form-control">
                 </div>
             </div>
 
 
-            <div class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
-                <input value="{{read_mission['reference_lettre_de_mission']}}" name="responsable_structure" required="required" class="form-control" type="text"
-                       placeholder="Reference de la lettre de mission ">
-            </div>
+
             <span>&nbsp;</span>
 
             <div class="md-form">
-                <textarea value="{{read_mission['objet_mission']}}"  name="objet_mission" id="form10" class="md-textarea form-control" rows="5"
+                <textarea value="{{read_object_mission['objet_mission']}}" name="objet_mission" id="form10"
+                          class="md-textarea form-control" rows="5"
                           placeholder="Objet"></textarea>
             </div>
             <span>&nbsp;</span>
-            <div class="input-group margin-bottom-sm">
-                <div class="form-group">
-
-                    <div class="col-xs-9">
-                        <label style="font-weight: bold;" class="col-xs-3 control-label">Destination </label>
-                        <label onclick="destination_externe()">
-                            <input id="destination_externe" name="destination_mission" value="externe" type="radio"
-                                   required>
-                            Externe</label>
-                        <label onclick="destination_interne()">
-                            <input checked id="destination_interne" name="destination_mission" value="interne" type="radio">
-                            Interne</label>
-
-                    </div>
-                </div>
-                <span>&nbsp;</span>
-            </div>
-
-            <div>
-                <a href="#">
-                    <button type="button" id="first-reset" class="btn btn-primary btn-sm pull-left">
-                        <span class="visible-xs"><i class="fa fa-refresh fa-2x"></i></span>
-                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-refresh"></i> Annuler</span>
-                    </button>
-                </a>
-
-                <span class="btn btn-primary btn-sm  " id="firsr-btn-next">
-                    <span class="visible-xs"><i class="fa fa-arrow-circle-right fa-2x"></i></span>
-                    <span class="visible-sm visible-md visible-lg">Suivant <i
-                            class="fa fa-arrow-circle-right"></i></span>
-                </span>
-            </div>
-
-        </div>
-
-        <div class="col-sm-offset-3 col-sm-6" id="second-part">
-
-            <div class="input-group margin-bottom-sm">
-
-                <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
-                <input name="reference_ordre_mission" value="{{read_mission['reference_ordre_mission']}}" required="required" class="form-control" type="text"
-                       placeholder="Reference de l'ordre de la mission">
 
 
-            </div>
-            <span>&nbsp;</span>
 
-            <div class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
-
-                <select name="type_budget"  class="selectpicker" data-width="100%" single data-live-search="true">
-
-                    {% for type_budget in list_type_budget %}
-                    <option>{{ type_budget['libelle_type_budget'] }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <span>&nbsp;</span>
-
-            <div class="input-group margin-bottom-sm">
-
-                <div class="form-group">
-
-                    <div class="input-group date">
-                            <span class="input-group-addon"><i
-                                    class="fa fa-calendar"></i></span><input value="{{read_mission['date_depart_mission']}}" name="date_depart_mission"
-                                                                             id="date_added_1"
-                                                                             placeholder="Date Départ Mission"
-                                                                             type="text" class="form-control">
-                    </div>
-                </div>
-
-                <div class="form-group">
-
-                    <div class="input-group date">
-                            <span class="input-group-addon"><i
-                                    class="fa fa-calendar"></i></span><input value="{{read_mission['date_retour_mission']}}" name="date_retour_mission"
-                                                                             id="date_modified_1"
-                                                                             placeholder="Date Fin Mission" type="text"
-                                                                             class="form-control">
-                    </div>
-                </div>
-
-            </div>
-
-            <span>&nbsp;</span>
-
-            <span>&nbsp;</span>
-            <div class="row">
-                <div class="col-xs-4 col-sm-offset-3 col-sm-3">
-                    <span class="btn btn-primary btn-sm pull-left" id="first-btn-back">
-                        <span class="visible-xs"><i class="fa fa-arrow-circle-left fa-2x"></i></span>
-                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-arrow-circle-left"></i> Précedent</span>
-                    </span>
-                </div>
-                <div class="col-xs-4 col-sm-3">
-                    <a href="#">
-                        <button type="button" id="second-reset" class="btn btn-primary btn-sm ">
-                            <span class="visible-xs"><i class="fa fa-refresh fa-2x"></i></span>
-                            <span class="visible-sm visible-md visible-lg"><i class="fa fa-refresh"></i> Annuler</span>
-                        </button>
-                    </a>
-                    </span>
-                </div>
-
-                <span class="btn btn-primary btn-sm  " id="second-btn-next">
-                    <span class="visible-xs"><i class="fa fa-arrow-circle-right fa-2x"></i></span>
-                    <span class="visible-sm visible-md visible-lg">Suivant <i
-                            class="fa fa-arrow-circle-right"></i></span>
-                </span>
-
-            </div>
-
-        </div>
-
-        <span>&nbsp;</span>
-        <div class="col-sm-offset-3 col-sm-6" id="third-part">
-
-            <div id="div_pays_destination" class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
-                <select class="selectpicker"
-                        data-width="100%" multiple
-                        data-live-search="true">
-
-                    {% for pays in list_pays %}
-                    <option selected>{{ pays['libelle_fr_pays'] }}</option>
-                    {% endfor %}
-
-                </select>
-            </div>
-
-            <div id="div_ville_pays_destination" style="display: none" class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
-                <select name="ville_pays_destination_mission" id="select_ville_pays_destination" class="selectpicker"
-                        data-width="100%" multiple
-                        data-live-search="true">
-                    <optgroup label="Benin">
-                        <option value="volvo">Cotonou</option>
-                        <option value="saab">Allada</option>
-                        <option value="saab">Parakou</option>
-                    </optgroup>
-                    <optgroup label="Togo">
-                        <option value="mercedes">Lomé</option>
-                    </optgroup>
-                    <optgroup label="Nigeria">
-                        <option value="mercedes">Abuja</option>
-                        <option value="mercedes">Lagos</option>
-                    </optgroup>
-                </select>
-            </div>
-
-            <span>&nbsp;</span>
-
-            <div class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
-
-                <select name="agents_mission" class="selectpicker" data-width="100%" multiple
-                        data-live-search="true">
-                    {% for agent in list_agents %}
-                    <option selected>{{ agent['prenom_agent'] }} {{ agent['nom_agent'] }}</option>
-                    {% endfor %}
-
-                </select>
-            </div>
-            <span>&nbsp;</span>
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa  fa-cc-visa" aria-hidden="true"></i></span>
-                <input value="{{read_mission['moyen_transport_mission']}}" name="moyen_transport_mission" required="required" class="form-control" type="text"
-                       placeholder="Moyen de transport ">
-            </div>
-
-            <span>&nbsp;</span>
-            <div id="div_commune_mission" class="input-group margin-bottom-sm">
-                 <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
-                <input id="input_commune_mission" value="{{read_mission['commune_mission']}}" name="commune_mission" class="form-control" type="text"
-                       placeholder="Commune ">
-            </div>
-
-
-            <span>&nbsp;</span>
-            <div class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
-                <input value="{{read_mission['immatriculation_moyen_transport_mission']}}" name="immatriculation_moyen_transport_mission" required="required" class="form-control"
-                       type="text"
-                       placeholder="Immatriculation ">
-            </div>
-            <span>&nbsp;</span>
-
-            <div class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
-                <input value="{{read_mission['structure_initiatrice_mission']}}" name="structure_initiatrice_mission" required="required" class="form-control" type="text"
-                       placeholder="Structure initiatrice ">
-            </div>
-            <span>&nbsp;</span>
 
             <div class="row">
 
-                <div class="col-xs-4 col-sm-offset-3 col-sm-3">
-                    <span class="btn btn-primary btn-sm pull-left" id="second-btn-back">
-                        <span class="visible-xs"><i class="fa fa-arrow-circle-left fa-2x"></i></span>
-                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-arrow-circle-left"></i> Précedent</span>
-                    </span>
-                </div>
-                <div class="col-xs-4 col-sm-3">
-                    <a href="#">
-                        <button type="button" id="third-reset" class="btn btn-primary btn-sm ">
-                            <span class="visible-xs"><i class="fa fa-refresh fa-2x"></i></span>
-                            <span class="visible-sm visible-md visible-lg"><i class="fa fa-refresh"></i> Annuler</span>
-                        </button>
-                    </a>
-                    </span>
-                </div>
-                <span class="btn btn-primary btn-sm  " id="third-btn-next">
-                    <span class="visible-xs"><i class="fa fa-arrow-circle-right fa-2x"></i></span>
-                    <span class="visible-sm visible-md visible-lg">Suivant <i
-                            class="fa fa-arrow-circle-right"></i></span>
-                </span>
-                <button id="validate-mission-externe-destination" style="display: none" type="submit"
-                        class="btn btn-primary btn-sm pull-right">
-                    <span class="visible-xs"><i class="fa fa-save fa-2x"></i></span>
-                    <span class="visible-sm visible-md visible-lg"><i class="fa fa-save"></i> {{'Valider'}}</span>
-                </button>
-            </div>
-        </div>
 
-        <span>&nbsp;</span>
-        <div class="col-sm-offset-3 col-sm-6" id="fourth-part">
-
-            <div id="div_code_type_localite" class="input-group">
-                <span class="input-group-addon"><i class="fa  fa-cc-visa" aria-hidden="true"></i></span>
-                <input value="{{read_mission['code_type_localite_mission']}}" id="input_code_type_localite" name="code_type_localite_mission" class="form-control" type="text"
-                       placeholder=" Code Type Localite ">
-            </div>
-
-            <span>&nbsp;</span>
-            <div id="div_libelle_localite_mission" style="display: none" class="input-group margin-bottom-sm">
-                <input value="{{read_mission['libelle_localite_miision']}}" id="input_libelle_localite_mission" name="libelle_localite_mission" class="form-control"
-                       type="text"
-                       placeholder="Libelle Localité  ">
-            </div>
-            <span>&nbsp;</span>
-            <div id="div_code_localite_parente" class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
-                <input value="{{read_mission['code_localite_parente_mission']}}" id="input_code_localite_parente" name="code_localite_parente_mission" class="form-control"
-                       type="text"
-                       placeholder="Code Localité Parente ">
-            </div>
-            <span>&nbsp;</span>
-
-            <div id="code_localite_mission" class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
-                <input value="{{read_mission['code_localite_mission']}}" id="input_localite_mission" name="code_localite_mission" class="form-control" type="text"
-                       placeholder="Code Localité ">
-            </div>
-            <span>&nbsp;</span>
-
-
-            <span>&nbsp;</span>
-
-            <div class="row">
-
-                <div class="col-xs-4 col-sm-offset-3 col-sm-3">
-                    <span class="btn btn-primary btn-sm pull-left" id="third-btn-back">
-                        <span class="visible-xs"><i class="fa fa-arrow-circle-left fa-2x"></i></span>
-                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-arrow-circle-left"></i> Précedent</span>
-                    </span>
-                </div>
                 <div class="col-xs-4 col-sm-3">
                     <a href="#">
                         <button type="button" id="fourth-reset" class="btn btn-primary btn-sm ">
@@ -367,6 +106,8 @@
                 </button>
             </div>
         </div>
+
+
     </form>
 </center>
 
@@ -710,6 +451,7 @@
 
                             }
                     };
+
 
 </script>
 

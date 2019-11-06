@@ -6,64 +6,23 @@
 <span>&nbsp;</span>
 
 <center>
-    <form action="/ville/ville['_id']/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" method="POST" autocomplete="on" name="form">
-        {% for ville in read_ville %}
+    <form action="/save_update_ville/{{read_ville['_id']}}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" method="POST" autocomplete="on" name="form">
 
         <div class="col-sm-offset-3 col-sm-6" id="first-part">
 
             <span>&nbsp;</span>
             <div class="input-group margin-bottom-sm">
-                 <input name="libelle_ville" required="required" class="form-control" type="text"
-                       placeholder="Libellé" value={{ville["libelle_ville"]}}>
+                 <input name="non_ville" required="required" class="form-control" type="text"
+                       placeholder="Non de la ville" value={{read_ville["non_ville"]}}>
             </div>
-            <span>&nbsp;</span>
-            <div class="input-group margin-bottom-sm">
-                 <input name="delegation_ville" required="required" class="form-control" type="text"
-                       placeholder="Délégations" value={{ville["delegation_ville"]}}>
-            </div>
-            <span>&nbsp;</span>
-            <div class="input-group margin-bottom-sm">
-                 <input name="delegue_ville" required="required" class="form-control" type="text"
-                       placeholder="Délégué" value={{ville["delegue_ville"]}}>
-            </div>
-            <span>&nbsp;</span>
-            <div>
-                <a href="#">
-                    <button type="button" id="first-reset" class="btn btn-primary btn-sm pull-left">
-                         <span class="visible-sm visible-md visible-lg">  Annuler</span>
-                    </button>
-                </a>
 
-                <span class="btn btn-primary btn-sm  " id="btn-next">
-                     <span class="visible-sm visible-md visible-lg">Suivant  </span>
-                </span>
-            </div>
-        </div>
-        <span>&nbsp;</span>
-        <div class="col-sm-offset-3 col-sm-6" id="second-part">
-            <div class="input-group margin-bottom-sm">
-                 <input name="responsable_ville" required="required" class="form-control" type="text"
-                       placeholder="Responsable" value={{ville["responsable_ville"]}}>
-            </div>
-            <span>&nbsp;</span>
-            <div class="input-group">
-                 <input name="visa_responsable_ville" required="required" class="form-control" type="text"
-                       placeholder="Visa Responsable" value={{ville["visa_responsable_ville"]}}>
-            </div>
-            <span>&nbsp;</span>
-            <div class="input-group margin-bottom-sm">
-                 <input name="action_ville" required="required" class="form-control" type="text" placeholder="Action"
-                       value={{ville["action_ville"]}}>
-            </div>
-            <span>&nbsp;</span>
-
+            <span></span>
+            <span></span>
             <div class="row">
 
-                <div class="col-xs-4 col-sm-offset-3 col-sm-3">
-                    <span class="btn btn-primary btn-sm pull-left" id="btn-back">
-                         <span class="visible-sm visible-md visible-lg">  Précedent</span>
-                    </span>
-                </div>
+            <span></span>
+            <span></span>
+
                 <div class="col-xs-4 col-sm-3">
                     <a href="#">
                         <button type="button" id="second-reset" class="btn btn-primary btn-sm ">
@@ -80,7 +39,7 @@
             </div>
         </div>
         </div>
-        {% endfor %}
+
     </form>
 </center>
 <div class="box box-primary">

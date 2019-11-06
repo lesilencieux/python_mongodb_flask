@@ -6,7 +6,7 @@
 <span>&nbsp;</span>
 
 <center>
-    <form action="/update_type_budget/read_type_budget['_id']/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" method="POST" autocomplete="on" name="form">
+    <form action="/update_type_budget/{{read_type_budget['_id']}}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" method="POST" autocomplete="on" name="form">
 
             <div class="col-sm-offset-3 col-sm-6" id="first-part">
 
@@ -15,6 +15,16 @@
                  <input name="libelle_type_budget" required="required" class="form-control" type="text" placeholder="Libelle" value={{read_type_budget["libelle_type_budget"]}}>
             </div>
             <span>&nbsp;</span>
+            <div class="input-group margin-bottom-sm">
+                 <input name="libelle_unique_type_budget" required="required" class="form-control" type="text" placeholder="Libelle unique type budget" value={{read_type_budget["libelle_unique_type_budget"]}}>
+            </div>
+                <span>&nbsp;</span>
+                <div class="input-group margin-bottom-sm">
+                    <input name="description_type_budget" required="required" class="form-control" type="text"
+                           placeholder="Description type budget " value={{read_type_budget["description_type_budget"]}}>
+                </div>
+
+                <span>&nbsp;</span>
             <div>
                 <a href="#">
                     <button type="button" id="first-reset" class="btn btn-primary btn-sm pull-left">

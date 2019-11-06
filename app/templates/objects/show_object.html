@@ -17,69 +17,23 @@
                     <tbody>
                     <tr>
                         <th>Date de Création</th>
-                        <td>{{ read_mission['created_at'] }}</td>
+                        <td>{{ read_object_mission['created_at'] }}</td>
 
                     <tr>
-                        <th>Code mission</th>
-                        <td>{{ read_mission['date_debut_mission']}}</td>
+                        <th>Date de début de mission</th>
+                        <td>{{ read_object_mission['date_debut_mission']}}</td>
                     </tr>
                     <tr>
-                        <th>Libellé</th>
-                        <td>{{ read_mission['date_fin_mission']}}</td>
+                        <th>Date de fin de mission</th>
+                        <td>{{ read_object_mission['date_fin_mission']}}</td>
                     </tr>
                     <tr>
-                        <th>Délégation</th>
-                        <td>{{ read_mission['reference_ordre_mission']}}</td>
+                        <th>Référence de la lettre de mission</th>
+                        <td>{{ read_object_mission['reference_lettre_de_mission']}}</td>
                     </tr>
                     <tr>
-                        <th>Délégué</th>
-                        <td>{{ read_mission['montant_budget_mission'] }}</td>
-                    </tr>
-                    <tr>
-                        <th>Responsable</th>
-                        <td>{{ read_mission['devise_budget'] }}</td>
-                    </tr>
-                    <tr>
-                        <th>Visa Responsable</th>
-                        <td>{{ read_mission['responsable_structure'] }}</td>
-                    </tr>
-
-                    <tr>
-                        <th>Type de Budget</th>
-                        <td>{{ read_mission['type_budget'] }}</td>
-                    </tr>
-
-                    <tr>
-                        <th>Objet</th>
-                        <td>{{ read_mission['objet_mission'] }}</td>
-                    </tr>
-                    <tr>
-                        <th>Statut</th>
-                        <td>{{ read_mission['status_mission'] }}</td>
-                    </tr>
-                    <tr>
-                        <th>Moyen de Transport</th>
-                        <td>{{ read_mission['moyen_transport_mission'] }}</td>
-                    </tr>
-<tr>
-                        <th>Immatriculation Moyen de Transport</th>
-                        <td>{{ read_mission['immatriculation_moyen_transport_mission'] }}</td>
-                    </tr>
-
-                    <tr>
-                        <th>Villes</th>
-                        <td>{{ read_mission['ville_pays_destination_mission'] }}</td>
-                    </tr>
-                    <tr>
-                        <th>Agents</th>
-                        <td>{{ read_mission['agents_mission'] }}</td>
-                    </tr>
- <tr>
-                        <th>Structure</th>
-                        <td>{{ read_mission['structure_initiatrice_mission'] }}</td>
-                    </tr><tr>
-                        <th>Date de Création</th>
-                        <td>{{ read_mission['created_at'] }}</td>
+                        <th>Object de mission</th>
+                        <td>{{ read_object_mission['objet_mission'] }}</td>
                     </tr>
 
                     </tbody>
@@ -89,5 +43,23 @@
             </div>
         </div>
     </section>
+
+    <div class="box box-primary">
+    <div class="box-header with-border">
+        <h1 class="box-title">Liste des objects de missions</h1>
+        <div class="box-tools pull-right">
+            <button class="btn btn-box-tool" data-widget="collapse">
+            </button>
+        </div>
+    </div>
+    <div class="box-body">
+        <div align="right">
+            <a href="/list_object/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
+                <button type="button" class="btn btn-success">Aller à liste des objects de missions</button>
+            </a>
+        </div>
+    </div>
+</div>
+
 </center>
 {% endblock %}
