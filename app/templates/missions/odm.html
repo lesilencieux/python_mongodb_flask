@@ -2,175 +2,189 @@
 <html lang="zxx" class="no-js">
 
 <head>
-	<!-- Mobile Specific Meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<!-- Favicon-->
-	<link rel="stylesheet" href="{{ url_for('static', filename='img/fav.png') }}">
-	<!-- Author Meta -->
-	<meta name="author" content="colorlib">
-	<!-- Meta Description -->
-	<meta name="description" content="">
-	<!-- Meta Keyword -->
-	<meta name="keywords" content="">
-	<!-- meta character set -->
-	<meta charset="UTF-8">
-	<!-- Site Title -->
-	<title>Ordre de Mission</title>
+    <!-- Mobile Specific Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='img/fav.png') }}">
+    <!-- Author Meta -->
+    <meta name="author" content="colorlib">
+    <!-- Meta Description -->
+    <meta name="description" content="">
+    <!-- Meta Keyword -->
+    <meta name="keywords" content="">
+    <!-- meta character set -->
+    <meta charset="UTF-8">
+    <!-- Site Title -->
+    <title>Ordre de Mission</title>
 
-	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
-	<!--
-			CSS
-			============================================= -->
-	<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
-	    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <!--
+            CSS
+            ============================================= -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
 
-<!--	<link rel="stylesheet" href="static/css/bootstrap.css">-->
-<!--	<link rel="stylesheet" href="static/css/custom.css">-->
+    <!--	<link rel="stylesheet" href="static/css/bootstrap.css">-->
+    <!--	<link rel="stylesheet" href="static/css/custom.css">-->
 </head>
 
 <body>
-    {% for agent in list_agents %}
-	<!-- Start banner Area -->
-	<section class="relative about-banner" id="home">
-		<div class="overlay overlay-bg"></div>
-		<div class="container">
-			<div class="row d-flex align-items-center justify-content-center">
-				<div class="about-content col-lg-12">
-					<h1 class="text-white">
-						Ordre de mission
-					</h1>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- End banner Area -->
-	<!-- Start Sample Area -->
-	<div class="container">
+{% for agent in list_agents %}
+<!-- Start banner Area -->
+<section class="relative about-banner" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                </h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<!-- Start Sample Area -->
 
-		<!-- Start document header -->
-		<div class="section-top-border">
-			<div class="row">
-				<div class="col-md-5">
-					<div class="single-defination">
-						<h4 class="mb-20">MINISTERE DES ENSEIGNEMENTS SECONDAIRE, TECHNIQUE ET DE LA FORMATION
-							PROFESSIONNELLE <br>
-							REPUBLIQUE DU BENIN</h4>
-						<p></p>
-					</div>
-				</div>
-				<div class="col-md-2">
-					<div class="single-defination">
-					</div>
-				</div>
-				<div class="col-md-5">
-					<div class="single-defination" style="text-align: right;">
-						<h4 class="mb-20">
-							Route de l'aéroport<br>
-							01BP 250 Cotonou<br>
-							(229) 21323843; Fax : 21 32 41 88<br>
-							web : www.enseignementsecondaire.gouv.bj<br>
-						</h4>
-						<p></p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<div class="single-defination" style="text-align: right;">
-					<p class="sample-text">
-						Cotonou le {{current_time}}
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<div class="single-defination" style="text-align: left;">
-					<h4 class="mb-20"></h4>
-					<p>
-						N° {{ mission['reference_ordre_mission'] }} /MESTFP/DC/SGM/DAF/INIFRCF/AC/SA
-					</p>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12" style="text-align: center;">
-				<div class="single-defination">
-					<h4 class="mb-20">ORDRE DE MISSION<br>
-						_____***_____
-					</h4>
-					<h4>
-						LE MINISTERE DES ENSEIGNEMENTS SECONDAIRE, TECHNIQUE ET DE LA FORMATION PROFESSIONNELLE ORDONNE
-						A
-					</h4>
-					<p>
-						Décision :{{ mission['reference_lettre_de_mission'] }}
-<!--						Décision : Année 2019-505/MESTFP/DC/SGM/INIFRCF du 10/09/19 -->
-					</p>
-				</div>
-			</div>
-		</div>
-		<!-- End document header -->
+<div class="container">
 
-		<!-- Start document body -->
-		<div class="row">
-			<div class="col-md-12">
-				<blockquote class="generic-blockquote">
-					<strong class="h5">Nom :</strong> {{ agent['nom_agent'] }} <br>
-					<strong class="h5">Prénom(s) :</strong> {{ agent['prenom_agent'] }} <br>
-					<strong class="h5">Qualité :</strong> {{ agent['qualite_agent'] }} <br>
-					<strong class="h5">Adresse complète :</strong> Cotonou, Tel : 97 44 90 39 <br>
-					<strong class="h5">Date et lieu de naissance :</strong> {{ agent['date_et_lieu_de_naissance_agent'] }} <br>
-					<strong class="h5">Matricule :</strong> {{ agent['matricule_agent'] }} <br>
-					<strong class="h5">Grade :</strong> {{ agent['grade_agent'] }} <br>
-					<strong class="h5">De se rendre à :</strong> {{ mission['libelle_localite_mission']}} <br>
-					<strong class="h5">Pour (Objet Complet) :</strong> {{mission['objet_mission']}} <br>
-					<strong class="h5">Moyen de transport :</strong> {{ mission['moyen_transport_mission'] }} <br>
-					<strong class="h5">Date de Départ :</strong> {{mission['date_depart_mission'] }} <br>
-					<strong class="h5">Date de Retour :</strong> {{mission['date_fin_mission'] }}<br>
-					<strong class="h5">Les Frais de transport sont imputables à :</strong> {{ agent['nom_agent'] }}  <br>
-					<strong class="h5">Les Frais de mission sont imputables à :</strong>  {{ agent['nom_agent'] }}  <br>
-					<strong class="h5">Les Autorités administratives sont priées de faciliter à :</strong> {{ agent['nom_agent'] }}
-					<br>
-					<strong class="h5">Autorité à saisir en cas d'urgence :</strong>{{ read_struc['responsable_structure']}}
-					<span STYLE="padding:0 0 0 40px;"><strong class="h5">Tél :</strong> 21 32 41 88</span>
-				</blockquote>
-			</div>
-		</div>
-		<!-- End document body -->
+    <!-- Start document header -->
+    <div class="section-top-border">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="single-defination">
+                    <h4 class="mb-20">REPUBLIQUE DU BENIN <br>
+                        MINISTERE DE L'AGRICULTURE DE L'ELEVAGE ET DE LA PECHE
+                    </h4>
+                    <p></p>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="single-defination">
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="single-defination" style="text-align: right;">
+                    <h4 class="mb-20">
+                        01 BP: 81 Porto-Novo <br>
+                        Tél: (00229) 20250859<br>
+                        Email : ddaepplateau@gmail.com<br>
+                    </h4>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="single-defination" style="text-align: right;">
+                <p class="sample-text">
+                    Cotonou le {{current_time}}
+                </p>
+            </div>
+        </div>
+    </div>
+    <p> Direction Départementale de l'Agriculture de l'Elevage et de la Pêche (DDAEP) PLATEAU </p>
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="mb-20" style="text-align: center;">ORDRE DE MISSION<br></h4>
 
-		<!-- Start Signature section -->
-		<div class="section-top-border row">
-			<div class="col-md-4">
-				<div class="single-defination" style="text-align: center;">
-					<br><br><br><br>
-					<strong class="h4"> {{ read_struc['delegue_structure']}} </strong><br>
-					<strong style="text-transform: uppercase;">LE DELEGUE DU CONTROLEUR FINANCIER</strong>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="single-defination">
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="single-defination" style="text-align: center;">
-					<br><br><br><br>
-					<strong class="h4">{{ read_struc['responsable_structure']}}</strong><br>
-					<strong style="text-transform: uppercase;">Pour le ministre et p.o. le secretaire general adjoint du
-						ministere</strong>
-				</div>
-			</div>
-		</div>
-		<!-- End Signature section -->
+            <div class="single-defination" style="text-align: left;">
+                <p>
+                    N° {{ mission['reference_ordre_mission'] }} /DDAEP-PLATEAU/MAEP/SMG/DFM/SA <br><br>
+                </p>
 
-	</div>
-	<!-- End Sample Area -->
-    {%endfor%}
-	<!--
-			Script
-			============================================= -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="text-align: center;">
+            <div class="single-defination">
+
+                <h4>
+                    Le Directeur Départemental de l'Agriculture de l'Elevage et de la Pêche du Plateau <br> ordonne à
+                    Monsieur <br><br>
+                </h4>
+
+            </div>
+        </div>
+    </div>
+    <!-- End document header -->
+
+    <!-- Start document body -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <blockquote class="generic-blockquote">
+                <strong class="h5">Nom :</strong> {{ agent['nom_agent'] }} <br>
+                <strong class="h5">Prénom(s) :</strong> {{ agent['prenom_agent'] }} <br>
+                <strong class="h5">Qualité :</strong> {{ agent['qualite_agent'] }} <br>
+                <strong class="h5">Adresse complète :</strong> DDAEP-Plateau <br>
+                <strong class="h5">Date et lieu de naissance :</strong> {{ agent['date_et_lieu_de_naissance_agent'] }}
+                <br>
+                <strong class="h5">Tél :</strong>{{ agent['telephone_agent'] }}
+                <br>
+                <strong class="h5">Nationalité :</strong> Béninoise <br>
+                <strong class="h5">Matricule :</strong> {{ agent['matricule_agent'] }} <br>
+                <strong class="h5">Indice :</strong> {{ agent['indice_agent'] }} <br>
+                <strong class="h5">Grade :</strong> {{ agent['grade_agent'] }} <br>
+                <strong class="h5">De se rendre à :</strong> {{ mission['libelle_localite_mission']}} <br>
+                <strong class="h5">Pour (Objet Complet) :</strong> {{mission['objet_mission']}} <br>
+                <strong class="h5">Moyen de transport :</strong> {{ mission['moyen_transport_mission'] }} <br>
+                {% for agent in list_agents %}
+                {% if "chauffeur" in agent['qualite_agent'] or "Chauffeur" in agent['qualite_agent'] or "CHAUFFEUR" in
+                agent['qualite_agent'] %}
+                <strong class="h5">Chauffeur à bord :</strong> {{ agent['nom_agent'] }} {{ agent['prenom_agent'] }} <br>
+                {% else %}
+                <strong class="h5">Chauffeur à bord :</strong> {{ agent['nom_agent'] }} {{ agent['prenom_agent'] }} <br>
+                {% endif %}
+                {% endfor %}
+                <strong class="h5">Date de Départ :</strong> {{mission['date_depart_mission'] }} <br>
+                <strong class="h5">Date de Retour :</strong> {{mission['date_fin_mission'] }}<br>
+                <strong class="h5">Imputation budgetaire :</strong> Les frais de transport et de mission sont imputables
+                au : ligne budgetaire {{mission['type_budget'] }} <br>
+                <strong class="h5">IFU à :</strong> {{ agent['ifu_agent'] }}
+                <br>
+                <strong class="h5">Les autorités administratives sont priées de faciliter à Monsieur :</strong>{{
+                agent['nom_agent'] }} {{ agent['prenom_agent'] }} }}
+            </blockquote>
+        </div>
+    </div>
+    <!-- End document body -->
+
+    <!-- Start Signature section -->
+    <p> VU </p>
+    <div class="section-top-border row" style="margin-bootom:25px">
+        <div class="col-md-4">
+            <div class="single-defination" style="text-align: center;">
+                <br><br><br><br>
+                <strong class="h4"> {{ read_struc['delegue_structure']}} </strong><br>
+                <strong style="text-transform: uppercase;">LE DELEGUE DU CONTROLEUR FINANCIER</strong><br>
+                <strong style="text-transform: uppercase;"> Près des départements de l'Ouémé et Plateau</strong>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="single-defination">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="single-defination" style="text-align: center;">
+                <br><br><br><br>
+                <strong class="h4">{{ read_struc['responsable_structure']}}</strong><br>
+                <strong style="text-transform: uppercase;">Le Directeur Départemental de l'Agriculture <br> de l'Elevage
+                    et de la Pêche <br><br> <br><br> </strong>
+            </div>
+        </div>
+    </div>
+    <!-- End Signature section -->
+
+</div>
+<!-- End Sample Area -->
+{%endfor%}
+
+<!--
+        Script
+        ============================================= -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
 </body>
 
 </html>

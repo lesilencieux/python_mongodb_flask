@@ -7,34 +7,26 @@
 
 <center>
     <form action="/corps/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" method="POST" autocomplete="on" name="form">
-
         <div class="col-sm-offset-3 col-sm-6" id="first-part">
-
             <span>&nbsp;</span>
             <div class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa  fa-code-fork" aria-hidden="true"></i></span>
-                <input name="libelle_corps" required="required" class="form-control" type="text" placeholder="Libelle">
+                 <input name="libelle_corps" required="required" class="form-control" type="text" placeholder="Libelle">
             </div>
             <span>&nbsp;</span>
-
             <div>
                 <a href="#">
                     <button type="button" id="first-reset" class="btn btn-primary btn-sm pull-left">
-                        <span class="visible-xs"><i class="fa fa-refresh fa-2x"></i></span>
-                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-refresh"></i> Annuler</span>
+                         <span class="visible-sm visible-md visible-lg">  Annuler</span>
                     </button>
                 </a>
 
                  <div class="col-xs-4 col-sm-3">
                     <button type="submit" class="btn btn-primary btn-sm pull-right">
-                        <span class="visible-xs"><i class="fa fa-save fa-2x"></i></span>
-                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-save"></i> {{'Valider'}}</span>
+                         <span class="visible-sm visible-md visible-lg">  {{'Valider'}}</span>
                     </button>
                 </div>
 
             </div>
-
-        </div>
         </div>
     </form>
 </center>
@@ -55,5 +47,7 @@
             </div>
         </div>
     </div>
+
+
 
 {% endblock %}

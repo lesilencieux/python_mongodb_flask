@@ -23,13 +23,9 @@ class Pays():
 
     def get_pays(self,pays_id):
         myquery = { "_id": ObjectId(pays_id) }
-        payss = self.payss.find(myquery)
+        return self.payss.find_one(myquery)
 
-        toreturns = []
-        for pays in payss:
-            pays["_id"] = str(pays["_id"])
-            toreturns.append(pays)
-        return jsonify(toreturns)
+
 
     def get_pays_by_code(self,code_pays):
         myquery = { "code_pays": code_pays}
@@ -55,11 +51,14 @@ class Pays():
             return False
 
 
-    def updatepays(self,id,newvalues):
+    def update_pays(self,id,newvalues):
         query = {"_id": ObjectId(id)}
         updated = {"$set": newvalues}
-        self.payss.update_one(query,updated)
-        return 'Updated a pays with id %s' % id
+        if self.payss.update_one(query,updated):
+            return True
+        else:
+            return False
+
 
     def delete_pays(self, id):
         query = {"_id": ObjectId(id)}

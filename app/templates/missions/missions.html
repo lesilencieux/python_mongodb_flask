@@ -42,90 +42,36 @@
 
 
 
+
+
+
+
     </style>
 </head>
 <center><h1>Creation de mission</h1></center>
 <span>&nbsp;</span>
 
 <center>
-    <form action="/mission/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" method="POST" autocomplete="on" name="form">
+    <form action="/create_mission/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+          method="POST" autocomplete="on" name="form">
 
 
-        <div class="col-sm-offset-3 col-sm-6" id="first-part">
-
-
-            <div class="form-group">
-
-                <div class="input-group date">
-                            <span class="input-group-addon"><i
-                                    class="fa fa-calendar"></i></span><input name="date_debut_mission" id="date_added"
-                                                                             placeholder="Date Debut Mission"
-                                                                             type="text" class="form-control">
-                </div>
-            </div>
-            <div class="form-group">
-
-                <div class="input-group date">
-                            <span class="input-group-addon"><i
-                                    class="fa fa-calendar"></i></span><input name="date_fin_mission" id="date_modified"
-                                                                             placeholder="Date Fin Mission" type="text"
-                                                                             class="form-control">
-                </div>
-            </div>
-
+        <div style="height:600px" class="col-sm-offset-3 col-sm-6" id="first-part">
 
             <div class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
-                <input name="reference_lettre_de_mission" required="required" class="form-control" type="text"
-                       placeholder="Reference de la lettre de mission ">
+
+                <select name="reference_lettre_de_mission" class="selectpicker" data-width="100%" single
+                        data-live-search="true">
+
+                    {% for object in list_objects %}
+                    <option>{{ object['reference_lettre_de_mission'] }}</option>
+                    {% endfor %}
+                </select>
             </div>
             <span>&nbsp;</span>
 
-            <div class="md-form">
-                <textarea name="objet_mission" id="form10" class="md-textarea form-control" rows="5"
-                          placeholder="Objet"></textarea>
-            </div>
-            <span>&nbsp;</span>
-            <div class="input-group margin-bottom-sm">
-                <div class="form-group">
-
-                    <div class="col-xs-9">
-                        <label style="font-weight: bold;" class="col-xs-3 control-label">Destination </label>
-                        <label onclick="destination_externe()">
-                            <input id="destination_externe" name="destination_mission" value="externe" type="radio"
-                                   required>
-                            Externe</label>
-                        <label onclick="destination_interne()">
-                            <input checked id="destination_interne" name="destination_mission" value="interne" type="radio">
-                            Interne</label>
-
-                    </div>
-                </div>
-                <span>&nbsp;</span>
-            </div>
-
-            <div>
-                <a href="#">
-                    <button type="button" id="first-reset" class="btn btn-primary btn-sm pull-left">
-                        <span class="visible-xs"><i class="fa fa-refresh fa-2x"></i></span>
-                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-refresh"></i> Annuler</span>
-                    </button>
-                </a>
-
-                <span class="btn btn-primary btn-sm  " id="firsr-btn-next">
-                    <span class="visible-xs"><i class="fa fa-arrow-circle-right fa-2x"></i></span>
-                    <span class="visible-sm visible-md visible-lg">Suivant <i
-                            class="fa fa-arrow-circle-right"></i></span>
-                </span>
-            </div>
-
-        </div>
-
-        <div class="col-sm-offset-3 col-sm-6" id="second-part">
-
             <div class="input-group margin-bottom-sm">
 
-                <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
                 <input name="reference_ordre_mission" required="required" class="form-control" type="text"
                        placeholder="Reference de l'ordre de la mission">
 
@@ -134,7 +80,6 @@
             <span>&nbsp;</span>
 
             <div class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
 
                 <select name="type_budget" class="selectpicker" data-width="100%" single data-live-search="true">
 
@@ -152,22 +97,21 @@
                 <div class="form-group">
 
                     <div class="input-group date">
-                            <span class="input-group-addon"><i
-                                    class="fa fa-calendar"></i></span><input name="date_depart_mission"
-                                                                             id="date_added_1"
-                                                                             placeholder="Date Départ Mission"
-                                                                             type="text" class="form-control">
+                        <input name="date_depart_mission"
+                               id="date_added_1"
+                               placeholder="Date Départ Mission"
+                               type="text" class="form-control">
                     </div>
                 </div>
 
                 <div class="form-group">
 
                     <div class="input-group date">
-                            <span class="input-group-addon"><i
-                                    class="fa fa-calendar"></i></span><input name="date_retour_mission"
-                                                                             id="date_modified_1"
-                                                                             placeholder="Date Fin Mission" type="text"
-                                                                             class="form-control">
+
+                        <input name="date_retour_mission"
+                               id="date_modified_1"
+                               placeholder="Date Fin Mission" type="text"
+                               class="form-control">
                     </div>
                 </div>
 
@@ -176,35 +120,42 @@
             <span>&nbsp;</span>
 
             <span>&nbsp;</span>
-            <div class="row">
-                <div class="col-xs-4 col-sm-offset-3 col-sm-3">
-                    <span class="btn btn-primary btn-sm pull-left" id="first-btn-back">
-                        <span class="visible-xs"><i class="fa fa-arrow-circle-left fa-2x"></i></span>
-                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-arrow-circle-left"></i> Précedent</span>
-                    </span>
-                </div>
-                <div class="col-xs-4 col-sm-3">
-                    <a href="#">
-                        <button type="button" id="second-reset" class="btn btn-primary btn-sm ">
-                            <span class="visible-xs"><i class="fa fa-refresh fa-2x"></i></span>
-                            <span class="visible-sm visible-md visible-lg"><i class="fa fa-refresh"></i> Annuler</span>
-                        </button>
-                    </a>
-                    </span>
-                </div>
 
-                <span class="btn btn-primary btn-sm  " id="second-btn-next">
-                    <span class="visible-xs"><i class="fa fa-arrow-circle-right fa-2x"></i></span>
-                    <span class="visible-sm visible-md visible-lg">Suivant <i
-                            class="fa fa-arrow-circle-right"></i></span>
-                </span>
+            <div class="input-group margin-bottom-sm">
+                <div class="form-group">
 
+                    <div class="col-xs-9">
+                        <label style="font-weight: bold;" class="col-xs-3 control-label">Destination </label>
+                        <label onclick="destination_externe()">
+                            <input id="destination_externe" name="destination_mission" value="externe" type="radio"
+                                   required>
+                            Externe</label>
+                        <label onclick="destination_interne()">
+                            <input checked id="destination_interne" name="destination_mission" value="interne"
+                                   type="radio">
+                            Interne</label>
+
+                    </div>
+                </div>
+                <span>&nbsp;</span>
             </div>
+
+            <div>
+                <a href="#">
+                    <button type="button" id="first-reset" class="btn btn-primary btn-sm pull-left">
+                        <span class="visible-sm visible-md visible-lg">  Annuler</span>
+                    </button>
+                </a>
+
+                <span class="btn btn-primary btn-sm  " id="firsr-btn-next">
+                     <span class="visible-sm visible-md visible-lg">Suivant  </span>
+                </span>
+            </div>
+            <span>&nbsp;</span>
 
         </div>
 
-        <span>&nbsp;</span>
-        <div class="col-sm-offset-3 col-sm-6" id="third-part">
+        <div class="col-sm-offset-3 col-sm-6" id="second-part">
 
             <div id="div_pays_destination" class="input-group margin-bottom-sm">
                 <select name="pays_destination_mission" class="selectpicker"
@@ -217,10 +168,11 @@
 
                 </select>
             </div>
-        <span>&nbsp;</span>
+            <span>&nbsp;</span>
 
             <div id="div_ville_pays_destination" style="display: none" class="input-group margin-bottom-sm">
-                <select name="ville_pays_destination_mission" id="select_ville_pays_destination" class="selectpicker"
+                <select name="ville_pays_destination_mission" id="select_ville_pays_destination"
+                        class="selectpicker"
                         data-width="100%" multiple
                         data-live-search="true">
                     <optgroup label="Benin">
@@ -241,8 +193,6 @@
             <span>&nbsp;</span>
 
             <div class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
-
                 <select name="agents_mission" class="selectpicker" data-width="100%" multiple
                         data-live-search="true">
                     {% for agent in list_agents %}
@@ -253,10 +203,9 @@
             </div>
 
 
-                 <span>&nbsp;</span>
+            <span>&nbsp;</span>
 
             <div class="input-group select2-bootstrap-prepend">
-                <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
                 <select name="structure_initiatrice_mission" class="selectpicker" data-width="100%" single
                         data-live-search="true">
 
@@ -275,14 +224,12 @@
             <span>&nbsp;</span>
 
             <div class="input-group">
-                <span class="input-group-addon"><i class="fa  fa-cc-visa" aria-hidden="true"></i></span>
                 <input name="moyen_transport_mission" required="required" class="form-control" type="text"
                        placeholder="Moyen de transport ">
             </div>
 
             <span>&nbsp;</span>
             <div id="div_commune_mission" class="input-group margin-bottom-sm">
-                 <span class="input-group-addon"><i class="fa fa-header" aria-hidden="true"></i></span>
                 <input id="input_commune_mission" name="commune_mission" class="form-control" type="text"
                        placeholder="Commune ">
             </div>
@@ -290,51 +237,41 @@
 
             <span>&nbsp;</span>
             <div class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
                 <input name="immatriculation_moyen_transport_mission" required="required" class="form-control"
                        type="text"
                        placeholder="Immatriculation ">
             </div>
             <span>&nbsp;</span>
-
-
-
-
             <div class="row">
-
                 <div class="col-xs-4 col-sm-offset-3 col-sm-3">
-                    <span class="btn btn-primary btn-sm pull-left" id="second-btn-back">
-                        <span class="visible-xs"><i class="fa fa-arrow-circle-left fa-2x"></i></span>
-                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-arrow-circle-left"></i> Précedent</span>
+                    <span class="btn btn-primary btn-sm pull-left" id="first-btn-back">
+                         <span class="visible-sm visible-md visible-lg"> Précedent</span>
                     </span>
                 </div>
                 <div class="col-xs-4 col-sm-3">
                     <a href="#">
-                        <button type="button" id="third-reset" class="btn btn-primary btn-sm ">
-                            <span class="visible-xs"><i class="fa fa-refresh fa-2x"></i></span>
-                            <span class="visible-sm visible-md visible-lg"><i class="fa fa-refresh"></i> Annuler</span>
+                        <button type="button" id="second-reset" class="btn btn-primary btn-sm ">
+                            <span class="visible-sm visible-md visible-lg">  Annuler</span>
                         </button>
                     </a>
                     </span>
                 </div>
-                <span class="btn btn-primary btn-sm  " id="third-btn-next">
-                    <span class="visible-xs"><i class="fa fa-arrow-circle-right fa-2x"></i></span>
-                    <span class="visible-sm visible-md visible-lg">Suivant <i
-                            class="fa fa-arrow-circle-right"></i></span>
-                </span>
-                <button id="validate-mission-externe-destination" style="display: none" type="submit"
+                 <button id="validate-mission-externe-destination" style="display: none" type="submit"
                         class="btn btn-primary btn-sm pull-right">
-                    <span class="visible-xs"><i class="fa fa-save fa-2x"></i></span>
-                    <span class="visible-sm visible-md visible-lg"><i class="fa fa-save"></i> {{'Valider'}}</span>
+                    <span class="visible-sm visible-md visible-lg"> {{'Valider'}}</span>
                 </button>
-            </div>
-        </div>
+                <span class="btn btn-primary btn-sm  " id="second-btn-next">
+                      <span class="visible-sm visible-md visible-lg">Suivant  </span>
+                </span>
 
+            </div>
+
+
+        </div>
         <span>&nbsp;</span>
-        <div class="col-sm-offset-3 col-sm-6" id="fourth-part">
+        <div class="col-sm-offset-3 col-sm-6" id="third-part">
 
             <div id="div_code_type_localite" class="input-group">
-                <span class="input-group-addon"><i class="fa  fa-cc-visa" aria-hidden="true"></i></span>
                 <input id="input_code_type_localite" name="code_type_localite_mission" class="form-control" type="text"
                        placeholder=" Code Type Localite ">
             </div>
@@ -347,7 +284,6 @@
             </div>
             <span>&nbsp;</span>
             <div id="div_code_localite_parente" class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
                 <input id="input_code_localite_parente" name="code_localite_parente_mission" class="form-control"
                        type="text"
                        placeholder="Code Localité Parente ">
@@ -355,11 +291,10 @@
             <span>&nbsp;</span>
 
 
-
-             <span>&nbsp;</span>
+            <span>&nbsp;</span>
             <div style="display:none" id="div_current_user" class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
-                <input id="input_current_user" name="input_current_user" class="form-control" value="{{ current_user.username }}"
+                <input id="input_current_user" name="input_current_user" class="form-control"
+                       value="{{ current_user.username }}"
                        type="text"
                        placeholder="Code Localité Parente ">
             </div>
@@ -367,7 +302,6 @@
 
 
             <div id="code_localite_mission" class="input-group margin-bottom-sm">
-                <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i></span>
                 <input id="input_localite_mission" name="code_localite_mission" class="form-control" type="text"
                        placeholder="Code Localité ">
             </div>
@@ -375,29 +309,28 @@
 
 
             <span>&nbsp;</span>
-
             <div class="row">
 
                 <div class="col-xs-4 col-sm-offset-3 col-sm-3">
-                    <span class="btn btn-primary btn-sm pull-left" id="third-btn-back">
-                        <span class="visible-xs"><i class="fa fa-arrow-circle-left fa-2x"></i></span>
-                        <span class="visible-sm visible-md visible-lg"><i class="fa fa-arrow-circle-left"></i> Précedent</span>
+                    <span class="btn btn-primary btn-sm pull-left" id="second-btn-back">
+                         <span class="visible-sm visible-md visible-lg"> Précedent</span>
                     </span>
                 </div>
                 <div class="col-xs-4 col-sm-3">
                     <a href="#">
-                        <button type="button" id="fourth-reset" class="btn btn-primary btn-sm ">
-                            <span class="visible-xs"><i class="fa fa-refresh fa-2x"></i></span>
-                            <span class="visible-sm visible-md visible-lg"><i class="fa fa-refresh"></i> Annuler</span>
+                        <button type="button" id="third-reset" class="btn btn-primary btn-sm ">
+                            <span class="visible-sm visible-md visible-lg"> Annuler</span>
                         </button>
                     </a>
                     </span>
                 </div>
-                <button type="submit" class="btn btn-primary btn-sm pull-right">
-                    <span class="visible-xs"><i class="fa fa-save fa-2x"></i></span>
-                    <span class="visible-sm visible-md visible-lg"><i class="fa fa-save"></i> {{'Valider'}}</span>
+
+                <button id="validate-mission"  type="submit"
+                        class="btn btn-primary btn-sm pull-right">
+                    <span class="visible-sm visible-md visible-lg"> {{'Valider'}}</span>
                 </button>
             </div>
+
         </div>
 
     </form>
@@ -529,34 +462,7 @@
                     }, false);
 
 
-                        var fromTimeInput = $('#date_added');
-                                var toTimeInput = $('#date_modified');
-                                var fromTime = fromTimeInput.val();
-                                var toTime = toTimeInput.val();
-
-                                fromTimeInput.datepicker({
-                                    keyboardNavigation : false,
-                                    forceParse : false,
-                                    calendarWeeks : true,
-                                    autoclose : true,
-                                    endDate: toTime
-                                });
-                                toTimeInput.datepicker({
-                                    keyboardNavigation : false,
-                                    forceParse : false,
-                                    calendarWeeks : true,
-                                    autoclose : true,
-                                    startDate: fromTime
-                                });
-                                fromTimeInput.on("changeDate", function (e) {
-                                    toTimeInput.datepicker('setStartDate', e.date);
-                                });
-                                toTimeInput.on("changeDate", function (e) {
-                                    fromTimeInput.datepicker('setEndDate', e.date);
-                                });
-
-
-                        var fromTimeInput = $('#date_added_1');
+                                var fromTimeInput = $('#date_added_1');
                                 var toTimeInput = $('#date_modified_1');
                                 var fromTime = fromTimeInput.val();
                                 var toTime = toTimeInput.val();
@@ -583,6 +489,7 @@
                                 });
 
 
+
                        function destination_interne() {
 
                            input_code_type_localite = document.getElementById('input_code_type_localite');
@@ -601,7 +508,7 @@
                             div_pays_destination = document.getElementById('div_pays_destination');
                             select_pays_destination = document.getElementById('select_pays_destination');
 
-                            third_btn_next = document.getElementById('third-btn-next');
+                            second_btn_next = document.getElementById('second-btn-next');
                             validate_mission_externe_destination = document.getElementById('validate-mission-externe-destination');
                             interne = document.getElementById('destination_interne');
 
@@ -610,8 +517,8 @@
                                 validate_mission_externe_destination.style.display = "none";
                                 validate_mission_externe_destination.style.height = "none"; // Optionnel rétablir la hauteur
 
-                                third_btn_next.style.display = "block";
-                                third_btn_next.style.height = "auto"; // Optionnel rétablir la hauteur
+                                second_btn_next.style.display = "block";
+                                second_btn_next.style.height = "auto"; // Optionnel rétablir la hauteur
 
                                 div_libelle_localite_mission.style.display = "block";
                                 div_libelle_localite_mission.style.height = "auto"; // Optionnel rétablir la hauteur
@@ -681,7 +588,7 @@
                             div_pays_destination = document.getElementById('div_pays_destination');
                             select_pays_destination = document.getElementById('select_pays_destination');
 
-                            third_btn_next = document.getElementById('third-btn-next');
+                            second_btn_next = document.getElementById('second-btn-next');
                             validate_mission_externe_destination = document.getElementById('validate-mission-externe-destination');
                             externe = document.getElementById('destination_externe');
 
@@ -689,8 +596,8 @@
                                 validate_mission_externe_destination.style.display = "block";
                                 validate_mission_externe_destination.style.height = "auto"; // Optionnel rétablir la hauteur
 
-                                third_btn_next.style.display = "none";
-                                third_btn_next.style.height = "none"; // Optionnel rétablir la hauteur
+                                second_btn_next.style.display = "none";
+                                second_btn_next.style.height = "none"; // Optionnel rétablir la hauteur
 
                                  div_pays_destination.style.display = "block";
                                  div_pays_destination.style.height = "auto"; // Optionnel rétablir la hauteur
@@ -743,7 +650,6 @@
 
                             }
                     };
-
 
 
 

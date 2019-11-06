@@ -1,0 +1,117 @@
+{% extends "homes.html" %}
+{% block content %}
+<center><h1>Liste des objects de missions </h1></center>
+<section class="content">
+    <div class="box box-primary">
+
+        <div class="box-body">
+            <table id="lstobject" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Réference de la lettre de object</th>
+                    <th>Date Création</th>
+                    <th>Date Début</th>
+                    <th>Date Fin</th>
+                    <th>Object</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for object in list_objects %}
+                <tr>
+                    <td class="table-active">{{ object['reference_lettre_de_mission'] }}</td>
+                    <td class="table-primary">{{ object['created_at'] }}</td>
+                    <td class="table-secondary">{{ object['date_debut_mission'] }}</td>
+                    <td class="table-success">{{ object['date_fin_mission'] }}</td>
+                    <td class="table-danger">{{ object['objet_mission'] }}</td>
+                    <td>
+                        <div class="input-group btn">
+                            <button type="button" class="btn btn-success  dropdown-toggle pull-right"
+                                    data-toggle="dropdown">
+                                Actions
+                            </button>
+                            {% if 'admin' in current_user._roles %}
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/object_mission/{{ object['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
+                                        <button class="btn btn-info btn-block">Afficher</button>
+                                    </a></li>
+                                <li>
+                                    <a href="/updat_object_mission/{{ object['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
+                                        <button class="btn btn-warning btn-block">Modifier</button>
+                                    </a></li>
+                                <!--                                        <li><a href="/delete_object/{{ object['_id'] }}">-->
+                                <!--                                            <button class="btn btn-danger btn-block">Supprimer</button>-->
+                                <!--                                        </a></li>-->
+                                <li class="divider"></li>
+
+                            </ul>
+                            {% else %}
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/object/{{ object['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
+                                        <button class="btn btn-info btn-block">Afficher</button>
+                                    </a></li>
+
+                                <li>
+                                    <a href="/update_object/{{ object['_id'] }}{{ object['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
+                                        <button class="btn btn-warning btn-block">Modifier</button>
+                                    </a></li>
+                                <!--                                        <li><a href="/delete_object/{{ object['_id'] }}">-->
+                                <!--                                            <button class="btn btn-danger btn-block">Supprimer</button>-->
+                                <!--                                        </a></li>-->
+                                <li class="divider"></li>
+
+                            </ul>
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h1 class="box-title">Nouvel Object de Mission</h1>
+            <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" data-widget="collapse">
+                </button>
+            </div>
+        </div>
+        <div class="box-body">
+            <div align="right">
+                <a href="/objects/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
+                    <button type="button" class="btn btn-success">Ajouter un Nouvel Object Mission</button>
+                </a>
+            </div>
+        </div>
+        <span></span>
+        <span></span>
+    </div>
+
+</section>
+
+<script type="text/javascript">
+
+      document.addEventListener("DOMContentLoaded",  function(e) {
+            alert("txt")
+            var txt = $(e.target).text();
+            console.log(txt);
+            alert(txt)
+         } false);
+
+
+
+
+
+
+
+</script>
+
+
+{% endblock %}

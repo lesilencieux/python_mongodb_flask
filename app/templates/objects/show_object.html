@@ -1,0 +1,65 @@
+{% extends "homes.html" %}
+{% block content %}
+<center>
+    <section class="content">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h1 class="box-title"> Details des informations de la mission </h1>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="box-body">
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <th>Date de Création</th>
+                        <td>{{ read_object_mission['created_at'] }}</td>
+
+                    <tr>
+                        <th>Date de début de mission</th>
+                        <td>{{ read_object_mission['date_debut_mission']}}</td>
+                    </tr>
+                    <tr>
+                        <th>Date de fin de mission</th>
+                        <td>{{ read_object_mission['date_fin_mission']}}</td>
+                    </tr>
+                    <tr>
+                        <th>Référence de la lettre de mission</th>
+                        <td>{{ read_object_mission['reference_lettre_de_mission']}}</td>
+                    </tr>
+                    <tr>
+                        <th>Object de mission</th>
+                        <td>{{ read_object_mission['objet_mission'] }}</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </section>
+
+    <div class="box box-primary">
+    <div class="box-header with-border">
+        <h1 class="box-title">Liste des objects de missions</h1>
+        <div class="box-tools pull-right">
+            <button class="btn btn-box-tool" data-widget="collapse">
+            </button>
+        </div>
+    </div>
+    <div class="box-body">
+        <div align="right">
+            <a href="/list_object/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
+                <button type="button" class="btn btn-success">Aller à liste des objects de missions</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+</center>
+{% endblock %}
