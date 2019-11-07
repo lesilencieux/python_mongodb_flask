@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="box-body">
-            <table id="lstbudget" class="table table-bordered table-striped">
+            <table id="table_agents" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                     <th>Matricule</th>
@@ -39,19 +39,22 @@
                     <td class="table-danger">{{ agent['corps_agent'] }}</td>
                     <td class="table-success">{{ agent['grade_agent'] }}</td>
                     <td>
-                                    <div class="input-group btn">
-                                        <button type="button" class="btn btn-success  dropdown-toggle pull-right" data-toggle="dropdown">
-                                                Actions
-                                        </button>
-                                        <ul class="dropdown-menu">
-<!--                                            <li><a href="show_agent/{{ agent['_id'] }}"><button class="btn btn-info btn-block"  >Détailler</button></a></li>-->
-<!--                                            <li><a href="edit_agent/{{ agent['_id'] }}"><button class="btn btn-warning btn-block">Modifier</button></a></li>-->
-                                            <li><a href="delete_agent/{{ agent['_id'] }}"><button class="btn btn-danger btn-block">Supprimer</button></a></li>
-                                            <li class="divider"></li>
+                        <div class="input-group btn">
+                            <button type="button" class="btn btn-success  dropdown-toggle pull-right"
+                                    data-toggle="dropdown">
+                                Actions
+                            </button>
+                            <ul class="dropdown-menu">
+                                <!--                                            <li><a href="show_agent/{{ agent['_id'] }}"><button class="btn btn-info btn-block"  >Détailler</button></a></li>-->
+                                <!--                                            <li><a href="edit_agent/{{ agent['_id'] }}"><button class="btn btn-warning btn-block">Modifier</button></a></li>-->
+                                <li><a href="delete_agent/{{ agent['_id'] }}">
+                                    <button class="btn btn-danger btn-block">Supprimer</button>
+                                </a></li>
+                                <li class="divider"></li>
 
-                                        </ul>
-                                    </div>
-                                </td>
+                            </ul>
+                        </div>
+                    </td>
                 </tr>
                 {% endfor %}
                 </tbody>
@@ -74,15 +77,21 @@
     </div>
 
 </section>
+<!--Reference to jQuery-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
-    <script type="text/javascript">
+<!--<script type="text/javascript" href="{{ url_for('static', filename='js/jquery2.min.js') }}">-->
+<!--<script type="text/javascript" href="{{ url_for('static', filename='js/jquery.dataTables.min.js') }}">-->
 
-      document.addEventListener("DOMContentLoaded",  function(e) {
-            alert("txt")
-            var txt = $(e.target).text();
-            console.log(txt);
-            alert(txt)
-         } false);
+<script type="text/javascript">
+
+              document.addEventListener("DOMContentLoaded", function () {
+
+
+                      $('#table_agents').DataTable();
+
+                    }, false);
 
 
 </script>
