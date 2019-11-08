@@ -28,4 +28,16 @@
         </div>
     </section>
  </center>
+
+<div class="box box-primary">
+
+    <div class="box-body">
+        <div align="right">
+            <a href="/list_type_budget/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
+                <button type="button" class="btn btn-success">Aller à liste des types de budget</button>
+            </a>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

@@ -397,7 +397,6 @@ def update_qualite(id, username, email, roles):
     read_qualite = qualite1.get_qualite(str(id))
     return render_template('qualites/edit_qualite.html', read_qualite=read_qualite)
 
-
 @app.route('/update_corps/<id>/<username>/<email>/<roles>')
 @login_required
 def update_corps(id, username, email, roles):
@@ -428,6 +427,22 @@ def delete_structure_by_id(id, username, email, roles):
         return render_template('structures/list_structure.html', list_structures=list_structures)
     flash("Oups ! Quelque chose s'est mal passé lors de la suppression", category='error')
     return render_template('structures/list_structure.html', message="ko")
+
+@app.route('/delete_object_mission/<id>/<username>/<email>/<roles>')
+@login_required
+def delete_object_mission(id, username, email, roles):
+    login_user(users.Users(username, email, roles))
+    ob1 = object.Object()
+    read_object_miss = ob1.delete_object(str(id))
+
+    list_objects = object.Object().get_objects()
+    if read_object_miss:
+        flash("L'object de mission  supprimé avec succès", category='success')
+        return render_template('objects/list_object.html', list_objects=list_objects)
+    else:
+        flash("Oups ! Quelque chose s'est mal passé lors de la suppression de l'object de mission ", category='error')
+        return render_template('objects/list_object.html', list_objects=list_objects)
+
 
 
 @app.route('/delete_type_budget/<id>/<username>/<email>/<roles>')
@@ -768,9 +783,9 @@ def qualite_update(id_qualite, username, email, roles):
     if libelle_qualite is not None and description_qualite is not None:
         if qualite1.update_qualite(str(id_qualite), qualit):
             flash("Qualité mise à jour avec succès!", category='success')
-            return render_template('qualites/qualites.html', read_qualite=read_qualite)
+            return render_template('qualites/edit_qualite.html', read_qualite=read_qualite)
         flash("Oups quelque chose s'est mal passé lors de la mise à jour de la qualité !", category='error')
-        return render_template('qualites/edit_qualites.html', read_qualite=read_qualite)
+        return render_template('qualites/edit_qualite.html', read_qualite=read_qualite)
     return render_template('qualites/edit_qualites.html', read_qualite=read_qualite)
 
 
@@ -970,7 +985,7 @@ def save_objects(username, email, roles):
 @login_required
 def save_updated_objects(id_object_mission,username, email, roles):
     login_user(users.Users(username, email, roles))
-
+    read_object_mission = object.Object().get_object(str(id_object_mission))
     date_debut_mission = request.values.get("date_debut_mission")
     date_fin_mission = request.values.get("date_fin_mission")
     objet_mission = request.values.get("objet_mission")
@@ -983,9 +998,9 @@ def save_updated_objects(id_object_mission,username, email, roles):
 
     if objt.update_object(str(id_object_mission),to_save_object):
         flash("Object de Mission mise à avec succès!", category='success')
-        return render_template('objects/edit_object.html')
+        return render_template('objects/edit_object.html' ,read_object_mission=read_object_mission)
     flash("Quelque chose s'est mal passé lors de la mise à jour de l'object de mission !", category='error')
-    return render_template('objects/edit_object.html')
+    return render_template('objects/edit_object.html',read_object_mission=read_object_mission)
 
 
 @app.route('/update_mission/<id_mission>/<username>/<email>/<roles>', methods=['GET', 'POST'])

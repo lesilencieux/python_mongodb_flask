@@ -41,9 +41,9 @@
                                     <a href="/updat_object_mission/{{ object['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
                                         <button class="btn btn-warning btn-block">Modifier</button>
                                     </a></li>
-                                <!--                                        <li><a href="/delete_object/{{ object['_id'] }}">-->
-                                <!--                                            <button class="btn btn-danger btn-block">Supprimer</button>-->
-                                <!--                                        </a></li>-->
+                                <li><a href="/delete_object_mission/{{ object['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
+                                    <button class="btn btn-danger btn-block">Supprimer</button>
+                                </a></li>
                                 <li class="divider"></li>
 
                             </ul>
