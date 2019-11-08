@@ -1344,9 +1344,10 @@ def ordre_de_mission(id_mission):
                            read_struc=read_struc)
 
 # Add paths
-@app.route("/accueil")
+@app.route("/accueil/<username>/<email>/<roles> ")
 @login_required
-def accueil():
+def accueil(username, email, roles):
+    login_user(users.Users(username, email, roles))
     return render_template('admin_accueil.html')
 
 

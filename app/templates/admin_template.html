@@ -103,7 +103,7 @@
 			<div class="main-menu">
 				<h5 class="sidenav-heading">Menu</h5>
 				<ul id="side-main-menu" class="side-menu list-unstyled">
-					<li><a href="/accueil"> <i class="zmdi zmdi-home"></i>Accueil </a></li>
+					<li><a href="/accueil/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles()}} "> <i class="zmdi zmdi-home"></i>Accueil </a></li>
 					<li><a href="forms.html"> <i class="zmdi zmdi-collection-text"></i>Missions </a></li>
 					<li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Objects </a></li>
 
@@ -111,7 +111,7 @@
 					<li><a href="tables.html"> <i class="zmdi zmdi-account"></i>Agents </a></li>
 					{% endif %}
 
-					<li><a href="tables.html"> <i class="zmdi zmdi-settings"></i></i>Paramètres </a></li>
+					<li><a href="/paramettre/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"></i></i>Paramètres </a></li>
 					<li><a href="/logout"> <i class="zmdi zmdi-power zmdi-hc-5x"></i>Quitter </a></li>
 					<!-- <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Example dropdown </a>
               <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
