@@ -1,8 +1,8 @@
 # _*_ encoding: utf-8 _*_
 import sys
 
-reload(sys)
-sys.setdefaultencoding('utf8')
+#reload(sys)
+#sys.setdefaultencoding('utf8')
 
 from app import app, lm
 from flask import request, redirect, render_template, url_for, flash
