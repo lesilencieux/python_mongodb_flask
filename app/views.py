@@ -526,7 +526,7 @@ def login():
             if user_with_email and check_password_hash(read_user1['password'], password):
                 login_user(users.Users(read_user1['username'], read_user1['email'], read_user1['roles']))
 
-                return render_template('admin_template.html', user=read_user1, list_missions=list_missions)
+                return render_template('admin_accueil.html', user=read_user1, list_missions=list_missions)
             flash("Wrong username or password!", category='error')
             # return render_template('admin.html')
             return render_template('admin_login.html')
@@ -535,7 +535,7 @@ def login():
             if user_with_username and check_password_hash(read_user2['password'], password):
                 login_user(users.Users(read_user2['username'], read_user2['email'], read_user2['roles']))
 
-                return render_template('admin_template.html', user=read_user2, list_missions=list_missions)
+                return render_template('admin_accueil.html', user=read_user2, list_missions=list_missions)
             flash("Nom d'utilisateur ou Mot de passe incorrect !", category='error')
             # return render_template('admin.html')
             return render_template('admin_login.html')
