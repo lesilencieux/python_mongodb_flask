@@ -1,6 +1,8 @@
 {% extends "admin_template.html" %}
 {% block content %}
    <div class="container-fluid">
+       <span></span>
+       <span></span>
         <div class="row">
             <div class="col-lg-4 col-md-12">
                 <!-- Recent Updates Widget          -->
@@ -71,6 +73,42 @@
                 <!-- Recent Activities Widget      -->
                 <div id="structure" class="card updates activities">
                     <div id="structures" class="card-header d-flex justify-content-between align-items-center">
+                        <h2 class="h5 display"><a data-toggle="collapse" data-parent="#recent-activities-wrapper"
+                                                  href="#activities-box" aria-expanded="true"
+                                                  aria-controls="activities-box">Structure</a></h2><a
+                            data-toggle="collapse" data-parent="#recent-activities-wrapper" href="#activities-box"
+                            aria-expanded="true" aria-controls="activities-box"><i class="fa fa-angle-down"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-12">
+                <!-- Recent Updates Widget          -->
+                <div id="new-updates-1" class="card updates recent-updated">
+                    <div id="updates-header-1" class="card-header d-flex justify-content-between align-items-center">
+                        <h2 class="h5 display"><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box"
+                                                  aria-expanded="true" aria-controls="updates-box">Agents</a></h2>
+                    </div>
+                </div>
+                <!-- Recent Updates Widget End-->
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <!-- Daily Feed Widget-->
+                <div id="daily-feeds-1" class="card updates daily-feeds">
+                    <div id="feeds-header-1" class="card-header d-flex justify-content-between align-items-center">
+                        <h2 class="h5 display"><a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box"
+                                                  aria-expanded="true" aria-controls="feeds-box">Ligne Budgetaire </a>
+                        </h2>
+
+                    </div>
+                </div>
+                <!-- Daily Feed Widget End-->
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <!-- Recent Activities Widget      -->
+                <div id="structure-1" class="card updates activities">
+                    <div id="structures-1" class="card-header d-flex justify-content-between align-items-center">
                         <h2 class="h5 display"><a data-toggle="collapse" data-parent="#recent-activities-wrapper"
                                                   href="#activities-box" aria-expanded="true"
                                                   aria-controls="activities-box">Structure</a></h2><a
