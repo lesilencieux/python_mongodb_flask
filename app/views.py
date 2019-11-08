@@ -1337,6 +1337,13 @@ def ordre_de_mission(id_mission):
                            current_time=now.strftime("%d %b, %Y"),
                            read_struc=read_struc)
 
+# Add paths
+@app.route("/accueil")
+@login_required
+def accueil():
+    return render_template('admin_accueil.html')
+
+
 # def groupe_ville_by_pay():
 #     list_pays = pays.Pays().get_payss()
 #     list_villes = ville.Ville().get_villes()
