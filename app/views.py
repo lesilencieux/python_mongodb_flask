@@ -1,8 +1,8 @@
 # _*_ encoding: utf-8 _*_
 import sys
 
-#reload(sys)
-#sys.setdefaultencoding('utf8')
+# reload(sys)
+# sys.setdefaultencoding('utf8')
 
 from app import app, lm
 from flask import request, redirect, render_template, url_for, flash
@@ -52,6 +52,12 @@ app.jinja_env.filters['datetimefilter'] = datetimefilter
 @app.route('/admin1')
 def home1():
     return render_template('admin.html')
+
+
+@app.route('/paramettre/<username>/<email>/<roles>')
+def paramettre(username, email, roles):
+    login_user(users.Users(username, email, roles))
+    return render_template('admin_paramettre.html')
 
 
 @app.route('/register')
@@ -977,7 +983,7 @@ def save_objects(username, email, roles):
 
 @app.route('/save_updated_object/<id_object_mission>/<username>/<email>/<roles>', methods=['GET', 'POST'])
 @login_required
-def save_updated_objects(id_object_mission,username, email, roles):
+def save_updated_objects(id_object_mission, username, email, roles):
     login_user(users.Users(username, email, roles))
 
     date_debut_mission = request.values.get("date_debut_mission")
@@ -990,7 +996,7 @@ def save_updated_objects(id_object_mission,username, email, roles):
                       }
     objt = object.Object()
 
-    if objt.update_object(str(id_object_mission),to_save_object):
+    if objt.update_object(str(id_object_mission), to_save_object):
         flash("Object de Mission mise à avec succès!", category='success')
         return render_template('objects/edit_object.html')
     flash("Quelque chose s'est mal passé lors de la mise à jour de l'object de mission !", category='error')
