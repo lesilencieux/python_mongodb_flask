@@ -9,7 +9,8 @@ Keep in mind that this is not a complete web application, but a proof of concept
     - sudo apt install python3-pip
 
 3. install the requirements librairies 
-    - sudo pip install -r requirements.txt
+    - pip install -r requirements.txt
+    - pip install python-dateutil
 
 4. add permission to run-dev.py
     - chmod 777 run-dev.py
@@ -18,7 +19,7 @@ Keep in mind that this is not a complete web application, but a proof of concept
     - service mongod start
 
 6. run project
-    - ./run-dev.py
+    - python3 run-dev.py
 
 
 You can install everything in a [virtualenv](https://virtualenv.pypa.io/en/latest/) without problems.
