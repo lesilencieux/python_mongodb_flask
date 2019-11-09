@@ -1,4 +1,4 @@
-{% extends "homes.html" %}
+{% extends "admin_template.html" %}
 {% block content %}
 <center><h1>Liste des Structures </h1></center>
 <section class="content">
@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="box-body">
-            <table id="lststructure" class="table table-bordered table-striped">
+                            <table id="example" class="table table-striped table-hover">
                 <thead>
                 <tr>
                     <th>Code</th>
@@ -86,5 +86,12 @@
 
 </section>
 
+<script type="text/javascript">
+		$(document).ready(function() {
+		    $('#example').DataTable();
+		} );
 
+		// Basic example
+
+</script>
 {% endblock %}

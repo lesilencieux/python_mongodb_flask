@@ -1,4 +1,4 @@
-{% extends "homes.html" %}
+{% extends "admin_template.html" %}
 {% block content %}
 <center><h1>Liste des Pays </h1></center>
 <section class="content">
@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="box-body">
-            <table id="lststructure" class="table table-bordered table-striped">
+                            <table id="example" class="table table-striped table-hover">
                 <thead>
                 <tr>
                     <th>Code Numerque</th>
@@ -81,15 +81,11 @@
 </section>
 
 <script type="text/javascript">
+		$(document).ready(function() {
+		    $('#example').DataTable();
+		} );
 
-      document.addEventListener("DOMContentLoaded",  function(e) {
-            alert("txt")
-            var txt = $(e.target).text();
-            console.log(txt);
-            alert(txt)
-         } false);
-
-
+		// Basic example
 
 </script>
 

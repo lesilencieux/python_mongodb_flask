@@ -1,4 +1,4 @@
-{% extends "homes.html" %}
+{% extends "admin_template.html" %}
 {% block content %}
 <center><h1>Liste des corpss </h1></center>
 <section class="content">
@@ -74,17 +74,13 @@
 
 </section>
 
-    <script type="text/javascript">
+<script type="text/javascript">
+		$(document).ready(function() {
+		    $('#example').DataTable();
+		} );
 
-      document.addEventListener("DOMContentLoaded",  function(e) {
-            alert("txt")
-            var txt = $(e.target).text();
-            console.log(txt);
-            alert(txt)
-         } false);
-
+		// Basic example
 
 </script>
-
 
 {% endblock %}

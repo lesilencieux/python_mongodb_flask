@@ -6,10 +6,13 @@
         <div class="row">
             <div class="col-lg-4 col-md-12">
                 <!-- Recent Updates Widget          -->
-                <div id="new-updates" class="card updates recent-updated">
+                <div  id="new-updates" class="card updates recent-updated">
+
                     <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
+                         <a href="/list_agent/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+                           class="">Agents</a>
                         <h2 class="h5 display"><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box"
-                                                  aria-expanded="true" aria-controls="updates-box">Agents</a></h2><a
+                                                  aria-expanded="true" aria-controls="updates-box"></a></h2><a
                             data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true"
                             aria-controls="updates-box"><i class="fa fa-angle-down"></i></a>
                     </div>
@@ -19,8 +22,16 @@
                             <li class="d-flex justify-content-between">
                                 <div class="left-col d-flex">
                                     <div class="icon"><i class="icon-rss-feed"></i></div>
-                                    <div class="title"><strong>Type</strong>
-                                    </div>
+                                <a href="/types/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">Type </a>
+                                 </div>
+
+                            </li>
+                            <!-- Item-->
+                            <li class="d-flex justify-content-between">
+                                <div class="left-col d-flex">
+                                    <div class="icon"><i class="icon-rss-feed"></i></div>
+                                                                  <a href="/qualites/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">Qualité</a>
+
                                 </div>
 
                             </li>
@@ -28,8 +39,8 @@
                             <li class="d-flex justify-content-between">
                                 <div class="left-col d-flex">
                                     <div class="icon"><i class="icon-rss-feed"></i></div>
-                                    <div class="title"><strong>Qualité.</strong>
-                                    </div>
+                                                                   <a href="/corps/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">Corps</a>
+
                                 </div>
 
                             </li>
@@ -37,17 +48,8 @@
                             <li class="d-flex justify-content-between">
                                 <div class="left-col d-flex">
                                     <div class="icon"><i class="icon-rss-feed"></i></div>
-                                    <div class="title"><strong>Corps.</strong>
-                                    </div>
-                                </div>
+                                                                 <a href="/grades/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">Grade</a>
 
-                            </li>
-                            <!-- Item-->
-                            <li class="d-flex justify-content-between">
-                                <div class="left-col d-flex">
-                                    <div class="icon"><i class="icon-rss-feed"></i></div>
-                                    <div class="title"><strong>Grade.</strong>
-                                    </div>
                                 </div>
 
                             </li>
@@ -60,9 +62,11 @@
             <div class="col-lg-4 col-md-6">
                 <!-- Daily Feed Widget-->
                 <div id="daily-feeds" class="card updates daily-feeds">
+                       <a href="/type_budget/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+                           class="">Ligne Budgetaire</a>
                     <div id="feeds-header" class="card-header d-flex justify-content-between align-items-center">
                         <h2 class="h5 display"><a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box"
-                                                  aria-expanded="true" aria-controls="feeds-box">Ligne Budgetaire </a>
+                                                  aria-expanded="true" aria-controls="feeds-box"> </a>
                         </h2>
 
                     </div>
@@ -72,10 +76,12 @@
             <div class="col-lg-4 col-md-6">
                 <!-- Recent Activities Widget      -->
                 <div id="structure" class="card updates activities">
+                       <a href="/list_structure/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+                           class="">Structures</a>
                     <div id="structures" class="card-header d-flex justify-content-between align-items-center">
                         <h2 class="h5 display"><a data-toggle="collapse" data-parent="#recent-activities-wrapper"
                                                   href="#activities-box" aria-expanded="true"
-                                                  aria-controls="activities-box">Structure</a></h2><a
+                                                  aria-controls="activities-box"> </a></h2><a
                             data-toggle="collapse" data-parent="#recent-activities-wrapper" href="#activities-box"
                             aria-expanded="true" aria-controls="activities-box"><i class="fa fa-angle-down"></i></a>
                     </div>
@@ -86,9 +92,11 @@
             <div class="col-lg-4 col-md-12">
                 <!-- Recent Updates Widget          -->
                 <div id="new-updates-1" class="card updates recent-updated">
+                      <a href="/pays/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+                           class="">Pays</a>
                     <div id="updates-header-1" class="card-header d-flex justify-content-between align-items-center">
                         <h2 class="h5 display"><a data-toggle="collapse" data-parent="#new-updates" href="#updates-box"
-                                                  aria-expanded="true" aria-controls="updates-box">Agents</a></h2>
+                                                  aria-expanded="true" aria-controls="updates-box"> </a></h2>
                     </div>
                 </div>
                 <!-- Recent Updates Widget End-->
@@ -96,9 +104,11 @@
             <div class="col-lg-4 col-md-6">
                 <!-- Daily Feed Widget-->
                 <div id="daily-feeds-1" class="card updates daily-feeds">
+                      <a href="/villes/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+                           class="">Villes</a>
                     <div id="feeds-header-1" class="card-header d-flex justify-content-between align-items-center">
                         <h2 class="h5 display"><a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box"
-                                                  aria-expanded="true" aria-controls="feeds-box">Ligne Budgetaire </a>
+                                                  aria-expanded="true" aria-controls="feeds-box">   </a>
                         </h2>
 
                     </div>
