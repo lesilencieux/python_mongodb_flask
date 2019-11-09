@@ -1344,11 +1344,15 @@ def ordre_de_mission(id_mission):
                            read_struc=read_struc)
 
 # Add paths
-@app.route("/accueil/<username>/<email>/<roles> ")
+@app.route("/accueil/<username>/<email>/<roles>")
 @login_required
 def accueil(username, email, roles):
     login_user(users.Users(username, email, roles))
-    return render_template('admin_accueil.html')
+    connected_user = users.Users("", "", "")
+    miss1 = mission.Mission()
+    list_missions = miss1.get_missions()
+    return render_template('admin_accueil.html', user=login_user, list_missions=list_missions)
+    
 
 
 # def groupe_ville_by_pay():

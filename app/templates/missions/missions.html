@@ -1,59 +1,15 @@
 {% extends "admin_template.html" %}
 {% block content %}
-<html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link data-require="bootstrap@3.3.2" data-semver="3.3.2" rel="stylesheet"
-          href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
-    <script data-require="bootstrap@3.3.2" data-semver="3.3.2"
-            src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <script data-require="jquery@2.1.3" data-semver="2.1.3" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
-    <link rel="stylesheet" href="style.css"/>
-    <script src="moment-2.10.3.js"></script>
-    <script src="bootstrap-datetimepicker.js"></script>
-
-    <link rel="stylesheet" href="https://unpkg.com/multiple-select@1.4.2/dist/multiple-select.min.css">
-    <style>
-            input:focus ~ .floating-label,
-            input:not(:focus):valid ~ .floating-label{
-              top: 8px;
-              bottom: 10px;
-              left: 20px;
-              font-size: 11px;
-              opacity: 1;
-            }
-
-            .inputText {
-              font-size: 14px;
-              width: 200px;
-              height: 35px;
-            }
-
-            .floating-label {
-              position: absolute;
-              pointer-events: none;
-              left: 20px;
-              top: 18px;
-              transition: 0.2s ease all;
-            }
-
-
-
-
-
-
-
-    </style>
-</head>
-<center><h1>Creation de mission</h1></center>
+<center>
+    <h1>Creation de mission</h1>
+</center>
 <span>&nbsp;</span>
 
 <center>
-    <form action="/create_mission/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
-          method="POST" autocomplete="on" name="form">
+    <form
+        action="/create_mission/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+        method="POST" autocomplete="on" name="form">
 
 
         <div style="height:600px" class="col-sm-offset-3 col-sm-6" id="first-part">
@@ -61,7 +17,7 @@
             <div class="input-group margin-bottom-sm">
 
                 <select name="reference_lettre_de_mission" class="selectpicker" data-width="100%" single
-                        data-live-search="true">
+                    data-live-search="true">
 
                     {% for object in list_objects %}
                     <option>{{ object['reference_lettre_de_mission'] }}</option>
@@ -73,7 +29,7 @@
             <div class="input-group margin-bottom-sm">
 
                 <input name="reference_ordre_mission" required="required" class="form-control" type="text"
-                       placeholder="Reference de l'ordre de la mission">
+                    placeholder="Reference de l'ordre de la mission">
 
 
             </div>
@@ -97,10 +53,8 @@
                 <div class="form-group">
 
                     <div class="input-group date">
-                        <input name="date_depart_mission"
-                               id="date_added_1"
-                               placeholder="Date Départ Mission"
-                               type="text" class="form-control">
+                        <input name="date_depart_mission" id="date_added_1" placeholder="Date Départ Mission"
+                            type="text" class="form-control">
                     </div>
                 </div>
 
@@ -108,10 +62,8 @@
 
                     <div class="input-group date">
 
-                        <input name="date_retour_mission"
-                               id="date_modified_1"
-                               placeholder="Date Fin Mission" type="text"
-                               class="form-control">
+                        <input name="date_retour_mission" id="date_modified_1" placeholder="Date Fin Mission"
+                            type="text" class="form-control">
                     </div>
                 </div>
 
@@ -128,11 +80,11 @@
                         <label style="font-weight: bold;" class="col-xs-3 control-label">Destination </label>
                         <label onclick="destination_externe()">
                             <input id="destination_externe" name="destination_mission" value="externe" type="radio"
-                                   required>
+                                required>
                             Externe</label>
                         <label onclick="destination_interne()">
                             <input checked id="destination_interne" name="destination_mission" value="interne"
-                                   type="radio">
+                                type="radio">
                             Interne</label>
 
                     </div>
@@ -143,12 +95,12 @@
             <div>
                 <a href="#">
                     <button type="button" id="first-reset" class="btn btn-primary btn-sm pull-left">
-                        <span class="visible-sm visible-md visible-lg">  Annuler</span>
+                        <span class="visible-sm visible-md visible-lg"> Annuler</span>
                     </button>
                 </a>
 
                 <span class="btn btn-primary btn-sm  " id="firsr-btn-next">
-                     <span class="visible-sm visible-md visible-lg">Suivant  </span>
+                    <span class="visible-sm visible-md visible-lg">Suivant </span>
                 </span>
             </div>
             <span>&nbsp;</span>
@@ -158,9 +110,8 @@
         <div class="col-sm-offset-3 col-sm-6" id="second-part">
 
             <div id="div_pays_destination" class="input-group margin-bottom-sm">
-                <select name="pays_destination_mission" class="selectpicker"
-                        data-width="100%" multiple
-                        data-live-search="true">
+                <select name="pays_destination_mission" class="selectpicker" data-width="100%" multiple
+                    data-live-search="true">
 
                     {% for pays in list_pays %}
                     <option>{{ pays['libelle_fr_pays'] }}</option>
@@ -171,10 +122,8 @@
             <span>&nbsp;</span>
 
             <div id="div_ville_pays_destination" style="display: none" class="input-group margin-bottom-sm">
-                <select name="ville_pays_destination_mission" id="select_ville_pays_destination"
-                        class="selectpicker"
-                        data-width="100%" multiple
-                        data-live-search="true">
+                <select name="ville_pays_destination_mission" id="select_ville_pays_destination" class="selectpicker"
+                    data-width="100%" multiple data-live-search="true">
                     <optgroup label="Benin">
                         <option value="volvo">Cotonou</option>
                         <option value="saab">Allada</option>
@@ -193,8 +142,7 @@
             <span>&nbsp;</span>
 
             <div class="input-group margin-bottom-sm">
-                <select name="agents_mission" class="selectpicker" data-width="100%" multiple
-                        data-live-search="true">
+                <select name="agents_mission" class="selectpicker" data-width="100%" multiple data-live-search="true">
                     {% for agent in list_agents %}
                     <option>{{ agent['ifu_agent'] }} {{ agent['prenom_agent'] }} {{ agent['nom_agent'] }}</option>
                     {% endfor %}
@@ -207,7 +155,7 @@
 
             <div class="input-group select2-bootstrap-prepend">
                 <select name="structure_initiatrice_mission" class="selectpicker" data-width="100%" single
-                        data-live-search="true">
+                    data-live-search="true">
 
                     <option value="" disabled selected>Selectionner la structure de l'agent</option>
 
@@ -225,43 +173,42 @@
 
             <div class="input-group">
                 <input name="moyen_transport_mission" required="required" class="form-control" type="text"
-                       placeholder="Moyen de transport ">
+                    placeholder="Moyen de transport ">
             </div>
 
             <span>&nbsp;</span>
             <div id="div_commune_mission" class="input-group margin-bottom-sm">
                 <input id="input_commune_mission" name="commune_mission" class="form-control" type="text"
-                       placeholder="Commune ">
+                    placeholder="Commune ">
             </div>
 
 
             <span>&nbsp;</span>
             <div class="input-group margin-bottom-sm">
                 <input name="immatriculation_moyen_transport_mission" required="required" class="form-control"
-                       type="text"
-                       placeholder="Immatriculation ">
+                    type="text" placeholder="Immatriculation ">
             </div>
             <span>&nbsp;</span>
             <div class="row">
                 <div class="col-xs-4 col-sm-offset-3 col-sm-3">
                     <span class="btn btn-primary btn-sm pull-left" id="first-btn-back">
-                         <span class="visible-sm visible-md visible-lg"> Précedent</span>
+                        <span class="visible-sm visible-md visible-lg"> Précedent</span>
                     </span>
                 </div>
                 <div class="col-xs-4 col-sm-3">
                     <a href="#">
                         <button type="button" id="second-reset" class="btn btn-primary btn-sm ">
-                            <span class="visible-sm visible-md visible-lg">  Annuler</span>
+                            <span class="visible-sm visible-md visible-lg"> Annuler</span>
                         </button>
                     </a>
                     </span>
                 </div>
-                 <button id="validate-mission-externe-destination" style="display: none" type="submit"
-                        class="btn btn-primary btn-sm pull-right">
+                <button id="validate-mission-externe-destination" style="display: none" type="submit"
+                    class="btn btn-primary btn-sm pull-right">
                     <span class="visible-sm visible-md visible-lg"> {{'Valider'}}</span>
                 </button>
                 <span class="btn btn-primary btn-sm  " id="second-btn-next">
-                      <span class="visible-sm visible-md visible-lg">Suivant  </span>
+                    <span class="visible-sm visible-md visible-lg">Suivant </span>
                 </span>
 
             </div>
@@ -273,20 +220,18 @@
 
             <div id="div_code_type_localite" class="input-group">
                 <input id="input_code_type_localite" name="code_type_localite_mission" class="form-control" type="text"
-                       placeholder=" Code Type Localite ">
+                    placeholder=" Code Type Localite ">
             </div>
 
             <span>&nbsp;</span>
             <div id="div_libelle_localite_mission" style="display: none" class="input-group margin-bottom-sm">
                 <input id="input_libelle_localite_mission" name="libelle_localite_mission" class="form-control"
-                       type="text"
-                       placeholder="Libelle Localité  ">
+                    type="text" placeholder="Libelle Localité  ">
             </div>
             <span>&nbsp;</span>
             <div id="div_code_localite_parente" class="input-group margin-bottom-sm">
                 <input id="input_code_localite_parente" name="code_localite_parente_mission" class="form-control"
-                       type="text"
-                       placeholder="Code Localité Parente ">
+                    type="text" placeholder="Code Localité Parente ">
             </div>
             <span>&nbsp;</span>
 
@@ -294,16 +239,14 @@
             <span>&nbsp;</span>
             <div style="display:none" id="div_current_user" class="input-group margin-bottom-sm">
                 <input id="input_current_user" name="input_current_user" class="form-control"
-                       value="{{ current_user.username }}"
-                       type="text"
-                       placeholder="Code Localité Parente ">
+                    value="{{ current_user.username }}" type="text" placeholder="Code Localité Parente ">
             </div>
             <span>&nbsp;</span>
 
 
             <div id="code_localite_mission" class="input-group margin-bottom-sm">
                 <input id="input_localite_mission" name="code_localite_mission" class="form-control" type="text"
-                       placeholder="Code Localité ">
+                    placeholder="Code Localité ">
             </div>
             <span>&nbsp;</span>
 
@@ -313,7 +256,7 @@
 
                 <div class="col-xs-4 col-sm-offset-3 col-sm-3">
                     <span class="btn btn-primary btn-sm pull-left" id="second-btn-back">
-                         <span class="visible-sm visible-md visible-lg"> Précedent</span>
+                        <span class="visible-sm visible-md visible-lg"> Précedent</span>
                     </span>
                 </div>
                 <div class="col-xs-4 col-sm-3">
@@ -325,8 +268,7 @@
                     </span>
                 </div>
 
-                <button id="validate-mission"  type="submit"
-                        class="btn btn-primary btn-sm pull-right">
+                <button id="validate-mission" type="submit" class="btn btn-primary btn-sm pull-right">
                     <span class="visible-sm visible-md visible-lg"> {{'Valider'}}</span>
                 </button>
             </div>
@@ -340,316 +282,316 @@
 <script src="https://unpkg.com/multiple-select@1.4.2/dist/multiple-select.min.js"></script>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
 <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"/>
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
 
 
 <script type="text/javascript">
 
-      document.addEventListener("DOMContentLoaded", function () {
-                        var heightFirst = $('#first-part').css("height");
-                        var heightSecond = $('#second-part').css("height");
-                        var heightThird = $('#third-part').css("height");
-                        $('#first-part').css({
-                            "overflow": "hidden",
-                            "height": heightFirst,
-                            "transiton": 'all 1s',
-                            "-webkit-transition": 'all 1s ease',
-                            "-moz-transition": 'all 1s ease',
-                            "-o-transition": 'all 1s ease'
+    document.addEventListener("DOMContentLoaded", function () {
+        var heightFirst = $('#first-part').css("height");
+        var heightSecond = $('#second-part').css("height");
+        var heightThird = $('#third-part').css("height");
+        $('#first-part').css({
+            "overflow": "hidden",
+            "height": heightFirst,
+            "transiton": 'all 1s',
+            "-webkit-transition": 'all 1s ease',
+            "-moz-transition": 'all 1s ease',
+            "-o-transition": 'all 1s ease'
 
-                        });
-                        $('#second-part').css({
-                            "overflow": "hidden",
-                            "height": "0px",
-                            "transiton": 'all 1s ease',
-                            "-webkit-transition": 'all 1s ease',
-                            "-moz-transition": 'all 1s ease',
-                            "-o-transition": 'all 1s ease'
-                        });
+        });
+        $('#second-part').css({
+            "overflow": "hidden",
+            "height": "0px",
+            "transiton": 'all 1s ease',
+            "-webkit-transition": 'all 1s ease',
+            "-moz-transition": 'all 1s ease',
+            "-o-transition": 'all 1s ease'
+        });
 
-                        $('#third-part').css({
-                            "overflow": "hidden",
-                            "height": "0px",
-                            "transiton": 'all 1s ease',
-                            "-webkit-transition": 'all 1s ease',
-                            "-moz-transition": 'all 1s ease',
-                            "-o-transition": 'all 1s ease'
-                        });
+        $('#third-part').css({
+            "overflow": "hidden",
+            "height": "0px",
+            "transiton": 'all 1s ease',
+            "-webkit-transition": 'all 1s ease',
+            "-moz-transition": 'all 1s ease',
+            "-o-transition": 'all 1s ease'
+        });
 
-                        $('#fourth-part').css({
-                            "overflow": "hidden",
-                            "height": "0px",
-                            "transiton": 'all 1s ease',
-                            "-webkit-transition": 'all 1s ease',
-                            "-moz-transition": 'all 1s ease',
-                            "-o-transition": 'all 1s ease'
-                        });
-
-
-                        $("#firsr-btn-next").click(function () {
-                            $('#first-part').css({
-                                'height': '0px',
-                                "visibility": 'hidden'
-                            });
-                            $('#second-part').css({
-                                'height': '400px',
-                                'visibility': 'visible'
-                            });
-                        });
-
-                        $("#second-btn-next").click(function () {
-                            $('#second-part').css({
-                                'height': '0px',
-                                "visibility": 'hidden'
-                            });
-                            $('#third-part').css({
-                                'height': '500px',
-                                'visibility': 'visible'
-                            });
-                        });
-
-                        $("#third-btn-next").click(function () {
-                            $('#third-part').css({
-                                'height': '0px',
-                                "visibility": 'hidden'
-                            });
-                            $('#fourth-part').css({
-                                'height': '500px',
-                                'visibility': 'visible'
-                            });
-                        });
-
-                        $("#first-btn-back").click(function () {
-                            $('#first-part').css({
-                                'height': heightFirst,
-                                'visibility': 'visible'
-                            });
-                            $('#second-part').css({
-                                'height': '0px',
-                                "visibility": 'hidden'
-                            });
-                        });
-
-                        $("#second-btn-back").click(function () {
-                            $('#second-part').css({
-                                'height': '500',
-                                'visibility': 'visible'
-                            });
-                            $('#third-part').css({
-                                'height': '0px',
-                                "visibility": 'hidden'
-                            });
-                        });
-
-                        $("#third-btn-back").click(function () {
-                            $('#third-part').css({
-                                'height': '500px',
-                                'visibility': 'visible'
-                            });
-                            $('#fourth-part').css({
-                                'height': '0px',
-                                "visibility": 'hidden'
-                            });
-                        });
-
-                    }, false);
+        $('#fourth-part').css({
+            "overflow": "hidden",
+            "height": "0px",
+            "transiton": 'all 1s ease',
+            "-webkit-transition": 'all 1s ease',
+            "-moz-transition": 'all 1s ease',
+            "-o-transition": 'all 1s ease'
+        });
 
 
-                                var fromTimeInput = $('#date_added_1');
-                                var toTimeInput = $('#date_modified_1');
-                                var fromTime = fromTimeInput.val();
-                                var toTime = toTimeInput.val();
+        $("#firsr-btn-next").click(function () {
+            $('#first-part').css({
+                'height': '0px',
+                "visibility": 'hidden'
+            });
+            $('#second-part').css({
+                'height': '400px',
+                'visibility': 'visible'
+            });
+        });
 
-                                fromTimeInput.datepicker({
-                                    keyboardNavigation : false,
-                                    forceParse : false,
-                                    calendarWeeks : true,
-                                    autoclose : true,
-                                    endDate: toTime
-                                });
-                                toTimeInput.datepicker({
-                                    keyboardNavigation : false,
-                                    forceParse : false,
-                                    calendarWeeks : true,
-                                    autoclose : true,
-                                    startDate: fromTime
-                                });
-                                fromTimeInput.on("changeDate", function (e) {
-                                    toTimeInput.datepicker('setStartDate', e.date);
-                                });
-                                toTimeInput.on("changeDate", function (e) {
-                                    fromTimeInput.datepicker('setEndDate', e.date);
-                                });
+        $("#second-btn-next").click(function () {
+            $('#second-part').css({
+                'height': '0px',
+                "visibility": 'hidden'
+            });
+            $('#third-part').css({
+                'height': '500px',
+                'visibility': 'visible'
+            });
+        });
+
+        $("#third-btn-next").click(function () {
+            $('#third-part').css({
+                'height': '0px',
+                "visibility": 'hidden'
+            });
+            $('#fourth-part').css({
+                'height': '500px',
+                'visibility': 'visible'
+            });
+        });
+
+        $("#first-btn-back").click(function () {
+            $('#first-part').css({
+                'height': heightFirst,
+                'visibility': 'visible'
+            });
+            $('#second-part').css({
+                'height': '0px',
+                "visibility": 'hidden'
+            });
+        });
+
+        $("#second-btn-back").click(function () {
+            $('#second-part').css({
+                'height': '500',
+                'visibility': 'visible'
+            });
+            $('#third-part').css({
+                'height': '0px',
+                "visibility": 'hidden'
+            });
+        });
+
+        $("#third-btn-back").click(function () {
+            $('#third-part').css({
+                'height': '500px',
+                'visibility': 'visible'
+            });
+            $('#fourth-part').css({
+                'height': '0px',
+                "visibility": 'hidden'
+            });
+        });
+
+    }, false);
 
 
+    var fromTimeInput = $('#date_added_1');
+    var toTimeInput = $('#date_modified_1');
+    var fromTime = fromTimeInput.val();
+    var toTime = toTimeInput.val();
 
-                       function destination_interne() {
-
-                           input_code_type_localite = document.getElementById('input_code_type_localite');
-                           input_localite_mission = document.getElementById('input_localite_mission');
-                           input_libelle_localite_mission = document.getElementById('input_libelle_localite_mission');
-                           input_code_localite_parente = document.getElementById('input_code_localite_parente');
-
-
-                            div_pays_destination = document.getElementById('div_pays_destination');
-                            div_ville_pays_destination = document.getElementById('div_ville_pays_destination');
-                            select_ville_pays_destination = document.getElementById('select_ville_pays_destination');
-                            div_commune_mission = document.getElementById('div_commune_mission');
-                            input_commune_mission = document.getElementById('input_commune_mission');
-                            div_libelle_localite_mission = document.getElementById('div_libelle_localite_mission');
-                            input_libelle_localite_mission = document.getElementById('input_libelle_localite_mission');
-                            div_pays_destination = document.getElementById('div_pays_destination');
-                            select_pays_destination = document.getElementById('select_pays_destination');
-
-                            second_btn_next = document.getElementById('second-btn-next');
-                            validate_mission_externe_destination = document.getElementById('validate-mission-externe-destination');
-                            interne = document.getElementById('destination_interne');
-
-                            if (interne.checked == true){
-
-                                validate_mission_externe_destination.style.display = "none";
-                                validate_mission_externe_destination.style.height = "none"; // Optionnel rétablir la hauteur
-
-                                second_btn_next.style.display = "block";
-                                second_btn_next.style.height = "auto"; // Optionnel rétablir la hauteur
-
-                                div_libelle_localite_mission.style.display = "block";
-                                div_libelle_localite_mission.style.height = "auto"; // Optionnel rétablir la hauteur
-
-                                 div_pays_destination.style.display = "none";
-                                 div_pays_destination.style.height = "none"; // Optionnel rétablir la hauteur
-                                 select_pays_destination.style.required = false; // Optionnel rétablir la hauteur
-
-                                 div_commune_mission.style.display = "block"
-                                 div_commune_mission.style.height = "auto"; // Optionnel rétablir la hauteur
-
-                                 div_ville_pays_destination.style.display = "none";
-                                 div_ville_pays_destination.style.height = "none"; // Optionnel rétablir la hauteur
-                                 select_ville_pays_destination.style.required = false; // Optionnel rétablir la hauteur
-
-                                 input_code_type_localite.style.required = true
-                                  input_localite_mission.style.required = true
-                                  input_libelle_localite_mission.style.required = true
-                                  input_code_localite_parente.style.required = true
-                                  input_commune_mission.style.required = true
-
-                            }else{
-                                validate_mission_externe_destination.style.display = "block";
-                                validate_mission_externe_destination.style.height = "auto"; // Optionnel rétablir la hauteur
-
-                                third_btn_next.style.display = "none";
-                                third_btn_next.style.height = "none"; // Optionnel rétablir la hauteur
-
-                                 div_pays_destination.style.display = "block";
-                                 div_pays_destination.style.height = "auto"; // Optionnel rétablir la hauteur
-
-                                 div_ville_pays_destination.style.display = "block";
-                                 div_ville_pays_destination.style.height = "auto"; // Optionnel rétablir la hauteur
-
-                                 div_commune_mission.style.height = "none"; // Optionnel rétablir la hauteur
-                                 div_commune_mission.style.display = "none"
+    fromTimeInput.datepicker({
+        keyboardNavigation: false,
+        forceParse: false,
+        calendarWeeks: true,
+        autoclose: true,
+        endDate: toTime
+    });
+    toTimeInput.datepicker({
+        keyboardNavigation: false,
+        forceParse: false,
+        calendarWeeks: true,
+        autoclose: true,
+        startDate: fromTime
+    });
+    fromTimeInput.on("changeDate", function (e) {
+        toTimeInput.datepicker('setStartDate', e.date);
+    });
+    toTimeInput.on("changeDate", function (e) {
+        fromTimeInput.datepicker('setEndDate', e.date);
+    });
 
 
 
-                                 div_libelle_localite_mission.style.height = "block"; // Optionnel rétablir la hauteur
-                                 div_libelle_localite_mission.style.display = "auto"
+    function destination_interne() {
+
+        input_code_type_localite = document.getElementById('input_code_type_localite');
+        input_localite_mission = document.getElementById('input_localite_mission');
+        input_libelle_localite_mission = document.getElementById('input_libelle_localite_mission');
+        input_code_localite_parente = document.getElementById('input_code_localite_parente');
 
 
-                                  input_code_type_localite.style.required = false
-                                  input_localite_mission.style.required = false
-                                  input_libelle_localite_mission.style.required = false
-                                  input_code_localite_parente.style.required = false
-                                  input_commune_mission.style.required = false
+        div_pays_destination = document.getElementById('div_pays_destination');
+        div_ville_pays_destination = document.getElementById('div_ville_pays_destination');
+        select_ville_pays_destination = document.getElementById('select_ville_pays_destination');
+        div_commune_mission = document.getElementById('div_commune_mission');
+        input_commune_mission = document.getElementById('input_commune_mission');
+        div_libelle_localite_mission = document.getElementById('div_libelle_localite_mission');
+        input_libelle_localite_mission = document.getElementById('input_libelle_localite_mission');
+        div_pays_destination = document.getElementById('div_pays_destination');
+        select_pays_destination = document.getElementById('select_pays_destination');
 
-                            }
-                    };
+        second_btn_next = document.getElementById('second-btn-next');
+        validate_mission_externe_destination = document.getElementById('validate-mission-externe-destination');
+        interne = document.getElementById('destination_interne');
 
-                    function destination_externe() {
+        if (interne.checked == true) {
 
-                           input_code_type_localite = document.getElementById('input_code_type_localite');
-                           input_localite_mission = document.getElementById('input_localite_mission');
-                           input_libelle_localite_mission = document.getElementById('input_libelle_localite_mission');
-                           input_code_localite_parente = document.getElementById('input_code_localite_parente');
+            validate_mission_externe_destination.style.display = "none";
+            validate_mission_externe_destination.style.height = "none"; // Optionnel rétablir la hauteur
 
-                            div_pays_destination = document.getElementById('div_pays_destination');
-                            div_ville_pays_destination = document.getElementById('div_ville_pays_destination');
-                            select_ville_pays_destination = document.getElementById('select_ville_pays_destination');
-                            div_commune_mission = document.getElementById('div_commune_mission');
-                            input_commune_mission = document.getElementById('input_commune_mission');
-                            div_libelle_localite_mission = document.getElementById('div_libelle_localite_mission');
-                            input_libelle_localite_mission = document.getElementById('input_libelle_localite_mission');
-                            div_pays_destination = document.getElementById('div_pays_destination');
-                            select_pays_destination = document.getElementById('select_pays_destination');
+            second_btn_next.style.display = "block";
+            second_btn_next.style.height = "auto"; // Optionnel rétablir la hauteur
 
-                            second_btn_next = document.getElementById('second-btn-next');
-                            validate_mission_externe_destination = document.getElementById('validate-mission-externe-destination');
-                            externe = document.getElementById('destination_externe');
+            div_libelle_localite_mission.style.display = "block";
+            div_libelle_localite_mission.style.height = "auto"; // Optionnel rétablir la hauteur
 
-                            if (externe.checked == true){
-                                validate_mission_externe_destination.style.display = "block";
-                                validate_mission_externe_destination.style.height = "auto"; // Optionnel rétablir la hauteur
+            div_pays_destination.style.display = "none";
+            div_pays_destination.style.height = "none"; // Optionnel rétablir la hauteur
+            select_pays_destination.style.required = false; // Optionnel rétablir la hauteur
 
-                                second_btn_next.style.display = "none";
-                                second_btn_next.style.height = "none"; // Optionnel rétablir la hauteur
+            div_commune_mission.style.display = "block"
+            div_commune_mission.style.height = "auto"; // Optionnel rétablir la hauteur
 
-                                 div_pays_destination.style.display = "block";
-                                 div_pays_destination.style.height = "auto"; // Optionnel rétablir la hauteur
+            div_ville_pays_destination.style.display = "none";
+            div_ville_pays_destination.style.height = "none"; // Optionnel rétablir la hauteur
+            select_ville_pays_destination.style.required = false; // Optionnel rétablir la hauteur
 
-                                 div_ville_pays_destination.style.display = "block";
-                                 div_ville_pays_destination.style.height = "auto"; // Optionnel rétablir la hauteur
+            input_code_type_localite.style.required = true
+            input_localite_mission.style.required = true
+            input_libelle_localite_mission.style.required = true
+            input_code_localite_parente.style.required = true
+            input_commune_mission.style.required = true
 
-                                 div_libelle_localite_mission.style.height = "none"; // Optionnel rétablir la hauteur
-                                 div_libelle_localite_mission.style.display = "none"
-                                 input_libelle_localite_mission.style.required = false
+        } else {
+            validate_mission_externe_destination.style.display = "block";
+            validate_mission_externe_destination.style.height = "auto"; // Optionnel rétablir la hauteur
 
-                                 div_commune_mission.style.height = "none"; // Optionnel rétablir la hauteur
-                                 div_commune_mission.style.display = "none"
-                                 input_commune_mission.style.required = false
+            third_btn_next.style.display = "none";
+            third_btn_next.style.height = "none"; // Optionnel rétablir la hauteur
 
-                                  input_code_type_localite.style.required = false
-                                  input_localite_mission.style.required = false
-                                  input_libelle_localite_mission.style.required = false
-                                  input_code_localite_parente.style.required = false
-                                  input_commune_mission.style.required = false
+            div_pays_destination.style.display = "block";
+            div_pays_destination.style.height = "auto"; // Optionnel rétablir la hauteur
+
+            div_ville_pays_destination.style.display = "block";
+            div_ville_pays_destination.style.height = "auto"; // Optionnel rétablir la hauteur
+
+            div_commune_mission.style.height = "none"; // Optionnel rétablir la hauteur
+            div_commune_mission.style.display = "none"
 
 
-                            }else{
 
-                                validate_mission_externe_destination.style.display = "none";
-                                validate_mission_externe_destination.style.height = "none"; // Optionnel rétablir la hauteur
+            div_libelle_localite_mission.style.height = "block"; // Optionnel rétablir la hauteur
+            div_libelle_localite_mission.style.display = "auto"
 
-                                third_btn_next.style.display = "block";
-                                third_btn_next.style.height = "auto"; // Optionnel rétablir la hauteur
 
-                                div_libelle_localite_mission.style.display = "block";
-                                div_libelle_localite_mission.style.height = "auto"; // Optionnel rétablir la hauteur
+            input_code_type_localite.style.required = false
+            input_localite_mission.style.required = false
+            input_libelle_localite_mission.style.required = false
+            input_code_localite_parente.style.required = false
+            input_commune_mission.style.required = false
 
-                                div_pays_destination.style.display = "none";
-                                div_pays_destination.style.height = "none"; // Optionnel rétablir la hauteur
-                                select_pays_destination.style.required = false;  // Optionnel rétablir la hauteur
+        }
+    };
 
-                                div_ville_pays_destination.style.display = "none";
-                                div_ville_pays_destination.style.height = "none"; // Optionnel rétablir la hauteur
-                                select_ville_pays_destination.style.required = false;
+    function destination_externe() {
 
-                                div_commune_mission.style.display = "block"
-                                div_commune_mission.style.height = "auto"; // Optionnel rétablir la hauteur
+        input_code_type_localite = document.getElementById('input_code_type_localite');
+        input_localite_mission = document.getElementById('input_localite_mission');
+        input_libelle_localite_mission = document.getElementById('input_libelle_localite_mission');
+        input_code_localite_parente = document.getElementById('input_code_localite_parente');
 
-                                input_code_type_localite.style.required = true
-                                input_localite_mission.style.required = true
-                                input_libelle_localite_mission.style.required = true
-                                input_code_localite_parente.style.required = true
-                                input_commune_mission.style.required = true
+        div_pays_destination = document.getElementById('div_pays_destination');
+        div_ville_pays_destination = document.getElementById('div_ville_pays_destination');
+        select_ville_pays_destination = document.getElementById('select_ville_pays_destination');
+        div_commune_mission = document.getElementById('div_commune_mission');
+        input_commune_mission = document.getElementById('input_commune_mission');
+        div_libelle_localite_mission = document.getElementById('div_libelle_localite_mission');
+        input_libelle_localite_mission = document.getElementById('input_libelle_localite_mission');
+        div_pays_destination = document.getElementById('div_pays_destination');
+        select_pays_destination = document.getElementById('select_pays_destination');
 
-                            }
-                    };
+        second_btn_next = document.getElementById('second-btn-next');
+        validate_mission_externe_destination = document.getElementById('validate-mission-externe-destination');
+        externe = document.getElementById('destination_externe');
+
+        if (externe.checked == true) {
+            validate_mission_externe_destination.style.display = "block";
+            validate_mission_externe_destination.style.height = "auto"; // Optionnel rétablir la hauteur
+
+            second_btn_next.style.display = "none";
+            second_btn_next.style.height = "none"; // Optionnel rétablir la hauteur
+
+            div_pays_destination.style.display = "block";
+            div_pays_destination.style.height = "auto"; // Optionnel rétablir la hauteur
+
+            div_ville_pays_destination.style.display = "block";
+            div_ville_pays_destination.style.height = "auto"; // Optionnel rétablir la hauteur
+
+            div_libelle_localite_mission.style.height = "none"; // Optionnel rétablir la hauteur
+            div_libelle_localite_mission.style.display = "none"
+            input_libelle_localite_mission.style.required = false
+
+            div_commune_mission.style.height = "none"; // Optionnel rétablir la hauteur
+            div_commune_mission.style.display = "none"
+            input_commune_mission.style.required = false
+
+            input_code_type_localite.style.required = false
+            input_localite_mission.style.required = false
+            input_libelle_localite_mission.style.required = false
+            input_code_localite_parente.style.required = false
+            input_commune_mission.style.required = false
+
+
+        } else {
+
+            validate_mission_externe_destination.style.display = "none";
+            validate_mission_externe_destination.style.height = "none"; // Optionnel rétablir la hauteur
+
+            third_btn_next.style.display = "block";
+            third_btn_next.style.height = "auto"; // Optionnel rétablir la hauteur
+
+            div_libelle_localite_mission.style.display = "block";
+            div_libelle_localite_mission.style.height = "auto"; // Optionnel rétablir la hauteur
+
+            div_pays_destination.style.display = "none";
+            div_pays_destination.style.height = "none"; // Optionnel rétablir la hauteur
+            select_pays_destination.style.required = false;  // Optionnel rétablir la hauteur
+
+            div_ville_pays_destination.style.display = "none";
+            div_ville_pays_destination.style.height = "none"; // Optionnel rétablir la hauteur
+            select_ville_pays_destination.style.required = false;
+
+            div_commune_mission.style.display = "block"
+            div_commune_mission.style.height = "auto"; // Optionnel rétablir la hauteur
+
+            input_code_type_localite.style.required = true
+            input_localite_mission.style.required = true
+            input_libelle_localite_mission.style.required = true
+            input_code_localite_parente.style.required = true
+            input_commune_mission.style.required = true
+
+        }
+    };
 
 
 
@@ -658,5 +600,3 @@
 </script>
 
 {% endblock %}
-
-</html>
