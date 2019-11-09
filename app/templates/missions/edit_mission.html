@@ -87,8 +87,8 @@
             <span>&nbsp;</span>
             <div class="input-group margin-bottom-sm">
                 <div class="form-group">
-
-                    <div class="col-xs-9">
+                    <div class="row">
+                        <div class="col-xs-9">
                         <label style="font-weight: bold;" class="col-xs-3 control-label">Destination </label>
                         <label onclick="destination_externe()">
                             <input id="destination_externe" name="destination_mission" value="externe" type="radio"
@@ -97,15 +97,16 @@
                         <label onclick="destination_interne()">
                             <input checked id="destination_interne" name="destination_mission" value="interne" type="radio">
                             Interne</label>
-
                     </div>
+                    </div>
+
                 </div>
                 <span>&nbsp;</span>
             </div>
 
-            <div>
+            <div class="row">
                 <a href="#">
-                    <button type="button" id="first-reset" class="btn btn-primary btn-sm pull-left">
+                    <button style="margin-left:15px; margin-right:50px"  type="button" id="first-reset" class="btn btn-primary btn-sm pull-left">
                         <span class="visible-xs"><i class="fa fa-refresh fa-2x"></i></span>
                         <span class="visible-sm visible-md visible-lg"><i class="fa fa-refresh"></i> Annuler</span>
                     </button>
