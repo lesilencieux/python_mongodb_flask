@@ -18,13 +18,14 @@
                 </div>
                 <div class="card-body">
 
-                    <form class="form-horizontal" action="/create_mission/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
-                    method="POST" autocomplete="on" name="form">
+                    <form class="form-horizontal"
+                        action="/create_mission/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+                        method="POST" autocomplete="on" name="form">
                         <!-- first-part -->
                         <div id="first-part">
                             <div class="form-group row">
-                                <label class="col-sm-2 form-control-label">Ref.</label>
-                                <div class="col-sm-10 mb-3">
+                                <!-- <label class="col-sm-2 form-control-label">Ref.</label> -->
+                                <div class="col-sm-12 mb-3">
                                     <select name="reference_lettre_de_mission" class="form-control">
                                         {% for object in list_objects %}
                                         <option>{{ object['reference_lettre_de_mission'] }}</option>
@@ -33,14 +34,14 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 form-control-label">Ref. Ordre de mission</label>
-                                <div name="reference_ordre_mission" required="required" class="col-sm-10">
+                                <!-- <label class="col-sm-2 form-control-label">Ref. Ordre de mission</label> -->
+                                <div name="reference_ordre_mission" required="required" class="col-sm-12">
                                     <input type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 form-control-label">Type budget</label>
-                                <div class="col-sm-10 mb-3">
+                                <!-- <label class="col-sm-2 form-control-label">Type budget</label> -->
+                                <div class="col-sm-12 mb-3">
                                     <select name="type_budget" class="form-control">
                                         {% for type_budget in list_type_budget %}
                                         <option>{{ type_budget['libelle_type_budget'] }}</option>
@@ -49,15 +50,15 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 form-control-label">Date départ mission</label>
-                                <div class="col-sm-10 date">
+                                <!-- <label class="col-sm-2 form-control-label">Date départ mission</label> -->
+                                <div class="col-sm-12 date">
                                     <input name="date_depart_mission" id="date_added_1"
                                         placeholder="Date Départ Mission" type="text" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label class="col-sm-2 form-control-label">Date fin mission</label>
-                                <div class="col-sm-10 date">
+                                <!-- <label class="col-sm-2 form-control-label">Date fin mission</label> -->
+                                <div class="col-sm-12 date">
                                     <input name="date_retour_mission" id="date_modified_1"
                                         placeholder="Date Fin Mission" type="text" class="form-control">
                                 </div>
@@ -83,6 +84,8 @@
                             <div class="form-group row">
                                 <div class="col-sm-4 offset-sm-2">
                                     <button id="first-reset" type="submit" class="btn btn-secondary">Annuler</button>
+                                </div>
+                                <div class="col-sm-4 offset-sm-2">
                                     <button id="firsr-btn-next" type="submit" class="btn btn-primary">Suivant</button>
                                 </div>
                             </div>
@@ -93,6 +96,8 @@
                             <div class="form-group row">
                                 <label class="col-sm-2 form-control-label">Pays de destination</label>
                                 <div id="div_pays_destination" class="col-sm-10 mb-3">
+                                    <!-- <select class="mdb-select md-form" multiple searchable="Search here..">
+                                        <option value="" disabled selected>Choose your country</option> -->
                                     <select name="pays_destination_mission" class="form-control selectpicker" multiple
                                         data-live-search="true">
                                         {% for pays in list_pays %}
@@ -163,10 +168,18 @@
                             </div>
 
                             <div class="form-group row">
-                                <div class="col-sm-4 offset-sm-2">
+                                <div class="col-sm-3">
+                                    <button id="second-btn-back" type="submit"
+                                        class="btn btn-secondary">Précédent</button>
+                                </div>
+                                <div class="col-sm-3">
                                     <button id="" type="submit" class="btn btn-secondary">Annuler</button>
+                                </div>
+                                <div class="col-sm-3">
                                     <button id="validate-mission-externe-destination" style="display: none"
                                         type="submit" class="btn btn-secondary">{{'Valider'}}</button>
+                                </div>
+                                <div class="col-sm-3">
                                     <button id="second-btn-next" type="submit" class="btn btn-primary">Suivant</button>
                                 </div>
                             </div>
@@ -199,26 +212,46 @@
                                         <label for="input_code_localite_parente" class="label-material">Localité
                                             parente</label>
                                     </div>
-
-                                    <div class="form-group row">
-                                        <div class="col-sm-4 offset-sm-2">
-                                            <button id="second-btn-back" type="submit" class="btn btn-secondary">Précédent</button>
-                                            <button id="third-reset" type="submit" class="btn btn-secondary">Annuler</button>
-                                            <button id="validate-mission" style="display: none"
-                                                type="submit" class="btn btn-secondary">{{'Valider'}}</button>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
 
-                        </div>
+                            <div class="form-group row">
+                                <div class="offset-sm-1 col-sm-3">
+                                    <button id="second-btn-back" type="submit"
+                                        class="btn btn-secondary">Précédent</button>
+                                </div>
+                                <div class="offset-sm-1 col-sm-3">
+                                    <button id="third-reset" type="submit" class="btn btn-secondary">Annuler</button>
+                                </div>
 
+                                <div class="offset-sm-1 col-sm-3">
+                                    <button id="validate-mission" style="display: none" type="submit"
+                                        class="btn btn-secondary">{{'Valider'}}</button>
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
+
+
             </div>
         </div>
     </div>
 </section>
+
+
+<!-- <script>
+    // $('select').selectpicker();
+    // Material Select Initialization
+    $(document).ready(function() {
+    $('.mdb-select').materialSelect();
+    });
+</script> -->
+
+<script type="text/javascript">
+    document.getElementById("missions").className = "active";
+
+</script>
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://unpkg.com/multiple-select@1.4.2/dist/multiple-select.min.js"></script>

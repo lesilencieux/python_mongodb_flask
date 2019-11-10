@@ -1,180 +1,152 @@
 {% extends "admin_template.html" %}
 {% block content %}
-<html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link data-require="bootstrap@3.3.2" data-semver="3.3.2" rel="stylesheet"
-          href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
-    <script data-require="bootstrap@3.3.2" data-semver="3.3.2"
-            src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <script data-require="jquery@2.1.3" data-semver="2.1.3" src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
-    <link rel="stylesheet" href="style.css"/>
-    <script src="moment-2.10.3.js"></script>
-    <script src="bootstrap-datetimepicker.js"></script>
-
-    <link rel="stylesheet" href="https://unpkg.com/multiple-select@1.4.2/dist/multiple-select.min.css">
-    <style>
-            input:focus ~ .floating-label,
-            input:not(:focus):valid ~ .floating-label{
-              top: 8px;
-              bottom: 10px;
-              left: 20px;
-              font-size: 11px;
-              opacity: 1;
-            }
-
-            .inputText {
-              font-size: 14px;
-              width: 200px;
-              height: 35px;
-            }
-
-            .floating-label {
-              position: absolute;
-              pointer-events: none;
-              left: 20px;
-              top: 18px;
-              transition: 0.2s ease all;
-            }
-
-
-
-    </style>
-</head>
-<center><h1>Creation de mission</h1></center>
-<span>&nbsp;</span>
-
-<center>
-    <form action="/object/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}" method="POST" autocomplete="on" name="form">
-
-
-        <div class="col-sm-offset-3 col-sm-6" id="first-part">
-
-            <div class="form-group">
-
-                <div class="input-group date">
-                    <input name="date_debut_mission" id="date_added"
-                                                                             placeholder="Date Debut Mission"
-                                                                             type="text" class="form-control">
-                </div>
-            </div>
-            <div class="form-group">
-
-                <div class="input-group date">
-                    <input name="date_fin_mission" id="date_modified"
-                                                                             placeholder="Date Fin Mission" type="text"
-                                                                             class="form-control">
-                </div>
-            </div>
-
-
-            <div class="input-group margin-bottom-sm">
-                 <input name="reference_lettre_de_mission" required="required" class="form-control" type="text"
-                       placeholder="Reference de la lettre de mission ">
-            </div>
-            <span>&nbsp;</span>
-
-            <div class="md-form">
-                <textarea name="objet_mission" id="form10" class="md-textarea form-control" rows="5"
-                          placeholder="Objet"></textarea>
-            </div>
-            <span>&nbsp;</span>
-
-            <div class="row">
-
-
-                <div class="col-xs-4 col-sm-3">
-                    <a href="#">
-                        <button style="margin-left:15px; margin-right:50px"  type="button" id="fourth-reset" class="btn btn-primary btn-sm ">
-                             <span class="visible-sm visible-md visible-lg">  Annuler</span>
-                        </button>
-                    </a>
+<section class="forms">
+    <div class="container-fluid" style="padding-top: 50px;">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header d-flex align-items-center">
+                    <span>
+                        <!-- <h4>All form elements</h4> -->
+                        <h4>Création d'objet de mission</h4>
                     </span>
+                    <!-- <a
+                                href="/missions/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
+                                <span style="padding-left: 750px;"><i class="fa fa-plus-circle fa-2x btn btn-primary"
+                                        aria-hidden="true" title="Ajouter une nouvelle mission"></i></span>
+                            </a> -->
                 </div>
-                <button type="submit" class="btn btn-primary btn-sm pull-right">
-                     <span class="visible-sm visible-md visible-lg">  {{'Valider'}}</span>
-                </button>
+                <div class="card-body">
+                    <form
+                        action="/object/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+                        method="POST" autocomplete="on" name="form">
+
+                        <div class="col-sm-8 offset-sm-2" id="first-part">
+
+                            <div class="form-group">
+
+                                <div class="input-group date">
+                                    <input name="date_debut_mission" id="date_added" placeholder="Date Debut Mission"
+                                        type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="input-group date">
+                                    <input name="date_fin_mission" id="date_modified" placeholder="Date Fin Mission"
+                                        type="text" class="form-control">
+                                </div>
+                            </div>
+
+
+                            <div class="input-group margin-bottom-sm">
+                                <input name="reference_lettre_de_mission" required="required" class="form-control"
+                                    type="text" placeholder="Reference de la lettre de mission ">
+                            </div>
+                            <span>&nbsp;</span>
+
+                            <div class="md-form">
+                                <textarea name="objet_mission" id="form10" class="md-textarea form-control" rows="5"
+                                    placeholder="Objet"></textarea>
+                            </div>
+                            <span>&nbsp;</span>
+
+                            <div class="form-group row">
+                                <div class="col-sm-4 offset-sm-2">
+                                    <button id="first-reset" type="submit" class="btn btn-secondary">Annuler</button>
+                                </div>
+                                <div class="col-sm-4 offset-sm-2">
+                                    <button id="firsr-btn-next" type="submit"
+                                        class="btn btn-primary">{{'Valider'}}</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
             </div>
         </div>
+    </div>
+</section>
 
-    </form>
-</center>
 
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://unpkg.com/multiple-select@1.4.2/dist/multiple-select.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://unpkg.com/multiple-select@1.4.2/dist/multiple-select.min.js"></script> -->
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" /> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
 <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script> -->
 
 
 <script type="text/javascript">
 
 
 
-                        var fromTimeInput = $('#date_added');
-                                var toTimeInput = $('#date_modified');
-                                var fromTime = fromTimeInput.val();
-                                var toTime = toTimeInput.val();
+    var fromTimeInput = $('#date_added');
+    var toTimeInput = $('#date_modified');
+    var fromTime = fromTimeInput.val();
+    var toTime = toTimeInput.val();
 
-                                fromTimeInput.datepicker({
-                                    keyboardNavigation : false,
-                                    forceParse : false,
-                                    calendarWeeks : true,
-                                    autoclose : true,
-                                    endDate: toTime
-                                });
-                                toTimeInput.datepicker({
-                                    keyboardNavigation : false,
-                                    forceParse : false,
-                                    calendarWeeks : true,
-                                    autoclose : true,
-                                    startDate: fromTime
-                                });
-                                fromTimeInput.on("changeDate", function (e) {
-                                    toTimeInput.datepicker('setStartDate', e.date);
-                                });
-                                toTimeInput.on("changeDate", function (e) {
-                                    fromTimeInput.datepicker('setEndDate', e.date);
-                                });
-
-
-                        var fromTimeInput = $('#date_added_1');
-                                var toTimeInput = $('#date_modified_1');
-                                var fromTime = fromTimeInput.val();
-                                var toTime = toTimeInput.val();
-
-                                fromTimeInput.datepicker({
-                                    keyboardNavigation : false,
-                                    forceParse : false,
-                                    calendarWeeks : true,
-                                    autoclose : true,
-                                    endDate: toTime
-                                });
-                                toTimeInput.datepicker({
-                                    keyboardNavigation : false,
-                                    forceParse : false,
-                                    calendarWeeks : true,
-                                    autoclose : true,
-                                    startDate: fromTime
-                                });
-                                fromTimeInput.on("changeDate", function (e) {
-                                    toTimeInput.datepicker('setStartDate', e.date);
-                                });
-                                toTimeInput.on("changeDate", function (e) {
-                                    fromTimeInput.datepicker('setEndDate', e.date);
-                                });
+    fromTimeInput.datepicker({
+        keyboardNavigation: false,
+        forceParse: false,
+        calendarWeeks: true,
+        autoclose: true,
+        endDate: toTime
+    });
+    toTimeInput.datepicker({
+        keyboardNavigation: false,
+        forceParse: false,
+        calendarWeeks: true,
+        autoclose: true,
+        startDate: fromTime
+    });
+    fromTimeInput.on("changeDate", function (e) {
+        toTimeInput.datepicker('setStartDate', e.date);
+    });
+    toTimeInput.on("changeDate", function (e) {
+        fromTimeInput.datepicker('setEndDate', e.date);
+    });
 
 
+    var fromTimeInput = $('#date_added_1');
+    var toTimeInput = $('#date_modified_1');
+    var fromTime = fromTimeInput.val();
+    var toTime = toTimeInput.val();
+
+    fromTimeInput.datepicker({
+        keyboardNavigation: false,
+        forceParse: false,
+        calendarWeeks: true,
+        autoclose: true,
+        endDate: toTime
+    });
+    toTimeInput.datepicker({
+        keyboardNavigation: false,
+        forceParse: false,
+        calendarWeeks: true,
+        autoclose: true,
+        startDate: fromTime
+    });
+    fromTimeInput.on("changeDate", function (e) {
+        toTimeInput.datepicker('setStartDate', e.date);
+    });
+    toTimeInput.on("changeDate", function (e) {
+        fromTimeInput.datepicker('setEndDate', e.date);
+    });
+
+
+
+</script>
+
+<script type="text/javascript">
+    document.getElementById("objects").className = "active";
 
 </script>
 
