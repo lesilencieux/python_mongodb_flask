@@ -531,8 +531,34 @@ def login():
             read_user1 = users.Users("", "", "").get_user_by_email(request.values.get("email"))
             if user_with_email and check_password_hash(read_user1['password'], password):
                 login_user(users.Users(read_user1['username'], read_user1['email'], read_user1['roles']))
+                nb_total_agent = 0
+                for agt in agent.Agent().get_agents():
+                    nb_total_agent += 1
 
-                return render_template('admin_accueil.html', user=read_user1, list_missions=list_missions)
+                nb_total_object = 0
+                for agt in object.Object().get_objects():
+                    nb_total_object += 1
+
+                nb_total_mission = 0
+                for agt in mission.Mission().get_missions():
+                    print("<<<<<<<<<<<<<<<<<<<<<<<<<")
+                    print(agt)
+                    print("<<<<<<<<<<<<<<<<<<<<<<<<<")
+                    nb_total_mission += 1
+
+                nb_total_mission_rejete = 0
+                for agt in mission.Mission().get_missions_rejetee():
+                    nb_total_mission_rejete += 1
+
+                nb_total_mission_validee = 0
+                for agt in mission.Mission().get_missions_validee():
+                    nb_total_mission_validee += 1
+
+                nb_total_mission_en_attente = 0
+                for agt in mission.Mission().get_missions_en_attente():
+                    nb_total_mission_en_attente += 1
+
+            return render_template('admin_accueil.html', user=read_user1, list_missions=list_missions,nb_total_mission_rejete=nb_total_mission_rejete,nb_total_mission_validee=nb_total_mission_validee,nb_total_mission_en_attente=nb_total_mission_en_attente,nb_agent=nb_total_agent ,nb_total_mission=nb_total_mission,nb_total_object=nb_total_object)
             flash("Wrong username or password!", category='error')
             # return render_template('admin.html')
             return render_template('admin_login.html')
@@ -540,8 +566,34 @@ def login():
             read_user2 = users.Users("", "", "").get_user_by_username(request.values.get("username"))
             if user_with_username and check_password_hash(read_user2['password'], password):
                 login_user(users.Users(read_user2['username'], read_user2['email'], read_user2['roles']))
+                nb_total_agent = 0
+                for agt in agent.Agent().get_agents():
+                    nb_total_agent += 1
 
-                return render_template('admin_accueil.html', user=read_user2, list_missions=list_missions)
+                nb_total_object = 0
+                for agt in object.Object().get_objects():
+                    nb_total_object += 1
+
+                nb_total_mission = 0
+                for agt in mission.Mission().get_missions():
+                    print("<<<<<<<<<<<<<<<<<<<<<<<<<")
+                    print(agt)
+                    print("<<<<<<<<<<<<<<<<<<<<<<<<<")
+                    nb_total_mission += 1
+
+                nb_total_mission_rejete = 0
+                for agt in mission.Mission().get_missions_rejetee():
+                    nb_total_mission_rejete += 1
+
+                nb_total_mission_validee = 0
+                for agt in mission.Mission().get_missions_validee():
+                    nb_total_mission_validee += 1
+
+                nb_total_mission_en_attente = 0
+                for agt in mission.Mission().get_missions_en_attente():
+                    nb_total_mission_en_attente += 1
+
+            return render_template('admin_accueil.html', user=read_user2, list_missions=list_missions,nb_total_mission_rejete=nb_total_mission_rejete,nb_total_mission_validee=nb_total_mission_validee,nb_total_mission_en_attente=nb_total_mission_en_attente,nb_agent=nb_total_agent ,nb_total_mission=nb_total_mission,nb_total_object=nb_total_object)
             flash("Nom d'utilisateur ou Mot de passe incorrect !", category='error')
             # return render_template('admin.html')
             return render_template('admin_login.html')
