@@ -1,86 +1,94 @@
 {% extends "admin_template.html" %}
 {% block content %}
-<center><h1>Liste des corpss </h1></center>
-<section class="content">
-    <div class="box box-primary">
-        <div class="box-header with-border">
 
 
-        </div>
-        <div class="box-body">
-            <table id="lstcorps" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th>Libelle</th>
-                    <th>Date Création</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for corps in list_corps %}
-                <tr>
+<section>
+    <div class="container-fluid" style="padding-top: 50px;">
+        <!-- Page Header-->
+        <!-- <header>
+                                    <h1 class="h3 display">Liste des missions</h1>
+                                </header> -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <span>
+                            <h4>Liste des corps professionnels des agents</h4>
+                        </span>
+                        <a
+                            href="/corps/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
+                            <span style="padding-left: 750px;"><i class="fa fa-plus-circle fa-2x btn btn-primary"
+                                    aria-hidden="true" title="Ajouter un nouveau corps"></i></span>
+                        </a>
+                    </div>
+                    <div class="card-body col-md-12">
+                        <table id="lstcorps" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Libelle</th>
+                                    <th>Date Création</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for corps in list_corps %}
+                                <tr>
 
-                    <td class="table-primary">{{ corps['libelle_corps'] }}</td>
-                    <td class="table-info">{{ corps['created_at'] }}</td>
-                    <td>
-                        <div class="input-group btn">
-                            <button type="button" class="btn btn-success  dropdown-toggle pull-right"
-                                    data-toggle="dropdown">
-                                Actions
-                            </button>
+                                    <td class="table-primary">{{ corps['libelle_corps'] }}</td>
+                                    <td class="table-info">{{ corps['created_at'] }}</td>
+                                    <td>
+                                        <div class="input-group btn">
+                                            <button type="button" class="btn btn-success  dropdown-toggle pull-right"
+                                                data-toggle="dropdown">
+                                                Actions
+                                            </button>
 
-                            <ul class="dropdown-menu">
+                                            <ul class="dropdown-menu">
 
-                                <li><a href="/show_corps/{{ corps['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
-                                    <button class="btn btn-info btn-block">Afficher</button>
-                                </a></li>
+                                                <li><a
+                                                        href="/show_corps/{{ corps['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
+                                                        <button class="btn btn-info btn-block">Afficher</button>
+                                                    </a></li>
 
-                                <li><a href="/update_corps/{{ corps['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
-                                    <button class="btn btn-warning btn-block">Modifier</button>
-                                </a></li>
+                                                <li><a
+                                                        href="/update_corps/{{ corps['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
+                                                        <button class="btn btn-warning btn-block">Modifier</button>
+                                                    </a></li>
 
-                                <li><a href="/delete_corps/{{ corps['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
-                                    <button class="btn btn-danger btn-block">Supprimer</button>
-                                </a></li>
-                                <li class="divider"></li>
+                                                <li><a
+                                                        href="/delete_corps/{{ corps['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
+                                                        <button class="btn btn-danger btn-block">Supprimer</button>
+                                                    </a></li>
+                                                <li class="divider"></li>
 
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h1 class="box-title">Nouveau corps</h1>
-            <div class="box-tools pull-right">
-                <button class="btn btn-box-tool" data-widget="collapse">
-                    <i class="fa fa-minus"></i>
-                </button>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="box-body">
-            <div align="right">
-                <a href="/corps/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
-                    <button type="button" class="btn btn-success">Ajouter une Nouveau Corps</button>
-                </a>
-            </div>
-        </div>
     </div>
-
 </section>
 
+
 <script type="text/javascript">
-		$(document).ready(function() {
-		    $('#example').DataTable();
-		} );
+    document.getElementById("parametres").className = "active";
+
+</script>
+
+
+<!-- <script type="text/javascript">
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
 
 		// Basic example
 
-</script>
+</script> -->
 
 {% endblock %}
