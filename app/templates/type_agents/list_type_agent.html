@@ -1,91 +1,97 @@
 {% extends "admin_template.html" %}
 {% block content %}
-<center><h1>Liste des Type Agents </h1></center>
-<section class="content">
-    <div class="box box-primary">
-        <div class="box-header with-border">
 
-            <div class="box-tools pull-right">
-                <button class="btn btn-box-tool" data-widget="collapse">
-                 </button>
+
+<section>
+    <div class="container-fluid" style="padding-top: 50px;">
+        <!-- Page Header-->
+        <!-- <header>
+                                            <h1 class="h3 display">Liste des missions</h1>
+                                        </header> -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <span>
+                            <h4>Liste des types d'agents</h4>
+                        </span>
+                        <a
+                            href="/type_agent/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
+                            <span style="padding-left: 750px;"><i class="fa fa-plus-circle fa-2x btn btn-primary"
+                                    aria-hidden="true" title="Ajouter un nouveau typd d'agent"></i></span>
+                        </a>
+                    </div>
+                    <div class="card-body col-md-12">
+                        <table id="example" class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Libelle</th>
+                                    <th>Libelle Unique</th>
+                                    <th> Description </th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for type_agent in list_type_agents %}
+                                <tr>
+
+                                    <td class="table-primary">{{ type_agent['libelle_type_agent'] }}</td>
+                                    <td class="table-info">{{ type_agent['libelle_unique_type_agent'] }}</td>
+                                    <td class="table-info">{{ type_agent['description_type_agent'] }}</td>
+                                    <td>
+                                        <div class="input-group btn">
+                                            <button type="button" class="btn btn-success  dropdown-toggle pull-right"
+                                                data-toggle="dropdown">
+                                                Actions
+                                            </button>
+
+                                            <ul class="dropdown-menu">
+
+                                                <li><a
+                                                        href="/show_type_agent/{{ type_agent['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
+                                                        <button class="btn btn-info btn-block">Afficher</button>
+                                                    </a></li>
+
+                                                <li><a
+                                                        href="/update_type_agent/{{ type_agent['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
+                                                        <button class="btn btn-warning btn-block">Modifier</button>
+                                                    </a></li>
+
+                                                <li><a
+                                                        href="/delete_type_agent/{{ type_agent['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
+                                                        <button class="btn btn-danger btn-block">Supprimer</button>
+                                                    </a></li>
+                                                <li class="divider"></li>
+
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="box-body">
-                            <table id="example" class="table table-striped table-hover">
-                <thead>
-                <tr>
-                    <th>Libelle</th>
-                    <th>Libelle Unique</th>
-                    <th> Description </th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for type_agent in list_type_agents %}
-                <tr>
-
-                    <td class="table-primary">{{ type_agent['libelle_type_agent'] }}</td>
-                    <td class="table-info">{{ type_agent['libelle_unique_type_agent'] }}</td>
-                    <td class="table-info">{{ type_agent['description_type_agent'] }}</td>
-                    <td>
-                        <div class="input-group btn">
-                            <button type="button" class="btn btn-success  dropdown-toggle pull-right"
-                                    data-toggle="dropdown">
-                                Actions
-                            </button>
-
-                            <ul class="dropdown-menu">
-
-                                <li><a href="/show_type_agent/{{ type_agent['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
-                                    <button class="btn btn-info btn-block">Afficher</button>
-                                </a></li>
-
-                                 <li><a href="/update_type_agent/{{ type_agent['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
-                                    <button class="btn btn-warning btn-block">Modifier</button>
-                                </a></li>
-
-                                <li><a href="/delete_type_agent/{{ type_agent['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
-                                    <button class="btn btn-danger btn-block">Supprimer</button>
-                                </a></li>
-                                <li class="divider"></li>
-
-                            </ul>
-                        </div>
-                    </td>
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
         </div>
     </div>
-
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h1 class="box-title">Nouveau Type Agent</h1>
-            <div class="box-tools pull-right">
-                <button class="btn btn-box-tool" data-widget="collapse">
-                 </button>
-            </div>
-        </div>
-        <div class="box-body">
-            <div align="right">
-                <a href="/type_agent/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
-                    <button type="button" class="btn btn-success">Ajouter une Nouveau Type Agent</button>
-                </a>
-            </div>
-        </div>
-    </div>
-
 </section>
 
-  <script type="text/javascript">
-		$(document).ready(function() {
-		    $('#example').DataTable();
-		} );
+
+<script type="text/javascript">
+    document.getElementById("parametres").className = "active";
+
+</script>
+
+
+<!-- <script type="text/javascript">
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
 
 		// Basic example
 
-</script>
+</script> -->
 
 
 {% endblock %}
