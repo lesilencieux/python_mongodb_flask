@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"missions.qualite"},{"v":2,"unique":true,"key":{"libelle_qualite":""},"name":"libelle_qualite_","ns":"missions.qualite"}],"uuid":"92373182d880492494fa72a971b360a4"}

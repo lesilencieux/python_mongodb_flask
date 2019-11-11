@@ -12,16 +12,27 @@ class Mission():
     db = client["missions"]
     missions = db["missions"]
 
-    def get_missions(self):
-        result = self.missions.find()
-        toreturns = []
-        # return [str(mission['_id']) for mission in result]
+
+    def get_missions_validee(self):
+        myquery = {"status_mission": "Validee"}
+        result = self.missions.find(myquery)
 
         return result
-        # for mission in result:
-        #     mission['_id'] = str(mission['_id'])
-        #     toreturns.append(mission)
-        # return jsonify(toreturns)
+
+    def get_missions_en_attente(self):
+        myquery = {"status_mission": "En attente de validation"}
+        result = self.missions.find(myquery)
+        return result
+
+    def get_missions_rejetee(self):
+        myquery = {"status_mission": "Rejetee"}
+        result = self.missions.find(myquery)
+        return result
+
+    def get_missions(self):
+        result = self.missions.find()
+        return result
+
 
     def get_all_codes_of_missions(self):
         result = self.missions.find()

@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"missions.users"},{"v":2,"unique":true,"key":{"email":""},"name":"email_","ns":"missions.users"},{"v":2,"unique":true,"key":{"username":""},"name":"username_","ns":"missions.users"}],"uuid":"858ace5a6f2840798b5e5433764e4ef6"}

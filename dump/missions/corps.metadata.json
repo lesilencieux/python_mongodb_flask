@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"missions.corps"},{"v":2,"unique":true,"key":{"libelle_corps":""},"name":"libelle_corps_","ns":"missions.corps"}],"uuid":"c24cfb04240d4e24bec479389f9f6843"}

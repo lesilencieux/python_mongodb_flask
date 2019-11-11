@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"missions.structures"},{"v":2,"unique":true,"key":{"code_structure":""},"name":"code_structure_","ns":"missions.structures"}],"uuid":"5ec03c94a1d74d43be8be590a0464704"}
