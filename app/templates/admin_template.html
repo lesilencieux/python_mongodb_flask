@@ -93,13 +93,13 @@
 			<!-- Sidebar Header    -->
 			<div class="sidenav-header d-flex align-items-center justify-content-center">
 				<!-- User Info-->
-				<div class="sidenav-header-inner text-center"><img src="{{ url_for('static', filename='images/agent.png') }}" alt="person"
+				<div class="sidenav-header-inner text-center"><img src="{{ url_for('static', filename='admin/img/user2.png') }}" alt="utilisateur"
 						class="img-fluid rounded-circle">
 					<h2 class="h5">{{current_user.get_username() }}</h2><span>{{current_user.get_roles() }}</span>
 				</div>
 				<!-- Small Brand information, appears on minimized sidebar-->
-				<div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center">
-						<strong>B</strong><strong class="text-primary">D</strong></a></div>
+				<div class="sidenav-header-logo"><a href="/accueil/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles()}}" class="brand-small text-center">
+						<strong>G</strong><strong class="text-primary">M</strong></a></div>
 			</div>
 			<!-- Sidebar Navigation Menus-->
 			<div class="main-menu">
