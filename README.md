@@ -2,7 +2,7 @@ Keep in mind that this is not a complete web application, but a proof of concept
 
 1. create virtual environnement and activate it by doing
     - mkdir venv
-    - virtualenv venv/
+    - virtualenv venv/ or virtualenv --python /usr/bin/python3 venv
     - source venv/bin/activate
 
 2. install pip within environment

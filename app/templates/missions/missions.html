@@ -53,7 +53,6 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 
-
 <section class="forms">
     <div class="container-fluid" style="padding-top: 50px;">
         <div class="col-lg-12">
@@ -71,8 +70,8 @@
                 </div>
                 <div class="card-body">
                     <form
-                        action="/create_mission/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
-                        method="POST" autocomplete="on" name="form">
+                            action="/create_mission/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+                            method="POST" autocomplete="on" name="form">
 
 
                         <div style="height:600px" class="col-sm-offset-3 col-sm-6" id="first-part">
@@ -80,7 +79,8 @@
                             <div class="input-group margin-bottom-sm">
 
                                 <select name="reference_lettre_de_mission" class="selectpicker" data-width="100%" single
-                                    data-live-search="true">
+                                        data-live-search="true">
+                                    <option value="" disabled selected>Selectionner la référence de la lettre de mission </option>
 
                                     {% for object in list_objects %}
                                     <option>{{ object['reference_lettre_de_mission'] }}</option>
@@ -92,7 +92,7 @@
                             <div class="input-group margin-bottom-sm">
 
                                 <input name="reference_ordre_mission" required="required" class="form-control"
-                                    type="text" placeholder="Reference de l'ordre de la mission">
+                                       type="text" placeholder="Reference de l'ordre de la mission">
 
 
                             </div>
@@ -101,7 +101,8 @@
                             <div class="input-group margin-bottom-sm">
 
                                 <select name="type_budget" class="selectpicker" data-width="100%" single
-                                    data-live-search="true">
+                                        data-live-search="true">
+                                    <option value="" disabled selected>Selectionner la référence de la lettre de mission </option>
 
                                     {% for type_budget in list_type_budget %}
                                     <option>{{ type_budget['libelle_type_budget'] }}</option>
@@ -118,7 +119,7 @@
 
                                     <div class="input-group date">
                                         <input name="date_depart_mission" id="date_added_1"
-                                            placeholder="Date Départ Mission" type="text" class="form-control">
+                                               placeholder="Date Départ Mission" type="text" class="form-control">
                                     </div>
                                 </div>
 
@@ -127,7 +128,7 @@
                                     <div class="input-group date">
 
                                         <input name="date_retour_mission" id="date_modified_1"
-                                            placeholder="Date Fin Mission" type="text" class="form-control">
+                                               placeholder="Date Fin Mission" type="text" class="form-control">
                                     </div>
                                 </div>
 
@@ -145,11 +146,11 @@
                                         </label>
                                         <label onclick="destination_externe()">
                                             <input id="destination_externe" name="destination_mission" value="externe"
-                                                type="radio" required>
+                                                   type="radio" required>
                                             Externe</label>
                                         <label onclick="destination_interne()">
                                             <input checked id="destination_interne" name="destination_mission"
-                                                value="interne" type="radio">
+                                                   value="interne" type="radio">
                                             Interne</label>
 
                                     </div>
@@ -157,9 +158,10 @@
                                 <span>&nbsp;</span>
                             </div>
 
-                            <div>
+                            <div class="row">
                                 <a href="#">
-                                    <button type="button" id="first-reset" class="btn btn-primary btn-sm pull-left">
+                                    <button style="margin-left:15px;margin-right:50px" type="button" id="first-reset"
+                                            class="btn btn-primary btn-sm pull-left">
                                         <span class="visible-sm visible-md visible-lg"> Annuler</span>
                                     </button>
                                 </a>
@@ -176,7 +178,8 @@
 
                             <div id="div_pays_destination" class="input-group margin-bottom-sm">
                                 <select name="pays_destination_mission" class="selectpicker" data-width="100%" multiple
-                                    data-live-search="true">
+                                        data-live-search="true">
+                                    <option value="" disabled selected>Selectionner le ou les pays </option>
 
                                     {% for pays in list_pays %}
                                     <option>{{ pays['libelle_fr_pays'] }}</option>
@@ -187,9 +190,9 @@
                             <span>&nbsp;</span>
 
                             <div id="div_ville_pays_destination" style="display: none"
-                                class="input-group margin-bottom-sm">
+                                 class="input-group margin-bottom-sm">
                                 <select name="ville_pays_destination_mission" id="select_ville_pays_destination"
-                                    class="selectpicker" data-width="100%" multiple data-live-search="true">
+                                        class="selectpicker" data-width="100%" multiple data-live-search="true">
                                     <optgroup label="Benin">
                                         <option value="volvo">Cotonou</option>
                                         <option value="saab">Allada</option>
@@ -209,10 +212,12 @@
 
                             <div class="input-group margin-bottom-sm">
                                 <select name="agents_mission" class="selectpicker" data-width="100%" multiple
-                                    data-live-search="true">
+                                        data-live-search="true">
+                                    <option value="" disabled selected>Selectionner le ou les agents</option>
                                     {% for agent in list_agents %}
                                     <option>{{ agent['ifu_agent'] }} {{ agent['prenom_agent'] }}
-                                        {{ agent['nom_agent'] }}</option>
+                                        {{ agent['nom_agent'] }}
+                                    </option>
                                     {% endfor %}
 
                                 </select>
@@ -222,17 +227,13 @@
                             <span>&nbsp;</span>
 
                             <div class="input-group select2-bootstrap-prepend">
-                                <select name="structure_initiatrice_mission" class="selectpicker" data-width="100%"
-                                    single data-live-search="true">
-
+                                <select name="conducteur_mission" class="selectpicker" data-width="100%"
+                                        single data-live-search="true">
                                     <option value="" disabled selected>Selectionner la structure de l'agent</option>
-
-                                    {% for structure in list_structures %}
-                                    <option name="structure_initiatrice_mission"
-                                        value="{{ structure['code_structure'] }}">{{
-                                      structure['code_structure'] }}
+                                    {% for agent in list_agents %}
+                                    <option>{{ agent['ifu_agent'] }} {{ agent['prenom_agent'] }}
+                                        {{ agent['nom_agent'] }}
                                     </option>
-
                                     {% endfor %}
                                 </select>
 
@@ -242,22 +243,41 @@
 
                             <div class="input-group">
                                 <input name="moyen_transport_mission" required="required" class="form-control"
-                                    type="text" placeholder="Moyen de transport ">
+                                       type="text" placeholder="Moyen de transport ">
                             </div>
 
                             <span>&nbsp;</span>
                             <div id="div_commune_mission" class="input-group margin-bottom-sm">
                                 <input id="input_commune_mission" name="commune_mission" class="form-control"
-                                    type="text" placeholder="Commune ">
+                                       type="text" placeholder="Commune ">
+                            </div>
+                            <span>&nbsp;</span>
+
+                            <div class="input-group select2-bootstrap-prepend">
+                                <select name="structure_initiatrice_mission" class="selectpicker" data-width="100%"
+                                        single data-live-search="true">
+
+                                    <option value="" disabled selected>Selectionner le conducteur à bord</option>
+
+                                    {% for structure in list_structures %}
+                                    <option name="structure_initiatrice_mission"
+                                            value="{{ structure['code_structure'] }}">{{
+                                        structure['code_structure'] }}
+                                    </option>
+
+                                    {% endfor %}
+                                </select>
+
                             </div>
 
+                            <span>&nbsp;</span>
 
                             <span>&nbsp;</span>
                             <div class="input-group margin-bottom-sm">
                                 <input name="immatriculation_moyen_transport_mission" required="required"
-                                    class="form-control" type="text" placeholder="Immatriculation ">
+                                       class="form-control" type="text" placeholder="Immatriculation ">
                             </div>
-                            <span>&nbsp;</span>
+
                             <div class="row">
                                 <div class="col-xs-4 col-sm-offset-3 col-sm-3">
                                     <span class="btn btn-primary btn-sm pull-left" id="first-btn-back">
@@ -273,7 +293,7 @@
                                     </span>
                                 </div>
                                 <button id="validate-mission-externe-destination" style="display: none" type="submit"
-                                    class="btn btn-primary btn-sm pull-right">
+                                        class="btn btn-primary btn-sm pull-right">
                                     <span class="visible-sm visible-md visible-lg"> {{'Valider'}}</span>
                                 </button>
                                 <span class="btn btn-primary btn-sm  " id="second-btn-next">
@@ -291,19 +311,19 @@
 
                             <div id="div_code_type_localite" class="input-group">
                                 <input id="input_code_type_localite" name="code_type_localite_mission"
-                                    class="form-control" type="text" placeholder=" Code Type Localite ">
+                                       class="form-control" type="text" placeholder=" Code Type Localite ">
                             </div>
 
                             <span>&nbsp;</span>
                             <div id="div_libelle_localite_mission" style="display: none"
-                                class="input-group margin-bottom-sm">
+                                 class="input-group margin-bottom-sm">
                                 <input id="input_libelle_localite_mission" name="libelle_localite_mission"
-                                    class="form-control" type="text" placeholder="Libelle Localité  ">
+                                       class="form-control" type="text" placeholder="Libelle Localité  ">
                             </div>
                             <span>&nbsp;</span>
                             <div id="div_code_localite_parente" class="input-group margin-bottom-sm">
                                 <input id="input_code_localite_parente" name="code_localite_parente_mission"
-                                    class="form-control" type="text" placeholder="Code Localité Parente ">
+                                       class="form-control" type="text" placeholder="Code Localité Parente ">
                             </div>
                             <span>&nbsp;</span>
 
@@ -311,15 +331,15 @@
                             <span>&nbsp;</span>
                             <div style="display:none" id="div_current_user" class="input-group margin-bottom-sm">
                                 <input id="input_current_user" name="input_current_user" class="form-control"
-                                    value="{{ current_user.username }}" type="text"
-                                    placeholder="Code Localité Parente ">
+                                       value="{{ current_user.username }}" type="text"
+                                       placeholder="Code Localité Parente ">
                             </div>
                             <span>&nbsp;</span>
 
 
                             <div id="code_localite_mission" class="input-group margin-bottom-sm">
                                 <input id="input_localite_mission" name="code_localite_mission" class="form-control"
-                                    type="text" placeholder="Code Localité ">
+                                       type="text" placeholder="Code Localité ">
                             </div>
                             <span>&nbsp;</span>
 
@@ -367,8 +387,8 @@
     integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
     crossorigin="anonymous"></script>-->
 <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script> 
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
 
 
 <script type="text/javascript">
@@ -671,6 +691,7 @@
 
         }
     };
+
 
 
 

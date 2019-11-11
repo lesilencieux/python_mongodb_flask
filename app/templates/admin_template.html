@@ -61,6 +61,12 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='admin/img/favicon.ico') }}">
 
+
+
+
+
+
+
     <!-- Tweaks for older IEs-->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -95,7 +101,7 @@
 				<!-- User Info-->
 				<div class="sidenav-header-inner text-center"><img src="{{ url_for('static', filename='admin/img/user2.png') }}" alt="utilisateur"
 						class="img-fluid rounded-circle">
-					<h2 class="h5">{{current_user.get_username() }}</h2><span>{{current_user.get_roles() }}</span>
+					<h2 class="h5">{{current_user.get_username() }}</h2>
 				</div>
 				<!-- Small Brand information, appears on minimized sidebar-->
 				<div class="sidenav-header-logo"><a href="/accueil/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles()}}" class="brand-small text-center">

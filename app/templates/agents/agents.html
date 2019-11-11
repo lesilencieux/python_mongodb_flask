@@ -64,7 +64,7 @@
                             <div class="input-group margin-bottom-sm">
                             </div>
 
-                            <div class="form-group row">
+                            <div class="row">
                                 <div class="col-sm-4 offset-sm-2">
                                     <button id="first-reset" type="submit" class="btn btn-secondary">Annuler</button>
                                 </div>
@@ -132,6 +132,26 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <div class="input-group margin-bottom-sm">
+
+                                    <div class="input-group select2-bootstrap-prepend col-sm-12">
+                                        <!--                    <span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>-->
+                                        <select name="type_agent" class="form-control selectpicker" data-width="100%" single
+                                            data-live-search="true">
+
+                                            <option value="" disabled selected>Selectionner le type de l'agent</option>
+
+                                            {% for type in list_type %}
+                                            <option name="type_agent" value="{{ grade['libelle_type'] }}">
+                                                {{ type['libelle_type'] }}
+                                            </option>
+                                            {% endfor %}
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="form-group row">
                                 <div class="col-sm-12 mb-3">
@@ -158,7 +178,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
+                            <div class="row">
                                 <div class="col-sm-3 offset-sm-1">
                                     <button id="btn-back" type="submit" class="btn btn-secondary">Précedent</button>
                                 </div>

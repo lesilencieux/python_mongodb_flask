@@ -138,20 +138,24 @@
         <div class="row">
             <div class="col-lg-6 col-md-6">
                 <!-- Recent Updates Widget          -->
-                <div id="new-updates" class="card updates recent-updated">
-                    <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
-                        <h2 class="h5 display"><a data-toggle="collapse" data-parent="#new-updates" href="/pays/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
-                                aria-expanded="true" aria-controls="updates-box">Pays</a></h2>
+                <div id="new-updates_pays" class="card updates recent-updated">
+                    <a href="/pays/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+                           class="">Pays</a>
+                    <div id="updates-header_pays" class="card-header d-flex justify-content-between align-items-center">
+                        <h2 class="h5 display"><a data-toggle="collapse" data-parent="#new-updates" href="#"
+                                aria-expanded="true" aria-controls="updates-box"></a></h2>
                     </div>
                 </div>
                 <!-- Recent Updates Widget End-->
             </div>
             <div class="col-lg-6 col-md-6">
                 <!-- Daily Feed Widget-->
-                <div id="daily-feeds" class="card updates daily-feeds">
-                    <div id="feeds-header" class="card-header d-flex justify-content-between align-items-center">
-                        <h2 class="h5 display"><a data-toggle="collapse" data-parent="#daily-feeds" href="/villes/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
-                                aria-expanded="true" aria-controls="feeds-box">Villes</a></h2>
+                <div id="daily-feeds_ville" class="card updates daily-feeds">
+                    <a href="/villes/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
+                           class="">Pays</a>
+                    <div id="feeds-header_ville" class="card-header d-flex justify-content-between align-items-center">
+                        <h2 class="h5 display"><a data-toggle="collapse" data-parent="#daily-feeds" href="#"
+                                aria-expanded="true" aria-controls="feeds-box"></a></h2>
                     </div>
                 </div>
                 <!-- Daily Feed Widget End-->

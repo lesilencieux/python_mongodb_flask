@@ -778,11 +778,13 @@ def save_agent(username, email, roles):
     date_et_lieu_de_naissance_agent = request.values.get("date_et_lieu_de_naissance_agent")
     corps_agent = request.form.get("corps_agent")
     grade_agent = request.form.get("grade_agent")
+    type_agent = request.form.get("type_agent")
     qualite_agent = request.form.get("qualite_agent")
     agt = {"prenom_agent": prenom_agent, "nom_agent": nom_agent,
            "matricule_agent": matricule_agent,
            "telephone_agent": telephone_agent,
            "indice_agent": indice_agent,
+           "type_agent": type_agent,
            "structure_agent": structure_agent, "ifu_agent": ifu_agent,
            "corps_agent": corps_agent,
            "date_et_lieu_de_naissance_agent": date_et_lieu_de_naissance_agent,
@@ -1400,12 +1402,38 @@ def ordre_de_mission(id_mission):
 @login_required
 def accueil(username, email, roles):
     login_user(users.Users(username, email, roles))
+    nb_total_agent = 0
+    for agt in agent.Agent().get_agents():
+        nb_total_agent += 1
+
+    nb_total_object = 0
+    for agt in object.Object().get_objects():
+        nb_total_object += 1
+
+    nb_total_mission = 0
+    for agt in mission.Mission().get_missions():
+        nb_total_mission += 1
+
+    nb_total_mission_rejete = 0
+    for agt in mission.Mission().get_missions_rejetee():
+        nb_total_mission_rejete += 1
+
+    nb_total_mission_validee = 0
+    for agt in mission.Mission().get_missions_validee():
+        nb_total_mission_validee += 1
+
+    nb_total_mission_en_attente = 0
+    for agt in mission.Mission().get_missions_en_attente():
+        nb_total_mission_en_attente += 1
+
     connected_user = users.Users("", "", "")
     miss1 = mission.Mission()
     list_missions = miss1.get_missions()
-    return render_template('admin_accueil.html', user=login_user, list_missions=list_missions)
-    
-
+    return render_template('admin_accueil.html', user=login_user, list_missions=list_missions,
+                           nb_total_mission_rejete=nb_total_mission_rejete,
+                           nb_total_mission_validee=nb_total_mission_validee,
+                           nb_total_mission_en_attente=nb_total_mission_en_attente, nb_agent=nb_total_agent,
+                           nb_total_mission=nb_total_mission, nb_total_object=nb_total_object)
 
 # def groupe_ville_by_pay():
 #     list_pays = pays.Pays().get_payss()
