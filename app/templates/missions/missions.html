@@ -227,13 +227,17 @@
                             <span>&nbsp;</span>
 
                             <div class="input-group select2-bootstrap-prepend">
-                                <select name="conducteur_mission" class="selectpicker" data-width="100%"
+                                <select name="structure_initiatrice_mission" class="selectpicker" data-width="100%"
                                         single data-live-search="true">
-                                    <option value="" disabled selected>Selectionner la structure de l'agent</option>
-                                    {% for agent in list_agents %}
-                                    <option>{{ agent['ifu_agent'] }} {{ agent['prenom_agent'] }}
-                                        {{ agent['nom_agent'] }}
+
+                                    <option value="" disabled selected>Selectionner la structure intitiatrice</option>
+
+                                    {% for structure in list_structures %}
+                                    <option name="structure_initiatrice_mission"
+                                            value="{{ structure['code_structure'] }}">{{
+                                        structure['code_structure'] }}
                                     </option>
+
                                     {% endfor %}
                                 </select>
 
@@ -251,33 +255,13 @@
                                 <input id="input_commune_mission" name="commune_mission" class="form-control"
                                        type="text" placeholder="Commune ">
                             </div>
-                            <span>&nbsp;</span>
-
-                            <div class="input-group select2-bootstrap-prepend">
-                                <select name="structure_initiatrice_mission" class="selectpicker" data-width="100%"
-                                        single data-live-search="true">
-
-                                    <option value="" disabled selected>Selectionner le conducteur à bord</option>
-
-                                    {% for structure in list_structures %}
-                                    <option name="structure_initiatrice_mission"
-                                            value="{{ structure['code_structure'] }}">{{
-                                        structure['code_structure'] }}
-                                    </option>
-
-                                    {% endfor %}
-                                </select>
-
-                            </div>
-
-                            <span>&nbsp;</span>
 
                             <span>&nbsp;</span>
                             <div class="input-group margin-bottom-sm">
                                 <input name="immatriculation_moyen_transport_mission" required="required"
                                        class="form-control" type="text" placeholder="Immatriculation ">
                             </div>
-
+  <span>&nbsp;</span>
                             <div class="row">
                                 <div class="col-xs-4 col-sm-offset-3 col-sm-3">
                                     <span class="btn btn-primary btn-sm pull-left" id="first-btn-back">

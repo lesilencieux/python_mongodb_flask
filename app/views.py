@@ -952,6 +952,7 @@ def save_missions(username, email, roles):
     commune_mission = request.values.get("commune_mission")
     immatriculation_moyen_transport_mission = request.values.get("immatriculation_moyen_transport_mission")
     structure_initiatrice_mission = request.form.get("structure_initiatrice_mission")
+    conducteur_mission = request.form.get("conducteur_mission")
     code_type_localite_mission = request.values.get("code_type_localite_mission")
     libelle_localite_mission = request.values.get("libelle_localite_mission")
     code_localite_parente_mission = request.values.get("code_localite_parente_mission")
@@ -967,6 +968,7 @@ def save_missions(username, email, roles):
         "immatriculation_moyen_transport_mission": immatriculation_moyen_transport_mission,
         "commune_mission": commune_mission,
         "moyen_transport_mission": moyen_transport_mission,
+        "conducteur_mission": conducteur_mission,
         "agents_mission": agents_mission,
         "ville_pays_destination_mission": ville_pays_destination_mission,
         "pays_destination_mission": pays_destination_mission,
