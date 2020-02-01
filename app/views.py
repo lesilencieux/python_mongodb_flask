@@ -592,7 +592,6 @@ def login():
                 nb_total_mission_en_attente = 0
                 for agt in mission.Mission().get_missions_en_attente():
                     nb_total_mission_en_attente += 1
-
             return render_template('admin_accueil.html', user=read_user2, list_missions=list_missions,nb_total_mission_rejete=nb_total_mission_rejete,nb_total_mission_validee=nb_total_mission_validee,nb_total_mission_en_attente=nb_total_mission_en_attente,nb_agent=nb_total_agent ,nb_total_mission=nb_total_mission,nb_total_object=nb_total_object)
             flash("Nom d'utilisateur ou Mot de passe incorrect !", category='error')
             # return render_template('admin.html')
@@ -636,6 +635,7 @@ def save_pays(username, email, roles):
     libelle_en_pays = request.values.get("libelle_en_pays")
     pys = {"code_numerique_pays": code_numerique_pays, "code_alphat1_pays": code_alphat1_pays,
            "libelle_fr_pays": libelle_fr_pays, "libelle_en_pays": libelle_en_pays,
+           "created_at": dateutil.parser.parse(str(datetime.now())),
            "code_alphat2_pays": code_alphat2_pays}
     ps = pays.Pays()
     if ps.create_new_pays(pys):
@@ -1026,6 +1026,7 @@ def save_objects(username, email, roles):
                       "date_fin_mission": dateutil.parser.parse(date_fin_mission),
                       "reference_lettre_de_mission": reference_lettre_de_mission,
                       "objet_mission": objet_mission,
+                      "created_at": dateutil.parser.parse(str(datetime.now())),
                       "auteur": users.Users(username, email, roles).get_username()
                       }
     objt = object.Object()

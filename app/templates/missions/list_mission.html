@@ -27,8 +27,8 @@
                                     <th>Réference Ordre Mission</th>
                                     <th>Structure Initiatrice</th>
                                     <th>Date Création</th>
-                                    <th>Date Début</th>
-                                    <th>Date Fin</th>
+                                    <th>Date de départ</th>
+                                    <th>Date de retour </th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -40,8 +40,8 @@
                                     <td class="table-active">{{ mission['reference_ordre_mission'] }}</td>
                                     <td class="table-primary">{{ mission['structure_initiatrice_mission'] }}</td>
                                     <td class="table-secondary">{{ mission['created_at'] }}</td>
-                                    <td class="table-success">{{ mission['date_debut_mission'] }}</td>
-                                    <td class="table-danger">{{ mission['date_fin_mission'] }}</td>
+                                    <td class="table-success">{{ mission['date_depart_mission'] }}</td>
+                                    <td class="table-danger">{{ mission['date_retour_mission'] }}</td>
                                     <td class="table-warning">{{ mission['status_mission'] }}</td>
                                     <td>
                                         <div class="input-group btn">
@@ -72,7 +72,7 @@
                                                         <button class="btn btn-info btn-block">Afficher</button>
                                                     </a></li>
                                                 <li><a
-                                                        href="validate_mission/{{ mission['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
+                                                        href="/validate_mission/{{ mission['_id'] }}/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}">
                                                         <button class="btn btn-primary btn-block">Valider</button>
                                                     </a></li>
                                                 <!--                                <li><a href="#">-->

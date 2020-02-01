@@ -113,7 +113,7 @@
 				<ul id="side-main-menu" class="side-menu list-unstyled">
 					<li id="accueil"><a href="/accueil/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles()}}"> <i class="zmdi zmdi-home"></i>Accueil </a></li>
 					<li id="missions"><a href="/list_mission/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"> <i class="zmdi zmdi-collection-text"></i>Missions </a></li>
-					<li id="objects"><a href="/list_object/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"> <i class="fa fa-bar-chart"></i>Objects </a></li>
+					<li id="objects"><a href="/list_object/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"> <i class="fa fa-bar-chart"></i>Objets </a></li>
 
 					{% if current_user.is_authenticated() and "admin" in current_user.get_roles() %}
 					<li id="agents">  <a href="/list_agent/{{ current_user.get_username() }}/{{ current_user.get_email() }}/{{ current_user.get_roles() }}"
